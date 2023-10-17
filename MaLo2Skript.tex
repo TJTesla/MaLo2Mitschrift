@@ -1,0 +1,239 @@
+% !TXS template
+\documentclass[german]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+
+\usepackage{tikz}
+
+\title{Mathematische Logik 2:\\Vorlesungmitschrift}
+\author{Theodor Teslia}
+\date{}
+
+
+\newtheoremstyle{break}
+{\topsep}{\topsep}%
+{}{}%
+{\bfseries}{}%
+{\newline}{}%
+\theoremstyle{break}
+\newtheorem{example}{Beispiel}
+
+\newtheoremstyle{def_style}
+{\topsep}{\topsep}%
+{}{}%
+{\bfseries}{}%
+{\newline}{}%
+\theoremstyle{def_style}
+\newtheorem{definition}{Definition}
+
+\newtheoremstyle{def_style}
+{\topsep}{\topsep}%
+{}{}%
+{\bfseries}{}%
+{\newline}{}%
+\theoremstyle{def_style}
+\newtheorem{satz}{Satz}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Mengenlehre}
+
+\glqq Aus dem Paradies, das Cantor uns geschaffen, soll uns niemand vertreiben können.\grqq{}\\
+(David Hilbert, 1926) 
+
+\subsection{Mengen und Klassen}
+
+Reine Mengen sind Kollektion an Objekten, die ebenfalls wieder Mengen sind, als Alternative lassen sich Mengen ausgehend von Urelementen definieren.
+\\
+Wie führt die Mathematik Objekte ein?
+\begin{itemize}
+	\item Explizite Konstruktion aus schon vorhandenen Objekten, bspw. Konstruktion der rationalen, reellen und komplexen Zahlen, ausgehend von den ganzen und natürlichen.
+	\item Axiomatisches formulieren von gewünschten Eigenschaften der Objekte und betrachte alle Objekte, die die Eigenschaften erfüllen, bspw. Gruppen, Vectorräume, ...
+\end{itemize}
+
+\begin{definition}[Mengen]
+	Intuitiv sind Mengen Kollektionen von Objekten, die selbst wieder Mengen sind. 
+	
+	$a\in b$: $a$ ist ein Element in der Menge $b$.
+	
+	$a \subseteq b$: Jedes Element von $a$ ist auch in $b$.
+	\\
+	Eine Konstruktive Definition von aller Menge könnte wie folgt aussehen:\\ $\{\emptyset\}, \{\emptyset,\{\emptyset\}\}, \{\{\emptyset\}\}$ \textit{usw.}
+	Problem: Wie sieht dieses \textit{usw.} aus?
+\end{definition}
+
+
+Mengen lassen sich auch als Bäume darstellen. Dies lässt sich in Abbildung \ref{Mengenbaum} Beispielhaft für die Menge $\{\; \emptyset, \; \{\emptyset\}, \; \{\emptyset,\{\emptyset\}\}\;\}$ erkennen. 
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}
+			\node {$\bigcirc$}
+			child {node {$\emptyset$}}
+			child {node {$\bigcirc$}
+				child {node {$\emptyset$}}}
+			child {node {$\bigcirc$}
+				child {node {$\emptyset$}}
+				child {node {$\bigcirc$}
+					child {node {$\emptyset$}}}};
+		\end{tikzpicture}
+	\end{center}
+\caption{Darstellung der Menge $\{\; \emptyset, \; \{\emptyset\}, \; \{\emptyset,\{\emptyset\}\}\;\}$ als Baum}
+\label{Mengenbaum}
+\end{figure}
+
+\begin{definition}[Hereditär endliche Mengen]
+	Die hereditär endlichen Mengen ($HF$) bilden eine Miniaturversion der Mengenlehre. Es gilt $HF_0\subset HF_1 \subset HF_2 \subset \dots$. Definiert sind diese Mengen induktiv als $HF_0\coloneqq \emptyset$ und $HF{n+1}\coloneqq \{x : x\subseteq HF_n\}$, so dass $HF_{n+1}$ die Potenzmenge von $HF_n$ ist.
+	
+	Eine Menge ist hereditär endlich, wenn sie Element einer Menge $HF_n$ für ein $n$ ist. Weiter wird $HF\coloneqq\{x : x \in HF_n \text{ für ein }n\in \mathbb{N}\}$ definiert.
+	Dies wirft folgende Frage auf: Ist $HF$ eine Menge? 
+\end{definition}
+
+Die ersten $HF$ Mengen lauten $HF_0=\emptyset$, $HF_1=\{\emptyset\}$, $HF_2=\{\emptyset,\{\emptyset\}\}$, $HF_3=\{\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\emptyset,\{\emptyset\}\}\}$. Es lässt sich erkennen, dass $HF_n\subset HF_{n+1}$ und $HF_n\in HF_{n+1}$ für ein beliebiges $n$. Auch ist es möglich zu folgern, dass $HF_n$ endlich viele Elemente besitzt und jede Menge $a\in HF_{n+1}$ die Gestalt $a=\{b_0,\dots,b_{k-1}\}$ mit $b_0,\dots,b_{k-1}\in HF_n$. Außerdem gilt, dass $HF$ nicht hereditär endlich ist.
+
+\begin{definition}[Natürliche Zahlen]
+	Eine natürliche Zahl $n$ ist definiert als $[n]\coloneqq\{[0],\dots,[n-1]\}$, wobei $[0]=\emptyset$ gilt. Die Menge der natürlichen Zahlen $\mathbb{N}$ lässt sich nun als $\mathbb{N}\coloneqq\{[n] : n \text{ eine nat. Zahl}\} \notin HF$. Eine Folgerung ist $[n]\in HF_{n+1}\setminus HF_n$.
+\end{definition}
+
+\subsubsection{Axiomensysteme für die Mengenlehre}
+
+Das Modell der Mengenlehre besteht aus einer Kollektion $S$ von Objekten, die wir Mengen nennen und einer Beziehung $\in$ zwischen diesen Objekten, so dass alle Axiome des Axiomensystems erfüllt werden.
+
+\begin{definition}[Extensionalitätsaxiom (Ext.)]
+	Zwei Mengen sind gleich, genau dann, wenn sie die selben Elemente haben. In einer Prädikatenlogischen-Formel mit Signatur $\{\in\}$ wäre dies $\forall x \forall y (x=y \leftrightarrow \forall z (z \in x \leftrightarrow z \in y))$.
+	\label{ExtAxiom}
+\end{definition}
+
+Die \textit{Konsistenz} des Axiomensystems der Mengenlehre beschreibt, ob es ein Modell des Axiomensystems gibt oder ob dieses Widersprüchlich ist. Es ist nicht möglich, die Konsistenz unseres Axiomensystems zu beweisen.
+
+Das Axiomensystem der Mengenlehre ist \textit{Vollständig}, wenn alle Modelle \glqq gleich \grqq{} sind, in dem Sinn, dass die gleichen Eigenschaften gelten. Es gibt kein vollständiges Axiomensystem für die Mengenlehre.
+\\
+\\
+Nehmen wir an, dass $(S,\in)$ ein beliebiges, aber festes Modell der Mengenlehre ist. Die Axiome sollen regeln, welche Kollektionen von Elementen aus $S$ selbst wieder ELemente von $S$, also Mengen sind. Dabei werden Kollektionen \textit{Klassen} genannt und Klassen, die keine Mengen sind, werden als \textit{echte Klassen} bezeichnet.
+
+\begin{definition}[Die naive Mengenlehre]
+	Das Axiomensystem der naiven Mengenlehre besitzt zwei Axiome. Zum einen das Extensionalitätsaxiom (siehe Definition \ref{ExtAxiom}) und das Axiomenschema der vollen Komprehension. Dieses besagt, dass sich für jede Formel $\psi(x)$ die Menge $\{x : \psi(x)\}$ bilden lässt: $\exists z \forall z(x \in z \leftrightarrow \psi(x))$.
+\end{definition}
+
+\begin{satz}[Zermelo-Russel Paradoxon]
+	Die naive Mengenlehre ist inkonsistent.
+	
+	Sei $\psi(x)\coloneqq x\notin x$. Nach dem Komprehensionsschema muss nun folgende Formel gelten: $\exists z \forall x(x\in z \leftrightarrow x\notin x)$, aus welcher die Menge $z=\{x : x\notin x\}$ folgt. Eine solche Menge kann aber nicht existieren, da sonst $z\in z \Leftrightarrow z \notin z$ gelten müsste. Es folgt, dass $\{x:x\notin x\}$ immer einer echte Klasse sein muss.
+\end{satz}
+
+\begin{definition}[Das Axiomensystem ZFC]
+	Das Axiomensystem ZFC (\textbf{Z}ermelo-\textbf{F}raenkel-\textbf{C}hoice) ist das heutzutage benutzte Axiomensystem. Es besitzt die folgenden Axiome:
+	\begin{itemize}
+		\item Das Extensionalitätsaxiom
+		\item Das Aussonderungsaxiom: $\forall z \exists y \forall x (x\in y \leftrightarrow(x\in z \land \psi(x)))$. Dieses ist eine schwächere Version des Komprehensionsschemas, bei dem eine Menge aus bereits bestehenden Menge ausgewählt wird.
+		\item Das Erzeugungsaxiom (Kreationsaxiom): Für jede Menge $x$ ex. eine \textit{Stufe} $s\in S$ mit $x\in s$.
+		\item Das Unendlichkeitsaxiom: Es gibt eine \textit{Limesstufe} und damit eine unendliche Menge.
+		\item Das Ersetzungsaxiom: Für jede Funktion $F:S\to S$ mit der Eigenschaft, dass $Def(F)$ eine Menge ist, ist auch $Bild(F)$ eine Menge.
+		\item Das Auswahlaxiom: Auf jeder Menge ex. eine \textit{Auswahlfunktion}
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[Klassenoperatoren]
+	Seien $A, B$ Klassen.
+	
+	$A \subseteq B$: Jede Menge aus $A$ ist auch in $B$.
+	
+	$\bigcap A\coloneqq\{x : x\in y \text{ für alle } y \in A\}$
+	
+	$A \cap B \coloneqq \{x : x\in A \text{ und } x \in B\}$
+	
+	$A \setminus B \coloneqq \{x : x \in A \text{ aber } x \notin B\}$
+\end{definition}
+
+Für eine Formel $\psi(x)$ kann $\{x : \psi(x)\}$ entweder eine Menge oder eine echte Klasse sein. Somit lässt sich das Aussonderungsaxiom umformulieren: Für jede Menge $a$ und jede Klasse $A$ ist $a \cap A$ eine Menge. Daraus folgt, dass auch $a \setminus A$ eine Menge sein muss, dass $\bigcap A$ eine Menge ist, falls $A$ mindestens eine Menge enthält und, dass $\bigcap \emptyset = S$ keine Menge ist.
+
+\subsection{Stufen und Geschichten}
+
+Eine mögliche Methode zur Definition der gesamten Klasse aller Mengen ist es, die induktive Konstruktion der $HF$ zu erweitern. So ist $S$ dann die Vereinigung einer aufsteigenden Folge von Mengen $S_\alpha$, welche wir die Stufen von $S$ nennen. Es gilt $S_0\coloneqq \emptyset$ und für die bereits definierte Stufe $S_\alpha$ setzen wir $S_{\alpha +1}\coloneqq\{x : x\in S_\alpha\}$.
+
+Sobald eine unendliche Folge von solchen Stufen definiert wurde, lässt sich eine neue Stufe als Vereinigung aller bisherigen Stufen definieren.\\
+
+$S_0=HF_0=\emptyset$, $S_1=HF_1$, $\dots$, $S_n=HF_n$
+
+$S_\omega \coloneqq \bigcup\limits_n S_n = \bigcup\limits_n HF_n = HF$
+
+$S_{\omega+1}\coloneqq\{x : s\in S_\omega\}$, $\dots$
+
+$S_{\omega+\omega}\coloneqq\{x : x \in S_{\omega+n} \text{ für ein } n\}$ \textit{usw.}
+
+\begin{definition}[Die Akkumulation]
+	Sei $A$ eine Klasse. Die Akkumulation von $A$ ist $acc(A)\coloneqq\{x : (\exists y \in A) x\in y\lor x \subset y\})$.
+\end{definition}
+
+Da für eine Klasse $A$ und ein Element $a\in A$ natürlich gilt, dass $a \subset a$, gilt auch $a\in acc(A)$ und somit $A\subseteq acc(A)$.
+
+\begin{definition}[Geschichten]
+	Eine Geschichte ist eine Klasse $H$, so dass für alle $a\in H$ gilt $acc(a\cap H)=a$.
+\end{definition}
+
+Die Stufe mit Geschichte $H$ ist $S\coloneqq acc(H)$.
+
+\begin{example}[Beispiele zu Geschichten und Stufen]
+	Im Folgenden soll für einige Mengen ihre Akkumulation gezeigt werden und bewiesen, dass es sich bei diesen auch um Geschichten handelt.
+	\begin{itemize}
+		\item $acc(\emptyset)=\emptyset$. $\emptyset$ ist eine Geschichte und die Stufe mit Geschichte $\emptyset$ ist $\emptyset$.
+		\item $\{\emptyset\} = [1] = HF_1 = \{HF_0\}$: $acc(\{\emptyset\}) = \{\emptyset\}$. 
+		$\{\emptyset\}$ ist auch eine Geschichte, denn für das einzige Element $\emptyset$ gilt $acc(\emptyset \cap \{\emptyset\})=acc(\emptyset)=\emptyset$. 
+		Die Stufe mit Geschichte $\{\emptyset\}$ ist $\{\emptyset\}$.
+		\item $\{\emptyset, \{\emptyset\}\}=[2]=HF_2=\{HF_0, HF_1\}$: $acc(HF_2)=HF_2$.
+		$HF_2$ ist eine Geschichte, denn $acc(\emptyset \cap \{\emptyset, \{\emptyset\}\})=acc(\emptyset)=\emptyset$ und $acc(\{\emptyset\}\cap \{\emptyset, \{\emptyset\}\})=acc(\{\emptyset\})=\{\emptyset\}$. Die Stufe mit Geschichte $\{\emptyset, \{\emptyset\}\}$ ist $\{\emptyset, \{\emptyset\}\}$.
+	\end{itemize}
+\label{GeschichtenBsp}
+\end{example}
+
+Dies wirft die Frage auf, ob es eine Verallgemeinerung gibt. Demnach soll nun überprüft werden, ob $[n]$ eine Geschichte ist, für jedes $n$ in den natürlichen Zahlen. Für $k<n$ müsste gelten, dass $acc([n]\cap[k])=acc([k])\stackrel{!}{=}[k]$. 
+Aber $acc([k])$ enthält alle Teilmengen von $[k-1]$, für $k=4$ also alle Teilmengen von $\{[0],[1],[2]\}$, demnach auch $\{[0], [2]\}$. Es gilt aber, dass $\{[0],[2]\}\notin [k]$ und es folgt $acc([k])\neq[k]$. Für $n \geq 3$ ist $n$ also keine Geschichte.
+
+Ist $HF_n$ eine Geschichte? Nein, denn $[n-1]\in HF_n$ und $acc([n-1]\cap HF_n)=acc([n-1])\neq[n-1]$.
+
+Aber $G_n\coloneqq\{HF_0,\dots,HF_{n-1}\}$ ist eine Geschichte mit Stufe $HF_n$. Für $n=0,1,2$ wurde dies schon in Beispiel \ref{GeschichtenBsp} gezeigt. Sei dies für $G_n$ bereits bewiesen, wir zeigen dies nun für $G_{n+1}=G_n\cup\{HF_n\}$.
+$G_{n+1}$ ist eine Geschichte, wenn für alle $k \leq n$ gilt: $acc(HF_k\cap G_{n+1})=HF_k$.
+$HF_k \cap G_{n+1} = \{HF_0,\dots,HF_{k-1}\}=G_k$ und per Induktionsvoraussetzung gilt $acc(G_k)=HF_k$.
+
+Also ist $G_{n+1}$ eine Geschichte. Die Stufe mit Geschichte $G_{n+1}$ ist $acc(G_{n+1})=acc(G_n\cup \{HF_n\})=acc(GF_n)\cup HF_n \cup \{x : x\subseteq HF_n\}=HF_n\cup HF_n \cup HF_{n+1} = HF_{n+1}$.
+
+Dies gibt die Idee für die Rückrichtung: Für jede Stufe $S_\alpha$ soll gelten, dass sie die Geschichte $H(S_\alpha)=\{S_\beta : \beta < \alpha\}$ hat.
+
+\begin{definition}[Minimales Element]
+	Eine Menge $m\in A$ ist ein \textit{minimales Element} von $A$, wenn $m\cap A=\emptyset$, d.h. es gibt kein $a\in A$ mit $a\in m \in A$.
+	
+	Eine Menge $a$ ist fundiert, wenn jede Menge $b$ mit $a\in b$ ein minimales Element enthält. Der fundierte Teil von $A$ ist $fd(A)\coloneqq\{x\in A : x \text{ ist fundiert}\}$.
+\end{definition}
+
+\begin{example}[Beispiele für minimale Elemente und Fundiertheit]
+	$\emptyset$ ist fundiert.
+	
+	$\{\emptyset\}$ ist ebenfalls fundiert. Sei $\{\emptyset\}\in b$. Wenn $\{\emptyset\}\cap b =\emptyset$ ist $\{\emptyset\}$ das minimale Element. Andernfalls ist $\{\emptyset\}\cap b=\{\emptyset\}$ und $\emptyset$ ist das minimale Element von $b$.
+\end{example}
+
+\begin{satz}[Wenn $H$ eine Geschichte ist, dann enthält jede nicht-leere Teilmenge von $H$ ein minimales Element]
+	Es sei $a \in b \subset H$ 
+\end{satz}
+
+
+
+
+
+
+
+
+
+
+\end{document}
