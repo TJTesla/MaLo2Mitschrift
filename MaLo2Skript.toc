@@ -1,0 +1,6 @@
+\babel@toc {german}{}\relax 
+\contentsline {section}{\numberline {1}Mengenlehre}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Mengen und Klassen}{1}{}%
+\contentsline {subsubsection}{\numberline {1.1.1}Axiomensysteme für die Mengenlehre}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Stufen und Geschichten}{3}{}%
+\contentsline {subsection}{\numberline {1.3}Relationen und Funktionen}{9}{}%

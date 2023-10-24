@@ -41,19 +41,22 @@
 
 \newtheoremstyle{lemma_style}
 {\topsep}{\topsep}%
-{}{0.5cm}%
+{}{}%
 {\itshape}{:}%
 { }{}%
 
 \theoremstyle{lemma_style}
-\newtheorem*{lemma}{Lemma}
+\newtheorem{lemma}{Lemma}[section]
 
 \usepackage{tikz}
 
+\newcommand{\Pot}[1]{\mathcal{P}(#1)}
 
 \begin{document}
 
 \maketitle
+
+\tableofcontents
 
 \section{Mengenlehre}
 
@@ -359,6 +362,140 @@ Für eine Stufe $s$ mit $a\in s \in \mathcal{S}$ gilt:
 	\item $\bigcup a=\{b\in s : (\exists x\in a)b\in x\}$
 \end{itemize}
 
+Sei nun $A$ eine Klasse. Dann ist $S(A)$ die kleinste Stufe, so dass $A\subseteq S(A)$. Es lässt sich daraus auch leicht erkennen, dass für jede Stufe $s$ gilt $S(s)=s$.
 
+\begin{lemma}
+	Wenn $a\in b$, dann $S(a)\in S(b)$.
+\end{lemma}
+\begin{proof}
+	Da $a\in b \subseteq S(b)=acc(H(S(b)))$ ex. $s\in S(b)$ mit $a\in s$ (und durch die Transitivität $a\subseteq s$), also ist $S(a)\subseteq s$ und daher $S(a)\subseteq s \in S(b)$ und da $S(b)$ erblich ist, folgt $S(a)\in S(b)$.
+\end{proof}
+
+\begin{lemma}
+	$\mathcal{S}$ ist die einzige Stufe, welche ein echte Klasse ist.
+	\label{EinzigeStufeDieKlasseIst}
+\end{lemma}
+\begin{proof}
+	Sei $S$ eine Stufe, $S\neq \mathcal{S}$. Also ex. $a\in \mathcal{S}\setminus S$. Es folgt, dass $S(a)\notin S$, da sonst $a\subseteq S(a)\in S$ und daher $a\in S$. 
+	Für Stufen $T \supseteq S(a)$ gilt daher $T \notin H(S)=\{s\in S : s \text{ ist Stufe}\}$. Also $H(S)\subseteq\{T : T \text{ ist Stufe}, T \in S(a)\}$. Da $S(a)$ und $H(S(a))$ mengen sind, ist auch $H(S)$ eine Menge und damit auch $S=acc(H(S))$.
+\end{proof}
+
+Daraus lässt sich folgern, dass die folgenden Aussagen für eine Klasse $A$ äquivalent sind:
+\begin{enumerate}
+	\item $A$ ist eine echte Klasse.
+	\item $S(A)$ ist eine echte Klasse.
+	\item $S(A)=\mathcal{S}$.
+\end{enumerate}
+\begin{proof}
+	\textit{3. $\Rightarrow$ 1.}: Wenn $A$ eine Menge ist, ist auch $S(A)$ eine Menge. Nach Kontraposition gilt die Folgerung.
+	
+	\textit{1. $\Rightarrow$ 2.}: Wenn $S(A)$ eine Menge ist, ist auch $A=A\cap S(A)$ eine Menge. Nach Kontraposition gilt die Folgerung.
+	
+	\textit{2. $\Rightarrow$ 3.}: Dies wurde in Lemma \ref{EinzigeStufeDieKlasseIst} bewiesen.
+\end{proof}
+
+\begin{satz}
+	Für jede Menge $a$ gilt $a\notin a$.
+\end{satz}
+\begin{proof}
+	Es gelte $a\in a$. Dann $a\in a \subseteq S(a)§$. $S(a)=\{x : x\subseteq s \text{ für eine Stufe } s\in S(a)\}$, also existiert $s\in S(a)$ mit $a\subseteq s$. $S(a)$ ist aber die minimale Stufe, die $a$ als Teilmenge enthält. Widerspruch!
+\end{proof}
+
+Durch diesen Satz ist die Fundiertheit der Mengenlehre bewiesen.
+
+\begin{satz}
+	Jede nicht-leere Klasse enthält ein minimales Element.
+\end{satz}
+\begin{proof}
+	Sei $A$ eine nicht-leere Klasse. $B=\{S(b) : b \in A\}$ ist die nicht-leere Klasse der Stufen in $A$ und hat ein minimales Element $s_0=S(b_0)$. D.h. $S(b_0)\cap B = \emptyset$. 
+	Behauptung: $b_0$ ist das minimale Element von $A$. Andernfalls ex. $b_1\in b_0\cap A$. Da $b_1 \in b_0$ ist auch $S(b_1)\in S(b_0)$. Da $b_1\in A$ folgt $S(b_1)\in b$. Also $S(b_1)\in S(b_0)\cap B \neq \emptyset$. Widerspruch!
+\end{proof}
+
+\begin{lemma}
+	Set $S\in \mathcal{S}$ eine Stufe. Die Nachfolgerstufe von $S$ ist $\Pot{S}$, wobei $\mathcal{P}$ die Potenzfunktion ist.
+\end{lemma}
+\begin{proof}
+	Es gibt eine minimale Stufe $T$ mit $S\in T$. Nun ist zu zeigen, dass $\Pot{S}=T$.
+	
+	Aus $a\subseteq S\in T$ folgt wegen der Erblichkeit von $T$ auch $a\in T$. Also $\Pot{S}\subseteq T$. Sei $s \in T$ eine Stufe. $S\notin s$, da $T$ die Nachfolgerstufe von $S$ ist. Also gilt $S=s$ oder $s\in S$ und $s\subseteq S$. Für alle Stufen $s$ gilt $s\in T \Leftrightarrow s\subseteq S$. Nun gilt $T=\{x : x\subseteq s \text{ für eine Stufe } s\in T\}=\{x : x \subseteq s \text{ für eine Stufe } s\subseteq S\}=\{x : x \subseteq S\}=\Pot{S}$
+\end{proof}
+
+\begin{satz}
+	Sei $S\neq \emptyset$ eine Stufe. Nun sind äquivalent:
+	\begin{enumerate}
+		\item $S$ ist eine Limesstufe.
+		\item $S=\bigcup H(S)$.
+		\item Für alle $a\in S$ ex. eine Stufe $t\in S$ mit $a\in t$.
+		\item Wenn $a\in S$, dann $\Pot{a}\in S$.
+		\item Wenn $a\in S$, dann $\{a\}\in S$.
+	\end{enumerate}
+\end{satz}
+\begin{proof}
+	\textit{1. $\Rightarrow$ 2.}: Es gilt $S=\{x \subseteq s \text{ für eine Stufe } s\in S\}$ und $H(S)=\{s\in S : s\text{ ist eine Stufe}\}$. Wenn $S$ eine Limesstufe ist, dann gilt für alle $s\in S$ auch $\Pot{s}\in S$. $\bigcup H(S)=\{x : x\in s \text{ für ein } s \in H(S)\}=\{x : x\in s \text{ für eine Stufe } s\in S\}$ und da $S$ eine Limesstufe gilt, dass dies gleich zu $\{s : s \in \Pot{s} \text{ für eine Stufe } s \in S\}=\{x : x \subseteq s \text{ für eine Stufe } s\in S\}=S$ ist.
+	
+	\textit{2. $\Rightarrow$ 1.}: Sei $S=\Pot(T)$ für eine Vorgängerstufe $T$ mit $H(S)=H(T)\cup \{T\}$. $\bigcup H(S)=\{x : x \in s \in S, s \text{ ist Stufe}\} = \{x : x \in T\}=T\neq S$. Widerspruch!
+	
+	\textit{1. $\Rightarrow$ 3.}: Da $S=\{s: x\subseteq s \text{ für eine Stufe } s \in S\}$ folgt für $a\in S$, dass eine Stufe $s$ existiert mit $a\subset s$, also $a\in \Pot(s)\in S$.
+	
+	\textit{3. $\Rightarrow$ 4.}: Für $a\in S$ ex. eine Stufe $t\in T$ mit $a\in t$. Sei nun $x\in \Pot{a}$. Aus $x\subseteq a \in t$ folgt $x\in t$, das heißt $\Pot{a}\in S=\{x : x\subseteq s \text{ für eine Stufe } s\in S\}$.
+	
+	\textit{4. $\Rightarrow$ 5.}: Wenn $a\in S$, dann $\{a\}\subseteq P(a)\in S$. Da $S$ erblich ist, ist $\{a\}\in S$.
+	
+	\textit{5. $\Rightarrow$ 1.}: Wenn $S$ keine Limesstufe ist, also $S=\Pot{T}$, dann $T\in S$ und nach \textit{5.} $\{T\}\in S$. Da $S=\Pot{T}$ ist $\{T\}\subseteq T$, also $T\in T$. Widerspruch!
+\end{proof}
+
+\begin{definition}[$cut$ einer Klasse]
+	Der $cut$ einer Klasse $A$ ist die Menge $cut(A)\coloneqq\{x \in A : S(x)\subseteq S(y) \text{ für alle } y \in A\}$. In Worten enthält $cut(A)$ also die Menge von $A$ mit minimaler Stufe. Es gilt $cut(\emptyset)=\emptyset$ und $cut(\{a\})=\{a\}$. Für $a\in A$ ist $cut(A)\subseteq S(a)$.
+\end{definition}
+
+\begin{satz}
+	Eine Stufe ist eine Limesstufe, genau dann, wenn $cut(a)\in S$ für alle $a\subseteq S$.
+\end{satz}
+\begin{proof}
+	$\Rightarrow$: Für $a=\emptyset$ ist $cut(a)=\emptyset \in S$. Sei $x \in a \subseteq S$. Dann ex. ein $s\in S$ mit $x\in s$ und $x\subseteq s$, also $cut(a)\subseteq s \in S$.
+	
+	$\Leftarrow$: Sei $S=\emptyset$. Dann $\emptyset\subseteq S$, aber $cut(\emptyset)=\emptyset\notin S$. 
+	Sei $S=\Pot{T}$ eine Nachfolgerstufe. Dann ist $T\in S$, also $\{T\}\subseteq S$, aber $cut(\{T\})=\{T\}\notin S$. Also muss $S$ eine Limesstufe sein.
+\end{proof}
+
+
+Nun wurden die ersten vier der sechs Axiome des Axiomensystems ZFC betrachtet. Das Aussonderungs-, Extensionalitäts-, Kreations- und Unendlichkeitsaxiom.
+
+Mit den ersten dreien ist es noch möglich, dass $\mathcal{S}=\emptyset$ oder $\mathcal{S}=HF$ gilt. Durch dass Unendlichkeitsaxiom, welches die Existenz einer Limesstufe fordert ist dies nicht mehr möglich. 
+Benutzt man diese vier Axiome lässt sich also aussagen, dass $S\neq \emptyset$, die Mengen $HF_n$ für beliebige $n$ existieren und $HF$ eine Menge ist.
+
+Der bisherige Aufbau von $\mathcal{S}$ sieht also wie folgt aus: $S_0\subset S_1\subset S_2 \subset \dots \subset S_\omega \subset S_{\omega+1}\subset S_{\omega+2}\subset \dots$. Wobei $S_\omega$ die kleinste Limesstufe ist. Weiter gilt dann auch, dass $S_{\omega+n+1}=\Pot{S_{\omega+n}$. 
+	
+Nun stellt sich aber die Frage, wie es weiter geht. Ist $S_{\omega+\omega}\coloneqq\{x : x\in S_{\omega+n} \text{ für ein } n}\}$ eine Menge? Seien nun also $(\mathcal{S}, \in)$ und $(\mathcal{S}', \in)$ zwei Modelle der vier Axiome mit den Stufen $(S_\alpha)_{\alpha<\kappa}$, $(S'_\alpha)_{\alpha<\lambda}$. Es lässt sich einsehen, dass $\kappa,\lambda \geq \omega+\omega$ gilt und, dass $S_n=S'_n=HF_n$ für endliche $n$ gelten muss.
+
+\subsection{Relationen und Funktionen}
+
+Sei $(a,b)$ ein geordnetes Paar. Es ist bekannt, dass wenn $(a,b)=(a', b')$ gilt, auch $a=a'$ und $b=b'$ gelten muss.
+
+\begin{definition}
+	Seien $a, b$ Mengen. Nun wird das geordnete Paar $(a, b)\coloneqq\{\{a\}, \{a,b\}\}$ definiert. Für Klassen $A,B$ gilt $A\times B=\{(a,b):a\in A, b\in B\}$
+\end{definition}
+
+\begin{lemma}
+	Wenn $\{a,b\}=\{a,c\}$ gilt, muss $b=c$ folgen.
+	\label{ZweierMengenMitEinemUnterschied}
+\end{lemma}
+\begin{proof}
+	$b\in \{a,b\}=\{a,c\}$. Also $b=a$ oder $b=c$. Wenn $b\neq c$, dann $b=a$ und $c\in\{a,c\}=\{a,b\}=\{a\}$. Also $c=a=b$. Widerspruch!
+\end{proof}
+
+\begin{lemma}
+	Wenn $(a,b)=(c,d)$ muss $a=c$ und $b=d$ folgen.
+\end{lemma}
+\begin{proof}
+	$\{a\}\in \{\{a\}, \{a,b\}\}=\{\{c\},\{c,d\}\}$, das heißt $\{a\}=\{c\}$ oder $\{a\}=\{c,d\}$. In beiden Fällen gilt aber $a=c$ und $\{a\}=\{c\}$. Nach Lemma \ref{ZweierMengenMitEinemUnterschied} gilt wegen $\{a,b\}=\{c,d\}$ und $a=c$ auch $b=d$.
+\end{proof}
+
+Weiter lässt sich $\langle A, B \rangle\coloneqq(\{[0]\times A\})\cup(\{[1]\}\times B)$ definieren.
+
+Für Mengen $a_0,\dots,a_n$ sei $()\coloneqq \emptyset, (a_0)=a_0$ und $(a_0,dots,a_n)\coloneqq((a_0,\dots,a_{n-1}), a_n)$.
+Weiter ist $A^0\coloneqq\{()\}, A^1\coloneqq A, A^{n+1}\coloneqq A^n\times A$.
+
+Nun ist eine $n$-stellige Relation eine Klasse $R\subseteq \mathcal{S}^n$. Wenn $R\subseteq A^n$ für eine Klasse $A$ ist, dann sagen wir zu $R$, dass sie eine $n$-stellige Relation über $A$ ist.
 
 \end{document}
