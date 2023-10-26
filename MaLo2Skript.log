@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.11)  24 OCT 2023 12:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.11)  26 OCT 2023 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -694,24 +694,6 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (35.75018pt too wide) in paragraph at lines 114--115
-[]\T1/lmr/m/n/10 Die er-sten $\OML/lmm/m/it/10 HF$ \T1/lmr/m/n/10 Men-gen lau-t
-en $\OML/lmm/m/it/10 HF[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 ;$\T1/lmr/m/n/10 ,
- $\OML/lmm/m/it/10 HF[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 f;g$\T1/lmr/m/n/10 ,
- $\OML/lmm/m/it/10 HF[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 f;\OML/lmm/m/it/10 ;
- \OMS/lmsy/m/n/10 f;gg$\T1/lmr/m/n/10 , $\OML/lmm/m/it/10 HF[] \OT1/lmr/m/n/10 
-= \OMS/lmsy/m/n/10 f;\OML/lmm/m/it/10 ; \OMS/lmsy/m/n/10 f;g\OML/lmm/m/it/10 ; 
-\OMS/lmsy/m/n/10 ff;gg\OML/lmm/m/it/10 ; \OMS/lmsy/m/n/10 f;\OML/lmm/m/it/10 ; 
-\OMS/lmsy/m/n/10 f;ggg$\T1/lmr/m/n/10 .
- []
-
-
-Overfull \hbox (26.75423pt too wide) in paragraph at lines 125--127
-[]\T1/lmr/m/n/10 Zwei Men-gen sind gleich, ge-nau dann, wenn sie die sel-ben El
-e-men-te ha-ben. In ei-ner Prädikatenlogischen-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 131--135
 
  []
@@ -725,36 +707,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 176--177
 
 LaTeX Warning: Command \textsection invalid in math mode on input line 401.
 
-[8] [9] [10] (./MaLo2Skript.aux) ) 
+[8] [9] [10] [11] [12] (./MaLo2Skript.aux) ) 
 Here is how much of TeX's memory you used:
- 15818 strings out of 478268
- 311887 string characters out of 5846346
- 602109 words of memory out of 5000000
- 33726 multiletter control sequences out of 15000+600000
+ 15854 strings out of 478268
+ 312677 string characters out of 5846346
+ 602147 words of memory out of 5000000
+ 33762 multiletter control sequences out of 15000+600000
  525908 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,14n,104p,641b,1227s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc
-/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/
-lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
-enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/loca
-l/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022
-/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/f
-onts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
-/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi10.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/
-2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-
-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/
-type1/public/lm/lmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public
-/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10
-.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MaLo2Skript.pdf (10 pages, 262909 bytes).
+{/usr/local/texlive/2022/texmf-dist
+/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc
+/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/
+lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/te
+xlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/f
+onts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
+/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
+/lmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi7.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/loca
+l/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
+pe1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public
+/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy7.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
+m10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols
+/msbm10.pfb>
+Output written on MaLo2Skript.pdf (12 pages, 286093 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -46,7 +46,7 @@
 { }{}%
 
 \theoremstyle{lemma_style}
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{lemma}{Lemma}[subsection]
 
 \usepackage{tikz}
 
@@ -111,7 +111,7 @@ Mengen lassen sich auch als Bäume darstellen. Dies lässt sich in Abbildung \re
 	Dies wirft folgende Frage auf: Ist $HF$ eine Menge? 
 \end{definition}
 
-Die ersten $HF$ Mengen lauten $HF_0=\emptyset$, $HF_1=\{\emptyset\}$, $HF_2=\{\emptyset,\{\emptyset\}\}$, $HF_3=\{\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\emptyset,\{\emptyset\}\}\}$. Es lässt sich erkennen, dass $HF_n\subset HF_{n+1}$ und $HF_n\in HF_{n+1}$ für ein beliebiges $n$. Auch ist es möglich zu folgern, dass $HF_n$ endlich viele Elemente besitzt und jede Menge $a\in HF_{n+1}$ die Gestalt $a=\{b_0,\dots,b_{k-1}\}$ mit $b_0,\dots,b_{k-1}\in HF_n$. Außerdem gilt, dass $HF$ nicht hereditär endlich ist.
+Die ersten $HF$ Mengen lauten $HF_0=\emptyset$, $HF_1=\{\emptyset\}$, $HF_2=\{\emptyset,\{\emptyset\}\}$, \\ $HF_3=\{\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\emptyset,\{\emptyset\}\}\}$. Es lässt sich erkennen, dass $HF_n\subset HF_{n+1}$ und $HF_n\in HF_{n+1}$ für ein beliebiges $n$. Auch ist es möglich zu folgern, dass $HF_n$ endlich viele Elemente besitzt und jede Menge $a\in HF_{n+1}$ die Gestalt $a=\{b_0,\dots,b_{k-1}\}$ mit $b_0,\dots,b_{k-1}\in HF_n$. Außerdem gilt, dass $HF$ nicht hereditär endlich ist.
 
 \begin{definition}[Natürliche Zahlen]
 	Eine \textit{natürliche Zahl} $n$ ist definiert als $[n]\coloneqq\{[0],\dots,[n-1]\}$, wobei $[0]=\emptyset$ gilt. Die Menge der natürlichen Zahlen $\mathbb{N}$ lässt sich nun als $\mathbb{N}\coloneqq\{[n] : n \text{ eine nat. Zahl}\} \notin HF$. Eine Folgerung ist $[n]\in HF_{n+1}\setminus HF_n$.
@@ -122,7 +122,7 @@ Die ersten $HF$ Mengen lauten $HF_0=\emptyset$, $HF_1=\{\emptyset\}$, $HF_2=\{\e
 Das Modell der Mengenlehre besteht aus einer Kollektion $\mathcal{S}$ von Objekten, die wir Mengen nennen und einer Beziehung $\in$ zwischen diesen Objekten, so dass alle Axiome des Axiomensystems erfüllt werden.
 
 \begin{definition}[Extensionalitätsaxiom (Ext.)]
-	Zwei Mengen sind gleich, genau dann, wenn sie die selben Elemente haben. In einer Prädikatenlogischen-Formel mit Signatur $\{\in\}$ wäre dies $\forall x \forall y (x=y \leftrightarrow \forall z (z \in x \leftrightarrow z \in y))$.
+	Zwei Mengen sind gleich, genau dann, wenn sie die selben Elemente haben. In einer Formel aus der Prädikatenlogik mit Signatur $\{\in\}$ wäre dies $\forall x \forall y (x=y \leftrightarrow \forall z (z \in x \leftrightarrow z \in y))$.
 	\label{ExtAxiom}
 \end{definition}
 
@@ -498,4 +498,152 @@ Weiter ist $A^0\coloneqq\{()\}, A^1\coloneqq A, A^{n+1}\coloneqq A^n\times A$.
 
 Nun ist eine $n$-stellige Relation eine Klasse $R\subseteq \mathcal{S}^n$. Wenn $R\subseteq A^n$ für eine Klasse $A$ ist, dann sagen wir zu $R$, dass sie eine $n$-stellige Relation über $A$ ist.
 
+\begin{definition}[Binäre Relation]
+	Eine \textit{binäre Relation} $R$ ist eine Relation, mit $R\subseteq A^2$.
+\end{definition}
+
+Weiter ist $Def(R)\coloneqq\{a : (a,b)\in R \text{ für ein } b\}$ und $Bild(R)\coloneqq \{b : (a,b)\in R \text{ für ein } a\}$. Offensichtlich gilt $R\subseteq Def(R)\times Bild(R)$.
+
+Eine binäre Relation ist funktional, wenn für alle $a\in Def(R)$ genau ein $b\in Bild(R)$ existiert so, dass $(a,b)\in R$. Die zugehörige Notation ist dann $R(a)$, wobei $R=\{(a,R(a)) : a \in Def(R)\}$.
+
+\begin{definition}[Partielle und Totale Funktionen]
+	Eine \textit{partielle Funktion} von $A$ nach $B$ ist eine funktionale Relation $F\subseteq A\times B$.
+	
+	Eine \textit{totale Funktion} von $A$ nach $B$ dagegen ist eine funktionale Relation $F\subseteq A\times B$ f+r die zusätzlich gilt, dass $Def(F)=A$ und $Bild(F)\subseteq B$. Die Notation hierfür ist dann $F:A \to B$.
+\end{definition}
+
+Für eine Menge $a$ und eine Klasse $B$ schreibt man $B^a$ für die Klasse aller Funktionen $f:a\to B$. Die Einschränkung einer Funktion $F: A\to B$ auf eine Teilklasse $C\subseteq A$ ist $F\upharpoonright C\coloneqq F\cap(C\times B)$. Das Bild von $C$ unter $F$ ist $F[C]\coloneqq Bild(F\upharpoonright C)$.
+
+Die bereits bekannten Begriffe \textit{injektiv}, \textit{surjektiv} und \textit{bijektiv} sind wie üblich definiert.
+
+\begin{lemma}
+	Seien $A\subseteq B \subseteq C$ Mengen. Wenn eine injektive Funktion $f:C\to A$ existiert, dann gibt es auch eine injektive Funktion $g:C\to B$.
+	\label{CursedGeschachtelteMengenFunktionenLemma}
+\end{lemma}
+\begin{proof}
+	Sei $Z\coloneqq \bigcap \{X\subseteq C : C\setminus B\subseteq X, f[X]\subseteq X\}$. Es gilt $C\setminus B\subseteq Z$ und also $C\setminus Z\subseteq B, C\setminus Z = B\setminus Z$.
+	
+	$f[Z]\subseteq Z$. Daraus folgt die Behauptung, dass die Funktion $g(x)$ mit $$g(x)\coloneqq\begin{cases} f(x) & \text{für } x \in Z \\id & \text{für } x \in C \setminus Z \end{cases}$$
+	eine bijektive Funktion von $C$ nach $B$ ist. Es gilt $g \upharpoonright Z=f\upharpoonright Z$ ist injektiv und $g[Z]\subseteq Z \cap B$ und $g \upharpoonright C \setminus Z = id_{c\setminus Z}$ ist bijektiv und $g[C\setminus Z] \subseteq B$.
+	
+	Es bleibt zu zeigen, dass $g[Z]=f[Z]=Z\cap B$, denn dann ist $g[C]=g[Z]\cup g[C\setminus Z]=(Z\cap B)\cup B\setminus Z=B$, da $C\setminus Z = B \setminus Z$ und $g[C\setminus Z]=C\setminus Z$.
+	
+	Angenommen es gibt $a\in (Z\cap B)\setminus f[Z]$. Da $a\in B$ gilt für $X\coloneqq Z \setminus \{a\}$
+	\begin{itemize}
+		\item $C\setminus B\subseteq X$ (da $C\setminus B \subseteq Z$, $a\in B$)
+		\item $f[X]\subseteq X$ (da $f[X]=f[Z\setminus \{a\}]\subseteq f[Z] \subseteq Z\setminus \{a\}=X$)
+	\end{itemize}
+	Also müsste $Z \subseteq X$ gelten. Widerspruch!
+\end{proof}
+
+\begin{satz}[Cantor-Schröder-Bernstein]
+	Wenn es eine injektive Funktion $f:A\to B$ und eine andere injektive Funktion $g : B\to A$ existiert, dann gibt es auch eine bijektive Funktion $h:A\to B$.
+	\label{SatzCantorSchroederBernstein}
+\end{satz}
+\begin{proof}
+	Die Funktion $g\circ f : A \to g[f[A]]$ ist bijektiv. Nach dem Lemma \ref{CursedGeschachtelteMengenFunktionenLemma} muss dann auch eine weitere bijektive Funktion $p: A \to g[B]$ existieren. Der Zusammenhang lässt sich einfach in Abbildung \ref{CantorSchroederBernsteinGrafik} erkennen. 
+	
+	Nun ist $g^{-1}\upharpoonright g[B] : g[B]\to B$ ebenfalls bijektiv. Es lässt sich dann $h\coloneqq g^{-1}\circ p : A\to B$ als bijektive Funktion von $A$ nach $B$ definieren. 
+\end{proof}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}
+			\draw (-4, 0) circle (3); \draw (-6.8, 0) node {$A$};
+			\draw (-4, 0) circle (2); \draw (-5.5, 0) node {$g[B]$};
+			\draw (-4, 0) circle (0.75); \draw (-4, 0) node {$g[f[A]]$};
+			
+			\draw (4, 0) circle (3); \draw (1.2, 0) node {$B$};
+			\draw (4, 0) circle (2); \draw (2.5, 0) node {$f[A]$};
+			
+			
+			\draw[->, thin, blue] (-4, 3) -- (4, 2) node[pos=0.2, sloped, above, blue] {$f: A\to B$};
+			\draw[->, thin, blue] (-4, -3) -- (4, -2);
+			
+			\draw[->, thin, red] (4, 3) -- (-4, 2)  node[pos=0.2, sloped, above, red] {$g:B\to A$};
+			\draw[->, thin, red] (4, -3) -- (-4, -2);
+			
+		\end{tikzpicture}
+	\end{center}
+	\caption{Grafik des Sachverhalts im Satz \ref{SatzCantorSchroederBernstein}}
+	\label{CantorSchroederBernsteinGrafik}
+\end{figure}
+
+
+\subsection{Ordinalzahlen}
+
+Es wurden bereits die Zahlen $0,1,2,\dots,n,\dots,\omega,\omega+1,\omega+2,\dots,\omega+\omega$ diskutiert, mit welchen sich in diesem Kapitel genauer befasst werden soll.
+
+Ein \textit{Graph} ist ein Paar $(A, R)$ so, dass $R\subseteq A\times A$ ein binäre Relation ist.
+
+\begin{definition}[Partielle Ordnungen]
+	Eine \textit{partielle Ordnung} ist ein Graph $(A,<)$ so, dass $<$ irreflexiv und transitiv ist. Eine alternative Definition ist $(A,\leq)$, wobei $\leq$ reflexiv, transitiv und antisymmetrisch ist.
+\end{definition}
+
+Eine \textit{lineare Ordnung} $(A,<)$ ist eine partielle Ordnung so, dass für alle $a,b\in A$ entweder $a<b$, $a=b$ oder $b<a$ gilt.
+
+Ein Graph $(A,R)$ ist \textit{fundiert}, wenn jede nicht-leere Teilmenge $B\subseteq A$ ein Element $b\in B$ enthält so, dass $\{a\in B : (a,b) \in R\}= \emptyset$.
+Also: Eine partielle Ordnung ist fundiert, wenn jede nicht-leere Teilmenge $B\subseteq A$ ein $<$-minimales Element enthält.
+
+\begin{definition}[Wohlordnungen]
+	Eine \textit{Wohlordnung} $(A,<)$ ist eine fundierte lineare Ordnung so, dass für jedes $a\in A$ die Klasse $\downarrow a\coloneqq \{b\in A : b < a\}$ eine Menge ist.
+	Eine Relation $R\subseteq A\times A$, bei der für ein beliebiges $b$ die Klasse $\{a\in A : (a,b)\in R\}$ eine Menge ist wird auch als mengenähnlich bezeichnet.
+\end{definition}
+
+\begin{lemma}
+	Sei $(A,<)$ eine fundierte, mengenähnliche, partielle Ordnung. Dann existiert in $A$ keine unendliche absteigende Folge $(a_n)_{n\in \omega}$ mit $a_{n+1}<a_n$ für alle $n$, wobei $\omega$ die Menge der natürlichen Zahlen bezeichnet.
+\end{lemma}
+
+Bemerkung: $(a_n)_{n\in \omega}$, $f:\omega \to A$ mit $a_n\coloneqq f(n)$
+
+\begin{proof}
+	Wenn eine solche Folge existiert, dann ist $\{a_n : n\in \omega\}=f[\omega]\subseteq A$ eine nicht-leere Klasse ohne $<$-minimales Element. Da $f[w]\subseteq \{a_0\}\cup \downarrow a$ und $A$ mengenähnlich ist, ist $f[w]$ eine Menge. Dies ist aber ein Widerspruch zur Fundiertheit.
+\end{proof}
+
+Um zu zeigen, dass jedes Element einer fundierten, mengenähnlichen partiellen Ordnung $(A,<)$ eine Eigenschaft $\psi$ erfüllt zeigt man, dass für für jedes $a$, dass wenn $\psi$ für alle $b<a$ gilt, dann auch für $a$.
+
+\begin{satz}[Induktionsprinzip]
+	Sei $(A,<)$ eine fundierte, mengenähnliche partielle Ordnung. Dann gilt
+	\begin{itemize}
+		\item[a)] Jede nicht-leere Klasse hat ein $<$-minimales Element.
+		\item[b)] Sei $X\subseteq A$ so, dass für alle $a\in A$ gilt: Wenn $\downarrow a \subseteq X$, dann ist $a\in X$. Es folgt, dass $X=A$.
+	\end{itemize}
+\end{satz}
+\begin{proof}
+	a): Sei $B\subset A, a\in B$. Wegen der Mengenähnlichkeit ist $\downarrow a$ eine Menge und aus dem Aussonderungsaxiom folgt, dass auch $X\coloneqq B \cap (\downarrow a \cup \{a\})$ eine nicht-leere Teil\textit{menge} von $A$ ist. Es folgt auch, dass $X$ ein minimales Element $b$ besitzt. 
+	
+	Behauptung: $b$ ist auch das $<$-minimale Element von $B$. Andernfalls gibt es ein $c\in B$ mit $c < b \leq a$. Da $b\in X \subseteq B$ würde aber auch $c\in X$ folgen. Widerspruch!
+	
+	b): Annahme: $X$ sei wie gefordert, aber $X\neq A$. Also existiert ein $a\in A\setminus X$. Definiere $B\coloneqq \downarrow a \cup \{a\} \setminus \{X\}$. Dies ist eine nicht-leere Teilmenge und hat daher ein minimales Element $b$. Also ist $\downarrow b\subseteq A\setminus B\subseteq X$ und daher ist $b\in X$. Widerspruch!
+\end{proof}
+
+\begin{definition}[Ordinalzahlen]
+	Eine \textit{Ordinalzahl} ist eine transitive Menge, welche durch $\in$ linear geordnet ist. 
+	Beispiele sind $[n]$ für beliebige $n$, $\omega$, $\omega \cup \{\omega\}$. Die Klasse aller Ordinalzahlen ist $On$
+\end{definition}
+
+\begin{lemma}
+	Ordinalzahlen sind wohlgeordnet durch $\in$.
+\end{lemma}
+\begin{proof}
+	Sei $\beta\subseteq \alpha\in On$ und $\beta\neq \emptyset$. Da $\beta$ fundiert ist existiert ein $\gamma\in \beta$ mit $\gamma\cap \beta =\neq$. Also ist $\gamma$ kleinstes Element in $\beta$ bezüglich. $\in$
+\end{proof}
+
+\begin{definition}[Anfangsstück]
+	Ein \textit{Anfangsstück} einer Ordnung $(A,<)$ ist eine Teilmenge $I\subseteq A$ so, dass $a\in I$ und wenn $b<a$, dann folgt $b\in I$. Ein Anfangsstück von $On$ ist also eine Teilmenge $$
+\end{definition}
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
