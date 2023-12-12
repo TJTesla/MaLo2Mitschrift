@@ -1,0 +1,266 @@
+\clearpage
+
+\section{Die Gödelschen Unvollständigkeitssätze}
+
+In diesem Kapitel sollen die Gödelschen Unvollständigkeitssätze behandelt werden. 
+Durch diese wird einsehbar sein, dass die Unvollständigkeit von ZFC, wie sie im Kapitel zur Kontinuumshypothese festgestellt wurde, nicht behoben werden kann, egal wie das Axiomensystem der Mengenlehre gewählt wird.
+
+\subsection{Das Hilbertsche Programm}
+
+Unter dem Hilbertschen Programm versteht man die Bestrebungen des deutschen Mathematiker David Hilbert (1862 – 1943) zur Axiomatisierung der verschiedenen Zweige der Mathematik in der Prädikatenlogik erster Ordnung.
+Insbesondere sollte es möglich sein mathematische Folgerungen auf syntaktische Ableitungen in einem formalen Kalkül zu reduzieren. Ebenso war das Ziel effektive Verfahren (heute auch Algorithmen genannt) zu konstruieren, um die Gültigkeit mathematischer Aussagen in einer Theorie zu entscheiden.
+Diese Teilergebnisse sollten dann im Beweis der Widerspruchsfreiheit der Mathematik gipfeln. All diese Vorhaben kommen einem mit dem heutigen Wissen sehr utopisch vor und so soll im weiteren Verlauf des Kapitels auch bewiesen werden, dass viele Teile des Programms nicht so aufgehen, wie es sich Hilbert gewünscht hätte.\\
+Dennoch konnte einige Erfolge erzielt werden:
+\begin{itemize}
+	\item Die Axiomatisierung wichtiger Teile der Mathematik durch geeignete Axiomensysteme konnte gezeigt werden
+	\item Die Peano-Arithmetik stellt eine mögliche Axiomatisierung der bekannten Arithmetik in den natürlichen Zahlen dar
+	\item Das Axiomensystem ZFC erlaubt eine Formalisierung der Mathematik innerhalb der Mengenlehre
+	\item Der Begriff \textit{Beweis} konnte durch formale Systeme wie das Hilbert-Frege-System, den Sequenzenkalkül und weiteren, präzisiert werden.
+	\item Durch den Beweis des Vollständigkeitssatzes von Kurt Gödel in 1931, welcher aussagt, dass $\Phi \models \psi$ äquivalent ist zu $\Phi \vdash \psi$ (für $\Phi\subseteq FO, \psi\in FO$), konnte gezeigt werden, dass die gewünschte Reduktion von mathematischen auf syntaktische Folgerungen gültig ist.
+	\item Zuletzt konnten algorithmische Verfahre gefunden werden, um die Erfüllbarkeit bzw. Gültigkeit von \textit{Fragmenten} von FO zu entscheiden.
+\end{itemize}
+Jedoch haben fundamentale Resultate aus den 30er-Jahren das Hilbertsche Programm scheitern lassen:
+
+\paragraph*{1. Gödelscher Unvollständigkeitssatz}
+Jede hinreichend reichhaltige, rekursiv axiomatisierbare Theorie ist unvollständig (bspw. bezieht sich dies auf PA und ZFC).
+
+\paragraph*{Satz von Church/Turing}
+Die Erfüllbarkeit bzw. Gültigkeit von FO ist unentscheidbar.
+
+\paragraph*{2. Gödelscher Unvollständigkeitssatz}
+Ist $\Phi$ ein entscheidbares, hinreichend starkes Axiomensystem, dann ist aus $\Phi$ die Widerspruchsfreiheit von $\Phi$ nicht beweisbar. Insbesondere gilt dies für $\Phi=ZFC$.
+
+\subsection{Theorien}
+
+\begin{definition}[Theorie]
+	Eine \textit{Theorie} $T\subseteq FO(\tau)$ ist eine erfüllbare Satzmenge, welche unter $\models$ abgeschlossen ist. Das heißt, wenn $T\models \psi$, dann ist bereits $\psi\in T$.
+\end{definition}
+
+Im weiteren Verlauf wird die Notation $\Phi^{\models}$ für den Abschluss von $\Phi$ unter $\models$ verwendet. 
+Aus dem Vollständigkeitssatz und der Definition der Theorie ergibt sich für eine Theorie $T=T^{\models}=T^\vdash$.
+
+\begin{definition}[Vollständigkeit]
+	Eine Theorie $T$ ist \textit{vollständig}, wenn für jeden Satz $\psi\in FO(\tau)$ gilt: $\psi\in T$ oder $\neg\psi\in T$.
+\end{definition}
+
+\begin{definition}[Rekursive Axiomatisierbarkeit]
+	Eine Theorie $T$ ist \textit{rekursiv axiomatisierbar}, wenn eine entscheidbare Menge 
+	$\Phi\subseteq FO$ existiert 
+	mit $\Phi^{\models}=T$.
+\end{definition}
+
+\begin{satz}
+	Sei $T$ eine vollständige Theorie. Dann sind äquivalent:
+	\begin{enumerate}
+		\item $T$ ist rekursiv axiomatisierbar.
+		\item Es gibt ein rekursiv aufzählbares Axiomensystem $\Phi$ mit $T=\Phi^{\models}$.
+		\item $T$ ist rekursiv aufzählbar.
+		\item $T$ ist entscheidbar.
+	\end{enumerate}
+\end{satz}
+Bemerkung: Um \textit{Rekursive Aufzählbarkeit} abzukürzen wird r.e. geschrieben, was für \textit{recursively enumerable} steht.
+\begin{proof}
+	\textit{1. $\Rightarrow$ 2.} Da 1. eine schwächere Aussage als 2. ist, welches 1. sogar impliziert, ist die Folgerung trivial.
+	
+	\textit{2. $\Rightarrow$ 3.} Wenn $\Phi$ r.e. ist, dann ist dies auch die Menge aller endlichen $\Phi_0\subseteq \Phi$. Sei $M$ nun ein Algorithmus mit Haltemenge $L(M)=\Phi$. Um zu überprüfen, ob ein $\Phi_0=\{\varphi_1,\dots,\varphi_m\}\subseteq \Phi$ ist, soll $M$ nacheinander auf $\varphi_1,\dots,\varphi_m$ angewendet werden und halten, wenn $M$ auf allen $\varphi_i$ hält.
+	
+	Indem man nun systematisch alle endlichen $\Phi_0\subseteq\Phi$ und alle im Sequenzenkalkül ableitbaren Sequenzen $\Phi\Rightarrow\psi$ aufzählt, erhält man ein Aufzählungsverfahren für $T$.
+	
+	\textit{3. $\Rightarrow$ 4.} $T$ ist vollständig, also gilt $\psi \notin T$ genau dann, wenn $\neq\psi\in T$. Mit $T$ ist also auch das Komplement von $T$ in $FO(\tau)$ r.e. Also ist $T$ entscheidbar.
+	
+	\textit{4. $\Rightarrow$ 1.} Wähle $\Phi=T$. Mit der Definition ergibt sich, dass $T$ dann rekursiv aufzählbar ist.
+\end{proof}
+
+Wir betrachten nun die Struktur $\mathfrak{N}=(\mathbb{N},+,\cdot,0,1)$. Die Theorie $TA\coloneqq Th(\mathfrak{N})=\{\psi : \mathfrak{N}\models\psi\}$ wird als echte Arithmetik (engl.: \textit{true arithmetic}) bezeichnet. Offensichtlich ist $TA$ vollständig.
+
+Das Axiomensystem der Peano-Arithmetik $\Phi_{PA}$ besteht aus folgenden Axiomen:
+\begin{itemize}
+	\item $\forall x \neg(x+1=0)$
+	\item $\forall x \forall y (x+1=y+1\rightarrow x=y)$
+	\item $\forall x (x+0=x)$
+	\item $\forall x \forall y(x+(y+1)=(x+y)+1)$
+	\item $\forall x (x\cdot 0=0)$
+	\item $\forall x \forall y (x\cdot(y+1) = (x\cdot y)+x)$
+\end{itemize}
+und dem Axiomenschema der vollständigen Induktion: 
+$$ \forall \overline{y} ( (\varphi(0,\overline{y}) \land   \forall x 
+(\varphi(x,\overline{y})\rightarrow\varphi(x+1,\overline{y}))   ) 
+\rightarrow \forall x \varphi(x,\overline{y})) $$
+für jede Formel $\varphi(x,\overline{y})\in FO(\tau_{ar})$.
+
+Erlaubt man anstatt der Prädikatenlogik erster Ordnung auch die monadische Logik zweiter Stufe, lässt sich das Axiomenschema der vollständigen Induktion auch als allgemeines Induktionsaxiom formulieren:
+$$ \forall X  (\;(X(0) \land \forall x\,(X(x)\rightarrow X(x+1)) ) 
+\rightarrow \forall x\; X(x))\in MSO$$
+
+In $\Phi_{PA}$ wird das Induktionsaxiom dagegen aber nur für definierbare Teilmengen gefordert. Die Peano Arithmetik $PA\coloneqq \Phi_{PA}^{\models}$ ist rekursiv axiomatisiert und daher r.e.
+
+\begin{definition}
+	Ein Axiomensystem $\Phi$ ist repräsentativ (oder erlaubt Kodierungen), wenn man zu jeder Zahl $n\in \mathbb{N}$ einen Term $t_n$ angeben kann (z.B. $t_n\coloneqq\underbrace{1+\dots+1}_{n\text{-mal}}$) so, dass gilt:
+	\begin{enumerate}
+		\item $\Phi\vdash \neg t_n=t_m$ (für $n\neq m$)
+		\item Für jede totale berechenbare Funktion $f:\mathbb{N}^k\to\mathbb{N}$ existiert eine Formel $\varphi_f(\overline{x}, y)$ so, dass für alle $n_1,\dots,n_k$
+		\begin{itemize}
+			\item $\Phi\vdash \exists!y \varphi_f(t_{n_1},\dots,t_{n_k}, y)$
+			\item Wenn $f(n1,\dots,n_k)=m$, dann $\Phi\vdash\varphi_f(t_{n_1},\dots,t_{n_k},t_m)$
+			\item Wenn $f(n_1,\dots,n_k)\neq m$, dann $\Phi\vdash\neg\varphi_f(n_1,\dots,n_k,m)$
+		\end{itemize}
+	\end{enumerate}	
+\end{definition}
+
+Wenn $\Phi$ repräsentativ ist, dann wird auch jede entscheidbare Relation $R\subseteq\mathbb{N}^k$ durch eine Formel $\varphi_R(x_1,\dots,x_k)$ dargestellt:
+\begin{itemize}
+	\item $(n_1,\dots,n_k)\in R \Rightarrow \Phi\vdash\varphi_R(t_{n_1},\dots,t_{n_k})$
+	\item $(n_1,\dots,n_k)\notin R \Rightarrow \Phi\vdash\neg\varphi_R(t_{n_1},\dots,t_{n_k}$
+\end{itemize}
+
+Insgesamt lässt sich feststellen, dass $TA, PA$ und auch $ZFC$ repräsentativ sind.
+
+\begin{definition}
+	Wir definieren die Funktion $[\cdot,\cdot]:\mathbb{N}\times\mathbb{N}\to\mathbb{N}, (x,y)\mapsto\frac{1}{2}(x+y)(x+y+1)+x$.
+\end{definition}
+\begin{lemma}
+	Die Funktion $[\cdot,\cdot]$ ist bijektiv.
+\end{lemma}
+\begin{proof}
+	Das Paar $(x,y)$ erhält die Nummer $(\sum\limits_{0\leq n < x+y}n+1)+x=(\sum\limits_{1\leq n \leq x+y}n)+x=\frac{1}{2}(x+y)(x+y+1)+x=[x,y]$.
+\end{proof}
+
+Weiter lässt sich dann definieren, dass Tupel als $[a_1,\dots,a_n]\coloneqq[a_0,[a_1,\dots,a_n]]$ definieren, für $n>1$. Demnach lässt sich eine definierbare Bijektion $\mathbb{N}^k\to \mathbb{N}$ für ein festes, aber beliebiges $k$ finden.
+
+\begin{satz}[Chinesischer Restsatz]
+	Seien $q_0,\dots,q_{n-1}$ paarweise teilerfremd und $q\coloneqq\prod\limits_{i<n} q_i$. Dann ist die Funktion $F:\mathbb{Z}/ q\mathbb{Z} \to \mathbb{Z}/q_0\mathbb{Z} \times \dots \times \mathbb{Z}/q_{n-1}\mathbb{Z}, a\mapsto(a_0,\dots,a_{n-1})$ eine Bijektion.
+\end{satz}
+\begin{proof}
+	Seien $a,a'\in \mathbb{Z}/q\mathbb{Z}$ so, dass $a\equiv a' (\mod q_j)$ für alle $j<n$. Also wird $a-a'$ von allen $q_j$ geteilt und daher, da die $q_j$ teilerfremd sind, auch von dem Produkt $q$, also ist $a\equiv a'(\mod q)$.
+\end{proof}
+
+\begin{lemma}[Gödelsches $\beta$-Lemma]
+	Es gibt eine totale berechenbare Funktion $\beta:\mathbb{N}^3\to \mathbb{N}$ so, dass zu jeder endlichen Folge $(a_0,\dots,a_{n-1})$ über $\mathbb{N}$ zwei Zahlen $a,b\in\mathbb{N}$ existieren, mit $\beta(a,b,j)=a_j$ für alle $j<n$.
+\end{lemma}
+\begin{proof}
+	Setze $\beta(x,y,z)\coloneqq x (\mod 1+y(z+1))$. $\beta$ ist definierbar durch die Formel $\varphi_\beta(x,y,z,v)\coloneqq v <1+y(z+1) \land \exists u (x=u+uy(z+1)+v)$.
+	
+	Es ist nun zu zeigen, dass sich für alle $a_0,\dots,a_{n-1}$ zwei $a,b$ angeben so, dass $a\equiv a_j(\mod 1+b(j+1))$ und $b\coloneqq m!$ für $m=\max\{n,a_0,\dots,a_n-1\}$.
+	\\
+	\\
+	Behauptung: Für $0\leq i < j \leq n$ sind $1+(i+1)+b$ und $1+(j+1)+b$ teilerfremd.
+	
+	Andernfalls ex. ein $p>1$ mit $p \vert 1+(i+1)+b$ und $p\vert 1+(j+1)+b$.
+	Es folgt, dass $p\vert (i-j)b$, aber $p\nmid b$ (sonst $p\nmid 1+(i+1)+b$), also $p\vert(i-j)$ und daher $p<n$. Dies ist aber unmöglich, da $b$ von jeder Zahl, welche kleiner als $n$ geteilt wird.
+	\\
+	\\
+	Nach dem chinesischen Restsatz existiert dann ein $a<\prod^{n-1}_{j=0}(1+b(j+1))$ mit $a\equiv a_j(\mod 1+b(j+1))$ für alle $j<n$.
+\end{proof}
+
+Eine Folge $(a_0,\dots,a_{n-1})$ über $\mathbb{N}$ kodieren wir nun durch $\langle a_0,\dots,a_{n+1}\rangle\coloneqq[a,b,n]$ so, dass $\beta(a,b,i)=a_i$ für alle $i<n$, mit $b=(\max\{n,a_0,\dots,a_{n-1}\})!$. Weiter ist die Länge solch einer Folge $ln(\langle a_0,\dots, a_{n-1}\rangle)\coloneqq n$ und ebenso ist $\pi_i(\langle a_0,\dots, a_{n-1})=a_i$.
+
+Es lässt sich feststellen, dass $[\cdot,\cdot]$, $\beta$, $ln$ und $\pi$ in $TA$, $PA$ und $ZFC$ definierbar sind.
+
+\subsection{Kodierung von Turing Maschinen}
+
+Mit den Ergebnissen aus dem vorherigen Kapitel ist es nicht schwer Turing Maschinen zu kodieren und mithilfe dieser gewisse Widersprüche zu zeigen.
+
+Eine Turing Maschine (kurz: TM) ist ein Tupel $M=(Q,\Sigma, \delta, q_0, F)$ und eine Konfiguration einer TM ist ein Tripel $c=[q,w,p]$, wobei $q<\vert Q\vert$, $w=(w_0,\dots,w_{n-1})\in \Sigma^\ast \text{ mit } w_i\leq \vert \Sigma\vert$, und $p\leq \vert w \vert$. Es soll zudem noch bemerkt werden, dass die Relation $\vdash_M$ die Nachfolgerrelation ist. $x\vdash_M y$ gilt also genau dann, wenn $y$ in $M$ eine gültige Nachfolgerkonfiguration ist.
+
+Sei nun $\Phi\in\{TA,\Phi_{PA},ZFC\}$ und $M$ eine TM. Es gibt Formeln $Konf_M(x)$, $Start_m(x,y)$, $End_M(x,y)$ und $Lauf_M(x)$ mit 
+\begin{itemize}
+	\item $\Phi\vdash Konf_M(n)$ gdw. $n$ kodiert eine gültige Konfiguration von $M$, also $n=[q,w,p]$.
+	\item $\Phi\vdash Start_M(n,m)$ gdw. $n$ kodiert die Inputkonfiguration von $M$ auf $m$.
+	\item $\Phi\vdash End_M(n,m)$ gdw. $n$ kodiert eine Endkonfiguration von $M$ mit Bandinschrift (Output) $m$.
+	\item $\Phi\vdash Lauf_M(x)$ gdw. $x$ beschreibt eine gültige Berechnung von $M$, d.h. eine Folge $x=\langle c_0,\dots,c_n\rangle$ mit $Konf_M(c_i)$ und $c_i\vdash_M c_{i+1}$.
+\end{itemize}
+
+Mit diesen Formeln und der Repräsentation von $TA$, $\Phi_{PA}$ und $ZFC$ erhält man die Folgerung, welche zuerst von Tarski formuliert wurde:
+$$TA \text{ is unentscheidbar}$$
+Der Beweis lässt sich mithilfe des Halteproblems führen. Angenommen, $TA$ wäre entscheidbar. Da $TA$ vollständig ist, ließe sich mithilfe der obigen Formeln für beliebige TMs entscheiden, ob gegebene Läufe gültig sind. Mithilfe der Formeln würde man dann das Halteproblem lösen können. Nach Turing (1937) ist dies aber nicht möglich, weshalb $TA$ nicht entscheidbar sein kann.
+
+Die exakt gleiche Argumentation lässt sich auch auf $PA$ und $ZFC^{\models}$ übertragen, weshalb diese ebenfalls nicht entscheidbar sein können.
+
+Dies führt zum ersten Unvollständigkeitssatz von Gödel:
+
+\begin{satz}[1. Gödelscher Unvollständigkeitssatz]
+	Die beiden getroffenen Aussagen sind:
+	\begin{enumerate}
+		\item Es gibt kein entscheidbares Axiomensystem für $TA$.
+		\item $PA$ ist unvollständig
+	\end{enumerate}
+	\label{unvollst1}
+\end{satz}
+
+\textit{1.} ist zwar die gleiche Aussage wie die Folgerung Tarskis, Gödel hat dies aber über einen anderen Weg noch vor Turings Entdeckung der unentscheidbarkeit des Halteproblems gezeigt.
+
+\textit{2.} ist durch einen Widerspruch mithilfe des ersten Teiles möglich. Wäre $PA$ vollständig, dann wäre es ein Axiomensystem für $TA$. Nach \textit{1.} wäre $PA$ dann aber nicht entscheidbar, war entgegen der Definition von $PA$ geht. Also muss $PA$ unvollständig sein.
+
+
+\subsection{Gödelisierung von Termen und Formeln}
+
+Wie im vorherigen Kapitel erwähnt hat Gödel einen anderen Weg für seine Unvollständigkeitssätze verwendet, unter anderem, weil Turing seinen Beweis erst einige Jahre nach Gödel veröffentlicht hat. In diesem Kapitel soll nun der Beweisweg von Gödel werden.
+
+Als Gödelisierung wird das Verfahren bezeichnet, den Termen und Formeln einer Logik eine eindeutige natürliche Zahl zuzuordnen. Ein Term $t$ wird zu einer natürlichen Zahl $\opencorner t\closecorner\in \mathbb{N}$ und eine Formel $\phi$ wird zu der Zahl $\opencorner\varphi\closecorner\in \mathbb{N}$. Für eine Formel $\theta(x)$ und $k\in \mathbb{N}$ schreibt man $\theta(k)$ für $\theta[x/\underbrace{1+\dots+1}_{k\text{-mal}}]$, also das Ersetzen von jedem Vorkommen von $x$ in $\theta$ durch einen Term, welcher zu $k$ auswertet.
+
+\begin{satz}[Fixpunktsatz]
+	$\Phi$ erlaube Kodierungen. Zu jeder Formel $\psi(x)\in FO({+,\cdot,0,1})$ ex. ein Satz $\varphi$ mit $\Phi\vdash\varphi\leftrightarrow\psi(\opencorner \varphi \closecorner)$.
+\end{satz}
+
+Der Fixpunktsatz lässt sich auch anders formulieren: Aus jeder Formel $\psi(x)\in FO({+,\cdot,0,1})$ wird eine Funktion $f_\psi, \varphi\mapsto\psi(\opencorner\varphi\closecorner)$ gebildet. Jede solche Funktion hat einen bis auf Äquivalenz bestimmten Fixpunkt.
+
+\begin{proof}
+	Sei $f:\mathbb{N}\times\mathbb{N}\to \mathbb{N}$ die Funktion mit $f(\opencorner\theta(x)\closecorner, k)\coloneqq\opencorner\theta(k)\closecorner$ und $f(n,k)=0$, wenn $n$ nicht die Gödelnummer einer Formel $\theta(x)$ ist.
+	
+	Da $f$ berechenbar ist, gibt es eine Formel $\alpha(x,y,z)$ mit $\Phi\vdash\alpha(n,k,m)$ gdw. $m=f(n,k)$.
+	Für eine gegebene Formel $\psi(x)$ setze $\theta(x)\coloneqq\forall z (\alpha(x,x,z)\rightarrow\psi(z))$ und $\varphi\coloneqq\theta(\opencorner\theta\closecorner)$.
+	Dann gilt $f(\opencorner\theta\closecorner,\opencorner\theta\closecorner)=\opencorner\varphi\closecorner$, also 
+	\[
+	\Phi\vdash\alpha(\opencorner\theta\closecorner,\opencorner\theta\closecorner,\opencorner\varphi\closecorner) \tag*{$(\ast)$}
+	\]
+	
+	Es bleibt zu zeigen, dass $\Phi\vdash\varphi \leftrightarrow \psi(\opencorner\varphi\closecorner)$ gilt.
+	\\
+	\\
+	$\Rightarrow$: Man betrachte die Sequenz $\Phi\vdash(\varphi\land\alpha(\opencorner\theta\closecorner,\opencorner\theta\closecorner,\opencorner\varphi\closecorner))\rightarrow\psi(\opencorner\varphi\closecorner)$. 
+	Zur Erinnerung ist $\varphi$ definiert als $\varphi\coloneqq\forall z (f(\opencorner\theta\closecorner,\opencorner\theta\closecorner)=z\rightarrow\psi(z))$. 
+	Falls nun also $\varphi$ und $\alpha(\opencorner\theta\closecorner,\opencorner\theta\closecorner,\opencorner\varphi\closecorner)$ gilt, dann muss, wegen der Aussage von $\varphi$, auch $\psi(\opencorner\varphi\closecorner)$ gelten.
+	
+	Durch $(\ast)$ folgt dann $\Phi\vdash\varphi\rightarrow\psi(\opencorner\varphi\closecorner)$
+	\\
+	\\
+	$\Leftarrow$: Es gilt $\Phi\vdash \exists!z \alpha(\opencorner\theta\closecorner, \opencorner\theta\closecorner, z)$. Die Existenz folgt aus $(\ast)$ und die Eindeutigkeit, da $\alpha$ eine Funktion repräsentiert. Demnach ist dann
+	\[\Phi\vdash\forall z (\alpha(\opencorner\theta\closecorner, \opencorner\theta\closecorner, z)\rightarrow z=\opencorner\varphi\closecorner)\]. Mit der Definition von $\varphi$ folgt dann \[\Phi\vdash\psi(\opencorner\varphi\closecorner)\rightarrow\underbrace{(\forall z (f(\opencorner\theta\closecorner,\opencorner\theta\closecorner)=z\rightarrow\psi(z)))}_\varphi\] bzw. $\Phi\vdash\psi(\opencorner\varphi\closecorner)\rightarrow\varphi$.
+\end{proof}
+
+\begin{satz}
+	Sei $\mathfrak{A}$ eine Struktur deren Universum $\mathbb{N}$ umfasst so, dass $Th(\mathfrak{A})$ Kodierungen erlaubt. Dann existiert keine Formel $True_\mathfrak{A}(x)$ so, dass für alle $\psi$ gilt: $\mathfrak{A}\models\psi\Leftrightarrow\mathfrak{A}\models True_\mathfrak{A}(\opencorner\psi\closecorner)$.
+\end{satz}
+\begin{proof}
+	Wir nehmen an $True_\mathfrak{A}(x)$ existiert.
+	Nach dem Fixpunktsatz existiert zu $\neg True_\mathfrak{A}(x)$ ein Fixpunkt $\varphi$ so, dass
+	\[Th(\mathfrak{A})\vdash\varphi\leftrightarrow\neg True_\mathfrak{A}(\opencorner\varphi\closecorner). \tag{$(\ast)$}\]
+	Informell \glqq behauptet \grqq{} $\varphi$, dass $\varphi$ falsch ist. Nun folgt
+	\[\mathfrak{A}\models\varphi \xLeftrightarrow{(\ast)} \mathfrak{A}\models\neg True_\mathfrak{A}(\opencorner\varphi\closecorner) \xLeftrightarrow{\text{Def. von } True_\mathfrak{A}}\mathfrak{A}\not\models\varphi.\] Widerspruch!
+\end{proof}
+
+Die wahren Sätze von $Th(\mathfrak{N})$ sind also nicht in $Th(\mathfrak{N})$ repräsentierbar. Anders formuliert:
+
+Sei $T$ eine repräsentative und vollständige Theorie. Dann ist $T$ nicht in $T$ definierbar. Das heißt es gibt keine Formel $True_T(x)$ mit $\psi\in T\Leftrightarrow True_T(\opencorner\psi\closecorner)\in T$.
+
+Damit folgt wieder der 1. Gödelsche Unvollständigkeitssatz (die genau Definition kann in Satz \ref{unvollst1} gefunden werden): Sei $T$ rekursiv axiomatisierbar und repräsentativ. Dann ist $T$ unvollständig. Sonst wäre $T$ entscheidbar und da $T$ repräsentativ ist, wäre die entscheidbare Menge $\{\opencorner\psi\closecorner:\psi\in T\}$ in $T$ definierbar.
+\\
+\\
+Sei $\Phi$ entscheidbar und repräsentativ. Nun nehmen wir uns eine geeignete Kodierung von Ableitungen im Sequenzenkalkül und betrachten $B\subseteq\mathbb{N}\times\mathbb{N}$: $(n,m)\in B$ gdw. $n$ kodiert eine Ableitung mit Sequenz $\Phi_0\Rightarrow\psi$ so, dass $\Phi_0\subseteq \Phi$ endlich und $m=\opencorner\psi\closecorner$. $B$ ist entscheidbar, also existiert eine Formel $Beweis_\Phi(x,y)$ so, dass $\Phi\vdash Beweis_\Phi(n,m)$ gdw. $(n,m)\in B$. Weiter werden die Formeln $Abl_\Phi(x)\coloneqq\exists y Beweis_\Phi(y,x)$ und $Wf_\Phi\coloneqq \neg Abl_\Phi(\opencorner\neg0=0\closecorner)$ definiert. Dabei bezeichnet $Abl_\Phi(x)$, dass es einen Beweis für $x$ gibt und $Wf_\Phi$ drückt die Widerspruchsfreiheit von $\Phi$ aus.
+
+\begin{satz}[2. Gödelscher Unvollständigkeitssatz]
+	Ist $\Phi\supseteq\Phi_{PA}$ entscheidbar und konsistent, dann ist $\Phi\nvdash Wf_\Phi$.
+\end{satz}
+\begin{proof}
+	Nach dem Fixpunktsatz existiert ein Satz $\varphi$ mit $\Phi\vdash\varphi\leftrightarrow\neg Abl_\Phi(\opencorner\varphi\closecorner)$. Ähnlich zum vorherigen Beweis \glqq behauptet \grqq{} $\varphi$ seine eigene Unbeweisbarkeit. Nun ist $\Phi\nvdash\varphi$, da es sonst eine Ableitung $\Phi_0\Rightarrow\varphi$ für $\Phi_0\subseteq\Phi$ endlich existiert und somit folgt $\Phi\vdash Abl_\Phi(\opencorner\varphi\closecorner)$ und damit $\Phi\vdash \neg\varphi$. Also ist $Wf_\Phi\rightarrow\neg Abl_\Phi(\opencorner\varphi\closecorner)$.
+	\\
+	\\
+	Man kann diesen Beweis in $\Phi\supseteq\Phi_{PA}$ nachvollziehen und zeigen, dass $\Phi\vdash Wf_\Phi \rightarrow \neg Abl_\Phi(\opencorner\varphi\closecorner)$.
+	
+	Wenn $\Phi\vdash Wf_\Phi$, dann auch $\Phi\vdash \neg Abl_\Phi(\opencorner\varphi\closecorner)$ und damit $\Phi\vdash \varphi$. Widerspruch!
+\end{proof}
+
+Analog kann man zeigen, dass $ZFC\nvdash Wf_{ZFC}$.
+
+
+

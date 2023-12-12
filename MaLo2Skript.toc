@@ -1,15 +1,24 @@
 \babel@toc {german}{}\relax 
-\contentsline {section}{\numberline {1}Mengenlehre}{1}{}%
-\contentsline {subsection}{\numberline {1.1}Mengen und Klassen}{1}{}%
-\contentsline {subsubsection}{\numberline {1.1.1}Axiomensysteme für die Mengenlehre}{2}{}%
+\contentsline {section}{\numberline {1}Mengenlehre}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Mengen und Klassen}{2}{}%
+\contentsline {subsubsection}{\numberline {1.1.1}Axiomensysteme für die Mengenlehre}{3}{}%
 \contentsline {subsection}{\numberline {1.2}Stufen und Geschichten}{4}{}%
 \contentsline {subsection}{\numberline {1.3}Relationen und Funktionen}{10}{}%
 \contentsline {subsection}{\numberline {1.4}Ordinalzahlen}{11}{}%
 \contentsline {subsubsection}{\numberline {1.4.1}Ordinale und Stufen}{14}{}%
-\contentsline {subsubsection}{\numberline {1.4.2}Der Rekursionssatz}{14}{}%
-\contentsline {subsection}{\numberline {1.5}Das Auswahlaxiom (AC)}{17}{}%
+\contentsline {subsubsection}{\numberline {1.4.2}Der Rekursionssatz}{15}{}%
+\contentsline {subsection}{\numberline {1.5}Das Auswahlaxiom (AC)}{18}{}%
 \contentsline {subsubsection}{\numberline {1.5.1}Folgerungen aus dem Auswahlaxiom}{19}{}%
 \contentsline {subsubsection}{\numberline {1.5.2}Der Satz von Banach-Tarski}{19}{}%
-\contentsline {subsection}{\numberline {1.6}Mächtigkeiten und Kardinalzahlen}{22}{}%
+\contentsline {subsection}{\numberline {1.6}Mächtigkeiten und Kardinalzahlen}{23}{}%
 \contentsline {subsubsection}{\numberline {1.6.1}Kardinalzahlarithmetik}{25}{}%
 \contentsline {subsubsection}{\numberline {1.6.2}Die Kontinuumshypothese (CH)}{28}{}%
+\contentsline {section}{\numberline {2}Die Gödelschen Unvollständigkeitssätze}{30}{}%
+\contentsline {subsection}{\numberline {2.1}Das Hilbertsche Programm}{30}{}%
+\contentsline {subsection}{\numberline {2.2}Theorien}{31}{}%
+\contentsline {subsection}{\numberline {2.3}Kodierung von Turing Maschinen}{33}{}%
+\contentsline {subsection}{\numberline {2.4}Gödelisierung von Termen und Formeln}{34}{}%
+\contentsline {section}{\numberline {3}Modelltheorie}{36}{}%
+\contentsline {subsection}{\numberline {3.1}Erhaltungssätze (Charakterisierungssätze)}{36}{}%
+\contentsline {paragraph}{Satz von \L o\'{s}-Tarski}{36}{}%
+\contentsline {paragraph}{Satz von Benthem}{36}{}%

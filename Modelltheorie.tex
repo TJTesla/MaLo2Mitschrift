@@ -1,0 +1,284 @@
+\clearpage
+
+\section{Modelltheorie}
+
+Nachdem in den letzten Teilen wichtige Konzepte der Mengenlehre und die Gödelschen Unvollständigkeitssätze vermittelt wurden, sollen werden hier nun zentrale Ideen der Modelltheorie gezeigt.
+
+\subsection{Erhaltungssätze (Charakterisierungssätze)}
+
+Ein wichtiges Ziel der Modelltheorie ist es, einen Zusammenhang zwischen Syntax und Semantik zu bilden. Allgemein lässt sich dies formalisieren: Eine Formel $\psi\in FO$ hat eine semantische Eigenschaft $P$ gdw. wenn $\psi$ äquivalent zu einer Formel in einem Fragment $F_p\subseteq FO$ ist.
+
+Beispiele dafür sind der Satz von \textit{\L os-Tarski} und \textit{Satz von Benthem}.
+
+\paragraph{Satz von \L o\'{s}-Tarski}
+$\psi\in FO$ ist erhaltend unter Substrukturen (d.h. wenn $\mathfrak{B}\models \psi$ und $\mathfrak{A}\subseteq\mathfrak{B}$, dann ist auch $\mathfrak{A}\models\psi$) gdw. $\psi$ äquivalent ist zu einer universellen Formel $\forall \bar{x}(\varphi)$, wobei $\varphi$ quantorenfrei ist.
+
+\paragraph{Satz von Benthem}
+$\psi(x)\in FO$ ist invariant unter Bisimulation (d.h. wenn $\mathfrak{K}\models \psi(v)$ und $\mathfrak{K},v\sim \mathfrak{K}',v'$, dann gilt auch $\mathfrak{K}'\models \psi(v')$) gdw. $\psi(x)$ äquivalent zu einer Formel $\psi'\in ML$ ist.
+
+In beiden Fällen gilt, dass die Richtung von Syntax zur Semantik trivial ist. Beispielsweise ist die Bisimulations-Invarianz von zu einer Modallogischen Formel äquivalenten $FO$-Formel klar. Die Rückrichtung ist aber alles andere als offensichtlich und werden daher noch genauer in diesem Kapitel betrachtet.
+
+\subsection*{Refresher zur Modallogik}
+
+Für eine Formel $\psi$ gilt $\psi\in ML$ (Modallogik), wenn $\psi$ induktiv definiert ist, als
+\[\psi\coloneqq P_i \,\vert\, \neg\psi \,\vert\, \psi\land\psi \,\vert\, \psi\lor\psi \,\vert\, \psi\rightarrow\psi \,\vert\, \lozenge\psi \,\vert\, \square\psi.\]
+
+Modell einer Modallogischen Formel ist ein Transitionssystem $\mathfrak{K}=(V,(P_i)_{i\in I}, E)$. Wobei $V$ eine Menge an Knoten, $E$ eine zweistellige Kantenrelation und $P_i$ für jedes $i\in I$ eine einstellige Relation ist, welche die Eigenschaften von Knoten darstellt.
+\\
+\\
+Semantisch ist $ML$ definiert als
+\begin{itemize}
+	\item $\mathfrak{K},v\models P_i$ gdw. $v\in P_i$.
+	\item Die Junktoren $\land,\lor,\rightarrow$ sind wie aus $AL$ oder $FO$ bekannt.
+	\item $\mathfrak{K},v\models \lozenge \psi$ genau dann, wenn es ein $w\in vE=\{w:(v,w)\in E\}$ gibt, mit $\mathfrak{K},w\models \psi$.
+	\item $\mathfrak{K},v\models \square \psi$ genau dann, wenn für alle $w\in vE$ gibt, mit $\mathfrak{K},w\models \psi$.
+\end{itemize}
+Die Modallogik lässt sich in die Prädikatenlogik einbetten. Es gibt also eine Abbildung mit $\psi\mapsto \psi^\ast(x)$, bzw. nach Formelaufbau:
+
+\begin{itemize}
+	\item $P_i\mapsto P_i x$
+	\item $\psi_1\circ \psi_2\mapsto \psi_1^\ast(x)\circ\psi_2^\ast(x)$ für $\circ\in\{\land,\lor,\rightarrow\}$
+	\item $\lozenge\psi\mapsto\exists y (Exy \land \psi^\ast(y))$
+	\item $\square\psi \mapsto \forall y (Exy\rightarrow \psi^\ast(y))$
+\end{itemize}
+Das Bild dieser Abbildung wird als modales Fragment der Prädikatenlogik bezeichnet.
+\\
+\\
+Eine Bisimulation zwischen zwei Transitionssystemen $\mathfrak{K}=(V,(P_i)_{i\in I}, E)$ und $\mathfrak{K}'=(V',(P_i')_{i\in I}, E')$ ist eine Relation $Z\subseteq V\times V'$ so, dass für alle $(v,v')\in Z$ gilt:
+\begin{itemize}
+	\item $v\in P_i\Leftrightarrow v'\in P_i'$
+	\item Hin: Zu jedem Knoten $w\in vE$ existiert ein $w'\in v'E'$ so, dass $(w,w')\in Z$.
+	\item Her: Zu jedem Knoten $w'\in v'E'$ existiert ein $w\in vE$ so, dass $(w,w')\in Z$,
+\end{itemize}
+Es lässt sich erkennen, dass $ML$ Bisimulationsinvariant ist. Das heißt, wenn $\mathfrak{K},v\models \psi$ und $\mathfrak{K},v\sim \mathfrak{K'},v'$, dann ist auch $\mathfrak{K}',v'\models \psi$.
+
+
+\subsection*{Weiter mit Erhaltungssätzen}
+
+\begin{definition}[Existenziell-positiv]
+	Eine $FO$-Formel ist \textit{existenziell positiv} ($\Sigma_1^+$-Formel), wenn sie weder Allquantoren, noch Negationen oder Implikationen enthält, also aus Atomen mit $\land$, $\lor$ und $\exists$ aufgebaut ist.
+\end{definition}
+
+\begin{definition}[Existenzielle und universelle Formeln]
+	Eine $FO$-Formel ist existenziell ($\Sigma$-Formel), wenn sie die Form $\exists \bar{x} \varphi$ mit quantorenfreiem $\varphi$ hat.
+	
+	Eine $FO$-Formel ist universell ($\Pi_1$-Formel), wenn sie die Form $\forall \bar{x} \varphi$ mit quantorenfreiem $\varphi$ hat.
+\end{definition}
+Induktiv ist weiter definiert, dass eine Formel $\psi$ eine $\Sigma_{n+1}$-Formel ist, wenn $\psi=\exists\bar{x}\varphi$ gilt und $\varphi$ eine $\Pi_n$-Formel ist. Dual ist dies für $\Pi_{n+1}$-Formeln definiert. Eine $\Pi_{n+1}$-Formel ist von der Form $\forall \bar{x}\varphi$ für ein $\varphi$, welches eine $\Sigma_n$-Formel ist. Offensichtlich sind diese Formeln in Pränex-Normalform. Auch lässt sich erkennen, dass wenn $\varphi$ eine $\Sigma_n$-Formel ist, $\neg\varphi$ eine $\Pi_n$-Formel wird.
+
+\begin{definition}[Abgeschlossenheit]
+	Eine Formel $\psi(x)$ ist abgeschlossen unter einer Abbildung $f:\mathfrak{A}\to\mathfrak{B}$, wenn für alle $\bar{a}$ aus $\mathfrak{A}$ gilt $\mathfrak{A}\models\psi(\bar{x})\Rightarrow\mathfrak{B}\models\psi(f\bar{a})$.
+\end{definition}
+
+Ein \textit{Homomorphismus} $h$ ist eine Abbildung von $\mathfrak{A}$ nach $\mathfrak{B}$, für welche gilt, wenn $\bar{a}\in R^\mathfrak{A}$, dann ist $(h \bar{a})\in R^\mathfrak{B}$ für ein Relationssymbol $R$ und analog für Funktionen.
+
+Verglichen dazu ist ein \textit{starker Homomorphismus} ein \textbf{injektiver} Homomorphismus $h$, für den gilt $\bar{a}\in R^\mathfrak{A}$ \textbf{gdw.} $(h \bar{a})\in R^\mathfrak{B}$. Einen starken Homomorphismus nennt man auch eine \textit{Einbettung}.
+
+\begin{lemma}
+	Jede $\Sigma^+_1$-Formel bleibt unter Homomorphismen erhalten.
+	\label{Sigma1UnterHom}
+\end{lemma}
+\begin{proof}
+	Sei $h:\mathfrak{A}\to\mathfrak{B}$ ein Homomorphismus. Zunächst gilt für jeden Term $t(\bar{x})$:
+	\[h(\llbracket t(\bar{a})\rrbracket^\mathfrak{A})=\llbracket t(h\bar{a})\rrbracket^\mathfrak{B}, \tag{$(\ast)$}\]
+	denn:
+	\begin{itemize}
+		\item $t\coloneqq x_i$: klar, da beide Seiten den Wert $ha_i$ \glqq erhalten\grqq{}.
+		\item $t\coloneqq gt_1\dots t_k$: Dann ist
+		\begin{alignat*}{2}
+			h\llbracket t(\bar{a})\rrbracket^\mathfrak{A} 
+			&= &&h(g^\mathfrak{A}(\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A},\dots,\llbracket t_k(\bar{a})\rrbracket^\mathfrak{A})) \\
+			\overset{h \text{ Hom.}}&{=} &&g^\mathfrak{B}(h\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A},\dots,h\llbracket t_k(\bar{a})\rrbracket^\mathfrak{A}) \\
+			\overset{\text{IV.}}&{=} &&g^\mathfrak{B}(\llbracket t_1(h\bar{a})\rrbracket^\mathfrak{B},\dots,\llbracket t_k(h\bar{a})\rrbracket^\mathfrak{B}) \\
+			&= &&\llbracket t(h\bar{a})\rrbracket^\mathfrak{B}.
+		\end{alignat*}
+	\end{itemize}
+	Durch eine Induktion über den Formelaufbau lässt sich dann diese Eigenschaft auch für Formeln $\psi$ feststellen:
+	\begin{itemize}
+		\item $\psi\coloneqq t_1(\bar{x})=t_2(\bar{x})$:
+		\begin{alignat*}{2}
+			\mathfrak{A}\models t_1(\bar{a})=t_2(\bar{a})
+			&\Longleftrightarrow &&\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A} = \llbracket t_2(\bar{a})\rrbracket^\mathfrak{A} \\
+			&\Longrightarrow &&h\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A} = h\llbracket t_2(\bar{a})\rrbracket^\mathfrak{A} \tag{$\vartriangle$}\\
+			\overset{(\ast)}&{\Longleftrightarrow} &&\llbracket t_1(h\bar{a})\rrbracket^\mathfrak{B} = \llbracket t_2(h\bar{a})\rrbracket^\mathfrak{B} \Leftrightarrow \mathfrak{B}\models t_1(h\bar{a})=t_2(h\bar{a}).
+		\end{alignat*}
+		
+		\item $\psi\coloneqq R t_1(\bar{x}),\dots,t_k(\bar{x})$:
+		\begin{alignat*}{2}
+			\mathfrak{A}\models R t_1(\bar{a}),\dots,t_k(\bar{a})
+			&\Longleftrightarrow &&(\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A},\dots,\llbracket t_k(\bar{a})\rrbracket^\mathfrak{A})\in R^\mathfrak{A} \\
+			\overset{h\text{ Hom.}}&{\Longrightarrow} &&(h\llbracket t_1(\bar{a})\rrbracket^\mathfrak{A},\dots,h\llbracket t_k(\bar{a})\rrbracket^\mathfrak{A})\in R^\mathfrak{B} \tag{$\bigcirc$} \\
+			\overset{(\ast)}&{\Longleftrightarrow} &&(\llbracket t_1(h\bar{a})\rrbracket^\mathfrak{B},\dots,\llbracket t_k(h\bar{a})\rrbracket^\mathfrak{B})\in R^\mathfrak{B} \Leftrightarrow \mathfrak{B}\models R t_1(h\bar{a}),\dots,t_k(h\bar{a}).
+		\end{alignat*}
+		
+		\item Die Fälle $\psi\coloneqq\varphi\land\varphi'$ und $\psi\coloneqq \varphi\lor \varphi'$ sind klar.
+		
+		\item $\psi\coloneqq \exists y \varphi(\bar{x},y)$:
+		\begin{alignat*}{2}
+			&  &&\mathfrak{A}\models \exists y \varphi(\bar{a},y) \\
+			&\Longrightarrow &&\text{es ex. } b \text{ mit } \mathfrak{A}\models\varphi(\bar{a},b) \\
+			\overset{\text{IV}}&{\Longrightarrow} &&\mathfrak{B}\models \varphi(h\bar{a},hb) \Rightarrow \mathfrak{B}\models \exists y \varphi(h\bar{a},y).
+		\end{alignat*}
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}
+	$\Sigma_1$-Formeln $\psi(\bar{x})$ bleiben unter Einbettung erhalten.
+\end{lemma}
+\begin{proof}
+	Sei $h$ eine Einbettung. Ohne Einschränkung lässt sich voraussetzen, dass $\psi(\bar{x})$ in Negations-NF ist. Nun lässt sich die Behauptung durch eine Induktion über den Formelaufbau wie oben zeigen:
+	\begin{itemize}
+		\item Für $\psi\coloneqq t_1=2t_2$ oder $\psi\coloneqq R t_1,\dots,t_n$ lässt sich dies genauso wie oben zeigen.
+		\item Da $h$ injektiv ist, gilt die Folgerung $(\vartriangle)$ auch in die andere Richtung. Man erhält also eine Kette an Äquivalenzen. Dadurch lässt sich diese analog auf den hier beschriebenen Fall $\psi$ anwenden.
+		\item Falls $\psi\coloneqq\neg R t_1,\dots,t_n$ lässt sich das Argument wie im vorherigen Beweis verwenden. Die Folgerung von $(\bigcirc)$ wird aber eine Äquivalenz, da $h$ ein starker Homomorphismus ist.
+		\item Die Fälle $\psi\coloneqq\varphi\land\varphi'$, $\psi\coloneqq\varphi\lor\varphi'$ und $\exists y \varphi(\bar{x},y)$ lassen sich genauso wie oben beweisen.
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}
+	$\Pi_1$-Formeln bleiben unter Substrukturen erhalten.
+	\label{Pi1UnterSubstruk}
+\end{lemma}
+\begin{proof}
+	Seien $\A,\B$ zwei Strukturen mit $\A\subseteq\B$ und $\psi(\bar{x})$ eine $\Pi_1$-Formel. Angenommen, es gilt $\A\models\neg\psi(\bar{a})$ und $\B\models\psi(\bar{a})$ für $\bar{a}$ aus $A$. Dann ist $\neg\psi(\bar{x})$ aber äquivalent zu einer $\Sigma_1$-Formel. Mit Lemma \ref{Sigma1UnterHom} folgt aber $\A\models\neg\psi(\bar{x})\Rightarrow\B\models\neg\psi(\bar{a})$. Widerspruch!
+\end{proof}
+
+\begin{definition}
+	Eine Folge $(\A)_{i<\alpha}$ von $\tau$-Strukturen ist eine \textit{Kette}, wenn jeweils $\A_i\subseteq\A_j$ für $i<j$. Die Vereinigung $\bigcup_{i<\alpha}\A_i$ einer solchen Kette ist die Struktur $\A$ mit Universum $A=\bigcup_{i<\alpha}A_i$ und
+	\begin{itemize}
+		\item $\bar{a}\in R^\A$ gdw. $\bar{a}\in R^{\A_i}$ für ein $i<\alpha$ (und daher für alle $j<\alpha$ mit $\bar{a}\in A_j$).
+		\item $f^\A(\bar{a})=b$ gdw. $f^{\A_i}\bar{a}=b$ für ein (und dadurch alle) $i<\alpha$ mit $\bar{a}\in A_i$.
+	\end{itemize}
+\end{definition}
+$\varphi(x)$ bleibt Erhalten unter Vereinigung von Ketten, wenn für jede Kette $(\A_i)_{i<\alpha}$ mit $\bar{a}\in A_0$ und $\A_i\models\varphi(\bar{a})$ für alle $i$, dann auch $\bigcup_{i<\alpha}\A_i \models \varphi(\bar{a})$ gilt.
+
+Dies sind nicht alle Formeln. Sei bspw. $\A_i=(\{0,\dots,i\},a^{\N})$. Jedes $\A_i$ hat ein maximales Element, aber $\bigcup\A_i=(\N,<)$ nicht. Das heißt, es gibt $\Sigma_2$-Formeln, welche nicht unter Vereinigung von Ketten erhalten bleiben ($\exists x \forall y (y\leq x)$).
+
+\begin{lemma}
+	$\Pi_2$-Formeln bleiben erhalten unter Vereinigung von Ketten.
+\end{lemma}
+\begin{proof}
+	Sei $(\A_i)_{i<\alpha}$ eine Kette, $\A\coloneqq\bigcup_{i<\alpha}\A_i$ und $\bar{a}\subseteq A_0$. Weiter sei $\forall \bar{y} \varphi(\bar{x},\bar{y})$ eine $\Pi_2$-Formel (also $\varphi(\bar{x},\bar{y})$ eine $\Sigma_1$-Formel) so, dass $\A_i\models\forall \bar{y} \varphi(\bar{a},\bar{y})$ für alle $i<\alpha$.
+	
+	Nun ist zu zeigen, dass $\A\models\forall \bar{y} \phi(\bar{a},\bar{y})$. Angenommen, es existiert ein $\bar{b}\subseteq\A$ mit $\A\models\neg\varphi(\bar{a},\bar{b})$. Da $\vert\bar{b}\vert$ endlich ist, existiert ein $j<\alpha$ mit $\bar{b}\subseteq A_j$. 
+	Da $\neg\varphi$ äquivalent zu einer $\Pi_1$-Formel ist und $\A_j\subseteq\A$, folgt wegen Lemma \ref{Pi1UnterSubstruk}, dass $\A_i\models\neg\varphi(\bar{a},\bar{b})$ im Widerspruch zu $\A_j\models\forall\bar{y}\varphi(\bar{a},\bar{y})$.
+\end{proof}
+
+\begin{definition}
+	Sei $\A$ eine $\tau$-Struktur und $B\subseteq A$. Dann ist $\A_B$ die Expansion von $\A$ um je eine Konstante für $b$ für jedes Element $b\in B$. Ist $T$ eine vollständige Theorie und $\A\models T$, dann ist $T(B)\coloneqq Th(\A_B)$. Im Fall $B=A$ nenne wir $T(A)\coloneqq Th(\A_A)$ das \textit{elementare Diagramm} von $\A$.
+\end{definition}
+Im Gegensatz dazu ist das Diagramm $D(\A)$ definiert durch $$D(\A)\coloneqq\{\varphi(\bar{a})\in T(A) : \varphi \text{ atomar oder negiert-atomar}\}$$.
+
+\begin{definition}
+	$\A$ ist eine \textit{elementare Substruktur} von $\B$ ($\A\preceq\B$), wenn $\A\subseteq\B$ und für jede Formel $\varphi(\bar{x})\in FO$ und alle $\bar{a}$ aus $A$ gilt: $\A\models\varphi(\bar{a})\Leftrightarrow\B\models\varphi(\bar{a})$.
+\end{definition}
+Dies soll durch zwei Beispiele genauer beleuchtet werden. 
+
+\begin{itemize}
+	\item $\A=(\Q,<),\B=(\R,<)$. Dann lässt sich leicht feststellen, dass $\A\preceq\B$.
+	\item $\A=(\N\setminus\{0\},<), \B=(\N,<)$. Es gilt $\A\subseteq\B$ und sogar $\A\cong\B$. Aber trotzdem ist $\A\not\preceq\B$. Sei $\varphi(x)$ in einer Struktur wahr, gdw. $x$ das kleinste Element der Struktur ist. Dann ist $\A\models\varphi(1)$, aber $\B\not\models\varphi(1)$.
+\end{itemize}
+
+\begin{satz}[Tarski-Vaught-Test]
+	Sei $\A\subseteq\B$. Nun sind äquivalent:
+	\begin{enumerate}
+		\item $\A\preceq \B$.
+		\item Für jede Formel $\varphi(\bar{x},y)$ und alle $\bar{a}$ aus $\A$ gilt: $\B\models \exists y \varphi(\bar{a},y)\Rightarrow \B\models\varphi(\bar{a},a')$ für ein $a'\in A$.
+	\end{enumerate}
+\end{satz}
+\begin{proof}
+	\textit{1. $\Rightarrow$ 2.}: Sei $\A\preceq\B$ und $\B\models\exists y \varphi(\bar{a},y)$. Dann gilt $\A\models\exists y \varphi(\bar{a},y)$, das heißt $\A\models\varphi(\bar{a},a')$ für ein $a'\in A$. Da $\A\preceq\B$, folgt $\B\models\varphi(\bar{a},a')$.
+	
+	\textit{2. $\Rightarrow$ 1.}: Das Kriterium des Tests sei erfüllt. Nun ist zu zeigen, dass für jede Formel $\psi(\bar{x})$ und $\bar{a}$ aus $\A$ gilt: $\A\models\psi(\bar{a})\Leftrightarrow \B\models\psi(\bar{a})$. Dies soll wieder durch eine Induktion über den Formelaufbau passieren.
+	
+	\begin{itemize}
+		\item Die atomaren Fälle $\psi\coloneqq x=y$ und $\psi\coloneqq R\bar{x}$, als auch die einfachen Induktionsschritte $\psi\coloneqq \neg\varphi$, $\psi\coloneqq\varphi\land\varphi'$ und $\psi\coloneqq \varphi\lor\varphi'$ sind klar.
+		
+		\item $\psi\coloneqq\exists y \exists \varphi(\bar{a},y)$:
+		\begin{itemize}
+			\item $\A\models\exists y\varphi(\bar{a},y)
+			\Rightarrow \A\models\varphi(\bar{a},a')\text{ für ein } a'\in A
+			\overset{\text{IV}}{\Rightarrow}\B\models\varphi(\bar{a},a')
+			\Rightarrow\B\models\exists y \varphi(\bar{a},y)$.
+			
+			\item $\B\models\exists y\varphi(\bar{a},y)
+			\overset{\text{Test}}{\Rightarrow} \B\models\varphi(\bar{a},a')\text{ für ein } a'\in A
+			\overset{\text{IV}}{\Rightarrow}\A\models\varphi(\bar{a},a')
+			\Rightarrow\A\models\exists y\varphi(\bar{a},y)$.
+		\end{itemize}
+	\end{itemize}
+\end{proof}
+
+\begin{definition}[Elementare Einbettung]
+	$f:\A\to\B$ ist eine \textit{elementare Einbettung} ($f:\A\preceq\B$), wenn gilt: $f$ ist eine Einbettung und für alle $\varphi(\bar{x}),\bar{a}$: $\A\models\bar{a}\Leftrightarrow\B\models\varphi(f\bar{a})$. Es ergibt sich dadurch folgendes Verhalten: $\A\cong f[\A]\preceq\B$.
+\end{definition}
+
+\begin{definition}[Elementare Kette]
+	Eine Kette $(\A_i)_{i\in \alpha}$ ist elementar, wenn $\A_i\preceq\A_j$ für $i\leq j$ gilt.
+\end{definition}
+
+\begin{satz}
+	Für jede Kette elem. $(\A_i)_{i\in \alpha}$ gilt $\A_k\preceq\bigcup\A_i$ für alle $k<\alpha$.
+\end{satz}
+
+\begin{lemma}
+	Sei $\A\subseteq\B$ und $\B_A\models Th(\A_A)=T(A)$. Dann ist $\A\preceq\B$.
+\end{lemma}
+Zur Erinnerung: $T(A)$ ist das elementare Diagramm.
+\begin{proof}
+	Wenn $\A\models\varphi(\bar{a})$, dann folgt $\varphi(\bar{a})\in T(A)$ und da $\B$ Modell von $T(A)$ ist, gilt $\B\models\varphi(\bar{a})$.
+	
+	Im Gegensatz ist mit den gleichen Argumenten, sowie der Vollständigkeit von $T(A)$ einsehbar, dass $\A\not\models\varphi(\bar{a}) \Rightarrow \neg\varphi(\bar{a})\in T(A) \Rightarrow \B\not\models\varphi(\bar{a})$ gilt.
+\end{proof}
+
+
+\subsubsection*{Typen}
+
+\begin{definition}
+	Sei $\A$ eine $\tau$-Struktur, $B\subseteq A$ und $n\in \N$. Dann ist definiert:
+	\begin{enumerate}
+		\item Ein \textit{$n$-Typ} von $\A$ über $B$ ist eine Menge $p$ von Formeln $\varphi(x_0,\dots,x_{n-1})\in FO(\tau\cup B)$ so, dass $p\cup Th(\A_B)$ erfüllbar ist.
+		\item $tp_\A(\bar{a}/B)\coloneqq \{\varphi(\bar{x}) \in FO(\tau\cup B) : \A_B\models\varphi(\bar{a})\}$.
+		\item $\A$ \textit{realisiert} den Typen $p$ über $B$, wenn ein Tupel $\bar{a}$ aus $\A$ existiert mit $p\subseteq tp_\A(\bar{a}/B)$.
+		\item Ein Typ $p$ über $B$ ist \textit{vollständig}, wenn kein $n$-Typ $q$ von $\A$ über $B$ existiert, mit $p\subsetneqq q$.
+		\item Der \textit{Stone-Raum} $S^n(B)$ ist die Menge der vollständigen $n$-Typen über $B$.
+	\end{enumerate}
+\end{definition}
+
+Zwei Beispiele sollen dies verdeutlichen. Es sei $\A=(\omega,s,0)$, wobei $s(n)\coloneqq n+1$ die Sukzessor-Funktion ist. Dann ist $S^1(\emptyset)\supseteq\{p_0,p_1,\dots\}\cup\{p_\infty\}$, mit
+\begin{itemize}
+	\item $p_n\coloneqq tp(n/\emptyset)\models x=\underbrace{ss\cdots s}_{n\text{-mal}}0$ für ein $n\in \N$.
+	\item $p_\infty\models\{x\neq\underbrace{ss\cdots s}_{n\text{-mal}}0 : n\in\omega\}$.
+\end{itemize}
+Es lässt sich feststellen, dass $p_\infty$ nicht in $\A$ realisiert ist. Die Menge $\{x\neq\underbrace{ss\cdots s}_{n\text{-mal}}0 : n\in\omega\}\cup Th(\omega,s,0)$ ist aber dennoch erfüllbar. Dies lässt sich mithilfe des Kompaktheitssatzes zeigen. Offensichtlich ist jede endliche Teilmenge erfüllbar, demnach also also auch die gesamte Menge.
+\\
+\\
+Als zweites Beispiel soll $\A=(\Q,<)$ für ein festes, aber beliebiges $A\subseteq \Q$ betrachtet werden. Nun gibt es für ein festes $a\in A$ folgende Typen:
+\begin{itemize}
+	\item[$(a)$] $p\models x=a$.
+	\item[$(a^+)$] $p\models x>b$ für alle $A\ni b\leq a$ und $p\models x<b$ für alle $A\ni b>a$. Die erste Folgerung besagt, dass $x$ größer als alle $b\in A$ ist, welche kleiner-gleich $a$ sind. Insbesondere ist $x$ also größer als $a$. Die Zweite Formel besagt, dass $x$ kleiner als das nächste $b\in A$ ist, welches größer als $a$ ist. Wenn $a'$ also die nach $a$ nächste Zahl in $A$ ist, ist $x\in(a,a')$. Bzw. \textit{$x$ ist direkt über $a$}.
+	\item[$(a^-)$] Dieser Typ besagt, dass \textit{$x$ direkt unter $a$} ist und lässt sich analog zu $(a^+)$ darstellen.
+\end{itemize}
+Zusätzlich gibt es noch den Typen $(+\infty)$ mit $p\models x>a$ für alle $a\in A$, sowie den dazu analog definierten Typen $(-\infty)$.
+
+Falls $A=A_0\dot{\cup}A_1$ gilt, $A_0$ kein größtes, $A_1$ kein kleinstes Element hat und $a_0<a_1$ für beliebige $a_0\in A_0,a_1\in A_1$ gilt, dann existiert noch der Typ $p$ mit $p\models x>a$ für $a\in A_0$ und $p\models x<a$ für $a\in A_1$.
+
+\begin{lemma}
+	Sei $\A$ eine $\tau$-Struktur
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
