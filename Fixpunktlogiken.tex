@@ -1,0 +1,328 @@
+\section{Fixpunktlogiken}
+
+In diesem Kapitel sollen die Fixpunktlogiken $L_\mu$ und $LFP$ erläutert werden. 
+Um diese besser verstehen zu können müssen aber zuerst einige Grundbegriffe aus der Fixpunkttheorie besprochen werden.
+
+\subsection{Algebraische Fixpunkttheorie}
+
+$(X,\leq)$ sei eine partielle Ordnung, also reflexiv, transitiv und antisymmetrisch (d.h. wenn $x\leq y$ und $y\leq x$, dann ist $x=y$).
+
+Für $Y\subseteq X$ ist $x$ Infimum von $Y$, wenn
+\begin{enumerate}
+	\item $x\leq y$ für alle $y\in Y$
+	\item Wenn $x'\leq y$ für alle $y\in Y$, dann ist $x'\leq x$
+\end{enumerate}
+Völlig analog ist $x$ Supremum von $Y$, wenn
+\begin{enumerate}
+	\item $y\leq x$ für alle $y\in Y$
+	\item Wenn $y\leq x'$ für alle $y\in Y$, dann ist $x\leq x '$
+\end{enumerate}
+
+\begin{definition}[Verband]
+	$(X,\leq)$ ist ein \textit{Verband}, wenn $(X,\leq)$ eine partielle Ordnung ist so, dass für alle $x,y\in X$ die Menge $\{x,y\}$ ein Infimum $x\sqcap y$ und ein Supremum $x\sqcup y$ besitzt.
+\end{definition}
+
+\begin{definition}[Beschränkte und vollständige Verbände]
+	Um Verbände besser charakterisieren zu können sollen nun zwei wichtige Begriffe eingeführt werden:
+	
+	\begin{itemize}
+		\item Ein Verband ist \textit{beschränkt}, wenn er ein kleinstes Element $\bot$ und ein größtes Element $\top$ besitzt.
+		\item Ein Verband ist \textit{vollständig}, wenn jede Menge $Y\subseteq X$ ein Supremum $\sup Y=\bigsqcup Y$ und ein Infimum $\inf Y = \bigsqcap Y$ besitzt.
+	\end{itemize}
+\end{definition}
+
+Wenn beispielsweise die Struktur $(X,\land,\lor)$ mit assoziativen, kommutativen, binären Funktionen $\lor$, $\land$ zusätzlich noch das Absorptionsgesetz $x\lor(x\land y) = x\land (x \lor y) = x$ erfüllt, dann ist $(X,\leq)$ ein Verband mit $x\leq y :\Leftrightarrow x\land y = x$. Wenn es dann zusätzlich neutrale Elemente gibt, ist $(X,\leq)$ beschränkt.
+
+\begin{definition}[Boolesche Algebra]
+	Eine \textit{Boolesche Algebra} ist eine Struktur $(X,\land,\lor,\neg)$ so, dass
+	\begin{itemize}
+		\item $(X,\land, \lor)$ ein beschränkter Verband ist
+		\item Die Distributionsgesetze $x\lor( y\land z)= (x\lor y) \land (x\lor z)$ und $x \land (y\lor z) = (x\land y) \lor (x\land z)$ erfüllt werden
+		\item $x\lor \neg x=\top$ und $x\land \neg x=\bot$ gilt
+	\end{itemize}
+\end{definition}
+
+Der wohl wichtigste vollständige Verband ist vermutlich die Mengenalgebra $(\Pot{A},\cap,\cup)$ für eine Menge $A$. Mit der Komplementoperation ist dies dann sogar eine Boolesche Algebra mit $\bot=\emptyset$ und $\top=A$.
+
+Im folgenden sei $(X,\leq)$ immer ein vollständiger Verband.
+
+\begin{definition}[Operatoren]
+	Ein \textit{Operator} ist eine Funktion $F:X\to X$.
+	Einige weitere wichtige Begriffe sind:
+	\begin{itemize}
+		\item $F$ ist \textit{monoton}, wenn $x\leq y \Rightarrow F(x)\leq F(y)$ für alle $x,y\in Y$ gilt.
+		\item $F$ ist \textit{inflationär}, wenn $x\leq F(x)$ für alle $x\in X$ gilt.
+		\item $F$ ist \textit{deflationär}, wenn $F(x)\leq x$ für alle $x\in X$ gilt.
+		\item $x$ ist \textit{Fixpunkt} von $F$, wenn $F(x)=x$.
+		\item $x$ ist \textit{kleinster (größter) Fixpunkt}, wenn $x=F(x)$ und $x\leq y$ ($y\leq x$) für alle Fixpunkte $y$ von $F$ gilt. Wir sagen dann $lfp(F)=x$ ($gfp(F)=x$).
+	\end{itemize}
+\end{definition}
+
+\begin{satz}[Knaster, Tarski]
+	Sei $F$ ein monotoner Operator auf einem vollständigen Verband $(X,\leq)$. Dann hat $F$ einen kleinsten Fixpunkt $lfp(F)$ und einen größten Fixpunkt $gfp(F)$. Außerdem gilt $lfp(F)=\bigsqcap\{x\in X : F(x)\leq x\}$ bzw. $gfp(F)=\bigsqcup\{x\in X : x\leq F(x)\}$.
+	\label{Knaster-Tarski}
+\end{satz}
+\begin{proof}
+	Sei $\Phi\coloneqq \{x\in X : F(x)\leq x\}$ und $y=\bigsqcap\Phi$. Für $x\in\Phi$ gilt $y\leq x$ und daher $F(y)\leq F(x)$, also ist $F(y)\le q\bigsqcap \Phi = y$.
+	
+	Andererseits gilt $y\leq F(y)$, denn wegen $F(y)\leq y$ gilt $F(F(y))\leq F(y)$, also ist $F(y)\in \Phi$ und wegen $y=\bigsqcap\Phi$ folgt dann $F(y)=y$.
+	
+	Da $y\leq x$ für alle $x\in X$ mit $F(x)\leq x$, insbesondere also für alle Fixpunkte, ist, muss $y$ der kleinste Fixpunkt von $F$ sein.
+	
+	Der Beweis für den größten Fixpunkt lässt sich völlig dual führen.
+\end{proof}
+
+Damit haben wir also eine konstruktive Methode, um einen Fixpunkt zu finden. Diese ist aber nicht sonderlich effizient, weshalb wir ein anderes, induktives Verfahren einführen wollen.
+
+Sei $F:X\to X$ also ein Operator. Mithilfe von diesem wollen wir zwei Folgen $(X^\alpha)_{\alpha\in On}$ und $(Y^\alpha)_\alpha\in On$ definieren, welche uns induktiv Fixpunkte liefern sollen.
+\begin{itemize}
+	\item $X^0\coloneqq\bot$ und $Y^0\coloneqq\top$
+	\item $X^{\alpha+1}\coloneqq F(X^\alpha)$ und $Y^{\alpha+1}\coloneqq F(Y^\alpha)$
+	\item Für ein Limesordinal $\lambda$: $X^\lambda \coloneqq \bigsqcup\{X^\alpha : \alpha<\lambda\}$ und 
+	$Y^\lambda \coloneqq \bigsqcap\{Y^\alpha : \alpha < \lambda\}$
+\end{itemize}
+
+Weiter nennen wir $F$ induktiv, wenn $X^\beta \leq X^\alpha$ für $\beta<\alpha$ gilt und es lässt sich leicht feststellen, dass $F$ bereits induktiv ist, falls $F$ inflationär oder monoton ist.
+
+\begin{definition}[Abschlussordinale und induktive Fixpunkte]
+	Da $X$ eine Menge ist muss es ein Ordinal $\beta$ geben so, dass $X^\beta= X^{\beta+1}$ und damit $X^\beta=X^\alpha$ für alle $\beta \leq \alpha$. 
+	
+	Das kleinste solche Ordinal $\beta$ ist das \textit{Abschlussordinal} $cl\uparrow(F)$ und das zugehörige $X^\beta \eqqcolon X^\infty$ ist der \textit{induktive Fixpunkt} von $F$.
+\end{definition}
+
+\begin{lemma}
+	Sei $X=(\Pot{A},\subseteq)$ eine Mengenalgerbra und $F:\Pot{A}\to\Pot{A}$ induktiv. Dann ist $cl\uparrow(F)< \vert A\vert ^+$.
+\end{lemma}
+Zur Erinnerung: Für ein Kardinal $\kappa\in Cn$ ist $/kappa^+$ das nächstgrößere Kardinal.
+\begin{proof}
+	Wenn nicht, dann ist $X^\beta < X^{\beta+1}$ für alle $\beta<\vert A \vert^+$, also existiert $a_\beta\in X^{\beta+1}\setminus X^\beta$ für alle $\beta < \vert A \vert^+$. Bildet man nun die Menge $\Phi=\{a_\beta : \beta < \vert A\vert^+\}$ ist leicht ersichtlich, dass $\vert\Phi\vert=\vert A\vert^+$, was einen Widerspruch zu $\Phi\subseteq A$ darstellt.
+\end{proof} 
+
+\begin{satz}
+	Sei $F:X\to X$ monoton. Dann ist $lfp(F)=X^\infty$.
+\end{satz}
+\begin{proof}
+	Offensichtlich ist $F(X^\infty)=X^\infty$, also ist $lfp(F)\leq X^\infty$ bereits klar. Für $X^\infty \leq lfp(F)$ ist nun folgendes zu zeigen:
+	
+	Für alle $x\in X$ mit $F(x)\leq x$ gilt $X^\alpha \leq x$ für alle $\alpha$. Sei also $F(x)\leq x$.
+	\begin{itemize}
+		\item Im Fall $\alpha=0$ ist $X^0=\bot\leq x$.
+		\item Für $X^{\alpha+1}$ ist $X^{\alpha+1}=F(X^\alpha)\overset{\text{IV}}{\leq} F(x)\leq x$.
+		\item Für ein Limesordinal $\lambda$ ist $X^\lambda=\bigsqcup\{X^\alpha : \alpha<\lambda\}$. Da nach der Induktionsvoraussetzung $X^\alpha \leq x$ für alle $\alpha<\lambda$, ist auch $X^\lambda\leq x$.
+	\end{itemize}
+\end{proof}
+
+Sei $X=(\Pot{a},\cup,\cap)$ eine Mengenalgebra und $\bar{x}\coloneqq A\setminus x$ die Komplementoperation.
+Zu $F:\Pot{A}\to \Pot{A}$ definieren wir den dualen Operator $F^\star:\Pot{A}\to\Pot{A}$ durch $F^\star(x)\coloneqq \overline{F(\bar{x})}$.
+
+\begin{satz}
+	Sei $F:\Pot{A}\to\Pot(A)$ monoton. Dann ist
+	\begin{itemize}
+		\item[(1)] $F^\star$ monoton
+		\item[(2)] $lfp(F)=\overline{gfp(F^\star)}$
+		\item[(3)] $gfp(F)=\overline{lfp(F^\star)}$
+	\end{itemize}
+\end{satz}
+\begin{proof}
+	\textit{(1)}: Sei $x\subseteq y$. Dann ist $\bar{x}\supseteq\bar{y}$, also $F(\bar{x})\supseteq F(\bar{y})$ (da $F$ monoton) und damit ist $\overline{F(\bar{x})}\subseteq\overline{F(\bar{y})}$ bzw. $F^\star(x)\subseteq F^\star(y)$.
+	
+	\textit{(2)}: Sei $(x_\alpha)_{\alpha\in On}$ die lfp-Induktion von $F$ und $(y^\star_\alpha)_{\alpha\in On}$ die gfp-Induktion von $F^\star$. Nun stellen wir die Behauptung $x_\alpha=\bar{y^\star_\alpha}$ für alle $\alpha$, die wir durch eine Induktion beweisen wollen.
+	\begin{itemize}
+		\item $x_0=\emptyset=\bar{A}=\bar{y^\star_0}$
+		\item $x_{\alpha+1}=F(x_\alpha) \overset{\text{IV}}{=} F(\bar{y^\star_\alpha})= \overline{F^\star(y^\star_\alpha)} = \bar{y^\star_{\alpha+1}}$
+		\item Für ein Limesordinal $\lambda$ ist $x_\lambda=\bigcup\{x_\alpha:\alpha<\lambda\} = \overline{\bigcap \{\bar{x_\alpha} : \alpha < \lambda\}} \overset{\text{IV}}{=} \overline{\bigcap\{y^\star_\alpha : \alpha<\lambda\}}= \bar{y^\star_\lambda}$
+	\end{itemize}
+	
+	\textit{(3)}: Dieser Fall ist dual zu Fall (2) und lässt sich genauso beweisen.
+\end{proof}
+
+
+\subsection{Der modale $\mu$-Kalkül}
+
+Bei der modalen Logik $L_\mu$ handelt es sich, informell ausgedrückt, um die Modallogik $ML$ zusammen mit größten und kleinsten Fixpunkten.
+
+Die Syntax lässt sich formal auf zwei Arten ausdrücken. Wir fixieren $(P_i)_{i\in I}$ als Menge an atomaren Aussagen, $A\neq\emptyset$ als nichtleere Menge an Aktionen und $VAR$ als Menge von (Fixpunkt-) Variablen.
+ Die erste Grammatik erlaubt das negieren beliebiger Formeln:
+ \[\psi \coloneqq P_i \quad\vert\quad X \quad\vert\quad \psi\lor \psi \quad\vert\quad \psi \land \psi \quad\vert\quad \neg\psi \quad\vert\quad \langle a \rangle \psi \quad\vert\quad [a]\psi \quad\vert\quad \mu X.\psi \quad\vert\quad \nu X.\psi\]
+ wobei $i\in I$, $a\in A$, $X\in VAR$ und $X$ nur positiv vorkommen darf.
+ 
+ Als alternative lässt sich auch folgende Grammatik nutzen, welche Formeln direkt in Negations-Normalform definiert, wodurch die Einschränkung der nicht-negierten Fixpunkt-Variablen wegfallen kann:
+\[\psi \coloneqq P_i \quad\vert\quad \neg P_i \quad\vert\quad X \quad\vert\quad \psi\lor \psi \quad\vert\quad \psi \land \psi \quad\vert\quad \langle a \rangle \psi \quad\vert\quad [a]\psi \quad\vert\quad \mu X.\psi \quad\vert\quad \nu X.\psi\]
+
+Wie auch in der bisher bekannten Modallogik werden $L_\mu$-Formeln auf Kripkestrukturen $\K=(V,(P_i)_{i\in I}, (E_a)_{a\in A})$ ausgewertet, wobei $P_i\subseteq V$ und $E_a\subseteq V\times V$. für beliebiges $i\in I$ und $a\in A$ gilt.
+
+Die Semantik für die bereits bekannten Operatoren wie z.B. $\langle a \rangle \psi$ sind wie in $ML$, es muss also nur die Semantik für Fixpunkt-Variablen, $\mu X.\psi$ und $\nu X.\psi$ erläutert werden.
+
+Um die weiteren Definitionen simpler zu halten werden Fixpunkt-Variablen nie frei sondern immer durch $\mu$ oder $\nu$ gebunden vorkommen. 
+In weiter folgenden wird uns dies nicht einschränken. Generell gilt also $\K,v\models \mu X.\psi :\Leftrightarrow v \in lfp(F^\psi_\K)$. 
+Durch die Formel wird also ein Operator $F^\psi_\K: \Pot{V}\to \Pot{V}$ definiert, mit $U\mapsto F^\psi_\K(U)\coloneqq \{v\in V : K,v \models \psi [X / U]\}$. 
+Jedes vorkommen von $X$ in $\psi$ wird also durch $U$ ersetzt. Offensichtlich ist $F^\psi_\K$ monoton und es existieren kleinste und größte Fixpunkte.
+
+Analog gilt $\K, v \models \nu X.\psi :\Leftrightarrow v \in gfp(F^\psi_\K)$.
+
+Einige Beispiele sollen dies weiter erläutern:
+\begin{enumerate}
+	\item Wir betrachten die Formel $\mu X . \psi$ mit $\psi= (P \lor \langle a \rangle X)$ mit der Kripkestruktur $\K=(V,P,E_a)$. Durch scharfes hinsehen erhält man den Operator $$F^\psi :X \mapsto P \cup \{\text{es gibt Transition von } v \xrightarrow{a} X\}$$. Da in der Formel $\mu$ verwendet wird, ist die Frage nach dem kleinsten Fixpunkt des Operators. 
+	Im letzten Kapitel haben wir zwei Methoden kennengelernt: Zum Einen die Methode in Satz \ref{Knaster-Tarski} und zum anderen die Fixpunkt-Induktion. Die Fixpunkt ist meistens einfacher auszuführen und wird deshalb auch eher verwendet.
+	
+	Aus der Definition ergibt sich $X^0=\emptyset$. Weiter ist
+	\begin{itemize}
+		\item $X^1=\{v : v \models P \lor \langle a \rangle \emptyset\}=P$
+		\item $X^2=P \cup \{v : v \xrightarrow{a} P\}$
+		\item $X^3=P \cup \{v : v\xrightarrow{a} X^2\}=P\cup \{v : v\xrightarrow{a}P\} \cup \{v : v\xrightarrow{a}w\xrightarrow{a}P\}$
+		\item $X^n=\{v: v \xrightarrow[a]{<n} P\}$
+		\item $X^\infty = lfp(F) = \{v : v \xrightarrow[a]{\ast} P\}$
+	\end{itemize}
+	
+	Die Formel drückt also aus, dass von $v$ immer ein Knoten $P$ erreicht werden kann.
+	
+	\item Sei $\psi\coloneqq \nu X. \lozenge 1 \land \square X$ eine Formel, die auf Strukturen der Form $\K=(V,E)$ ausgewertet werden soll. Zu Erinnerung bedeutet $\lozenge 1$, dass es einen Nachfolgerknoten gibt. Wie im letzten Beispiel wird wieder die Fixpunkt-Iteration verwendet, nun aber für den größten Fixpunkt. Es gilt also $Y^0=V$ und weiter:
+	\begin{itemize}
+		\item $Y^1 = \{v : vE\neq\emptyset\}$
+		\item $Y^2 = \{v : vE\neq\emptyset \land vE \subseteq Y^1\}$
+		\item $Y^{n+1} = \{v : vE\neg\emptyset \land vE\subseteq Y^n\}$ 
+		
+		$\qquad= \{v : \text{kein Pfad von } v \text{ der Länge } \leq n \text{ erreicht einen Terminalknoten}\}$
+		\item $Y^\infty = \{v : \text{kein Pfad von } v \text{ erreicht einen Terminalknoten}\}$
+	\end{itemize}
+	
+	\item Wir wollen nun einen Spielgraphen $\K=(V,E)$ und ein Spiel darauf betrachten. Es gibt die beiden Spieler $0$ und $1$. Diese ziehen abwechselnd entlang $E$, wobei der verliert, der nicht mehr ziehen kann. Es ergeben sich also zwei Mengen $$W_i\coloneqq \{w : \text{Spieler } i \text{ hat Gewinnstrategie von } w\}$$ für $i\in \{0,1\}$. Es wird behauptet: $v\in W_0 \Leftrightarrow \K,v \models \mu X.\lozenge \square X$. Um dies zu zeigen wird wieder eine Fixpunktinduktion, beginnend mit $X^0=\emptyset$ durchgeführt:
+	\begin{itemize}
+		\item $X^1=\{v : \K,v\models \lozenge\square 0\} = \{v : \text{Sp. } 0 \text{ kann von } v \text{ zu einem Terminalknoten ziehen}\}$
+		\item $X^{n+1} = \{v : \K,v\models \lozenge\square X^n\}$
+		
+		$\qquad = \{v : \text{Sp. } 0 \text{ kann von } v \text{ zu einem } w \text{ ziehen so, dass alle Züge von Sp. } 1$ 
+		
+		$\qquad\qquad \text{ von } w \text{ aus in } X^n \text{ landen}\}$
+		
+		$\qquad \{v : \text{Sp. } 0 \text{ kann von } v \text{ aus in } \leq n \text{ eigenen Zügen gewinnen}\}$
+		\item $X^\infty = W_0$
+	\end{itemize}
+	
+	Modifizieren wir das Spiel so, dass der Spielgraph die Form $\K=(V,V_0,V_1,E)$ hat, mit $V_0\dot{\cup}V_1=V$ und so, dass Spieler $i$ zieht, wenn sich das Spiel auf einem Knoten in $V_i$ \glqq befindet\grqq{}, dann lässt sich die eben gezeigte Eigenschaft formulieren mit $\psi=\mu X . (V_0\land \lozenge X)\lor (V_1 \land \square X)$ und auf analoge Weise folgt auch dann $X^\infty=W_0$.
+	
+	\item Wir betrachten wieder Kripkestrukturen der Form $\K=(V,E)$ und die Formel $\psi\coloneqq \mu X . \square X$. Behauptung: $$\K,v\models \mu X.\square X \Leftrightarrow \text{alle Pfade vom Graphen sind endlich (Fundiertheit)}$$. Es ergibt sich:
+	\begin{itemize}
+		\item $X^0 = \emptyset$
+		\item $X^1 = \{v :vE =\emptyset\}$
+		\item $X^n = \{v : \text{es gibt von } v \text{ aus keinen Pfad der Länge } n\}$
+		\item $X^\omega = \bigcup_{n<\omega}X^n=\{v : \text{es gibt ein } n \text{ so, dass alle Pfade von } v \text{ Länge } <n \text{ haben}\}$
+	\end{itemize}
+	
+	Es lässt sich erkennen, dass $X^\omega\neq X^\infty$. Man betrachte die Kripkestruktur, welche eine Wurzel $v$ mit genau einem Nachfolgeknoten $w$ besitzt. Von $w$ geht für jedes $n\in\omega$ ein Pfad der Länge der $n$ aus so, dass die Struktur nur endliche Pfade besitzt, aber unendlich verzweigt ist. 
+	Es lässt sich leicht sehen, dass $X^1$ alle äußersten Knoten der Pfade von $w$ sind, $X^2$ die letzten beiden Knoten der Pfade mit Länge $\geq 2$ von $w$ ausgehend und der eine Knoten des Pfades der Länge $1$ und so weiter. Die erste Menge, in der $w$ vorkommen kann ist demnach $X^\omega$, ansonsten wäre $w\in X^n$ für ein $n\in \omega$. Es gibt aber einen Pfad von $w$ aus mit der Länge $n+1$, der erste Knoten dieses Pfades ist also nicht in $X^{n-1}$, also kann $w$ nicht in $X^n$ sein. 
+	Die Wurzel $v$ ist dann in $X^{\omega+1}$, was dadurch auch das Abschlussordinal ist.
+	
+	Weiter soll $(A,<)$ eine lineare Ordnung sein. Wir betrachten $(A,<)$ als eine Kripkestruktur $\K=(A,E_<)$ mit $E_<=\{(a,b): b < a\}$. Dann gilt $$\K,a\models \mu X.\square X \forall a \Leftrightarrow (A,<) \text{ ist WO}.$$ Im modalen $\mu$-Kalkül lassen sich also Wohlordnungen ausdrücken.
+	
+	\item Sei $\K=(V,P,E)$ endlich verzweigt. Wir wollen uns nun die Formel $\psi\coloneqq \nu X . \mu Y.\lozenge((P\land X) \lor Y)$ anschauen. Aufgrund der geschachtelten Fixpunktoperatoren müssen wir für jeden äußeren Fixpunkt-Iterationsschritt die innere Fixpunktiteration ausführen. Wir beginnen also mit $X^0=V$.
+	Dann ist
+	\begin{itemize}
+		\item $Y^{00}=\emptyset$
+		\item $Y^{01}=\{v : \K,v\models \lozenge((P\land 1) \lor 0)\}=\{v : \K,v\models \lozenge P\}=\{v : v\xrightarrow{1} P\}$
+		\item $Y^{02}=\{v : \K,v\models \lozenge(P \lor Y^{01})\}=\{v : \xrightarrow[\geq 1]{\leq 2}P\}$
+		\item $Y^{0n}=\{v : v \xrightarrow[\geq 1]{\leq n} P\}$
+		\item $Y^{0\infty}=\{v : v\xrightarrow{+}P\}$
+	\end{itemize}
+	und dann für $X^1 = Y^{0\infty} = \{v : v\xrightarrow{+}P\}$ folgt
+	\begin{itemize}
+		\item $Y^{10}=\emptyset$
+		\item $Y^{11}=\{v : \K,v\models \lozenge((P\land \{v : v\xrightarrow{+}P\}) \lor 0)\}=\{v : v\xrightarrow{1}P\xrightarrow{+}P\}$
+		\item $Y^{1n}=\{v : \xrightarrow[\geq 1]{\leq n}P\xrightarrow{+}P\}$
+		\item $Y^{1\infty}=\{v : v\xrightarrow{+}P\xrightarrow{+}P\}$,
+	\end{itemize}
+	also $X^2 = Y^{1\infty}=\{v : v\xrightarrow{+}P\xrightarrow{+}P\}$ und auf dem selben Weg erhält man $X^n=\{v : \text{es ex. Pfad von } v \text{ auf welchem } P \text{min. } n \text{ mal vorkommt}\}$ und damit auch $$X^\infty = \bigcap_{n<\infty}X^n=\{v : \text{es ex. Pfad von } v \text{ auf welchem } P \text{ unendlich oft vorkommt}\}$$
+\end{enumerate}
+
+\subsubsection*{Die Negationsnormalform}
+
+Wir wollen nun betrachten, wie sich die Negationsnormalform einer beliebigen $L_\mu$-Formel bilden lässt. Wie bekannt gelten $\neg(\psi\land\phi)\equiv \neg\psi \lor \neg\phi$, $\neg(\psi\lor\phi) \equiv \neg\psi\land\neg\phi$, $\neg\langle a \rangle\psi \equiv [a]\neg\psi$ und $\neg[a]\psi \equiv \langle a \rangle \neg\psi$.
+
+Es bleiben also noch die Fixpunktoperatoren. Es lässt sich feststellen, dass für diese gilt: $\neg\mu X .\psi \equiv \nu X . \neg\psi[X/\neg X]$ und $\neg\nu X.\psi \equiv \mu X.\neg\psi[X/\neg X]$. Wie anfangs gefordert lassen sich keine Negationen von Fixpunkt-Variablen bilden, da zwar jede Fixpunktvariable durch $\neg X$ ersetzt wird, aber durch die Negation der Formel selber wird dieses wieder zu $X$. Beispielsweise ist $\neg\mu X .\square X \equiv \nu X . \lozenge X$.
+
+\subsubsection*{Einbettung in andere Logiken}
+
+Ein interessanter Aspekt jeder Logik ist die Einbettung von dieser in andere Logiken und die Einbettung anderer Logiken in diese. Dies wollen wir nun für den modalen $\mu$-Kalkül betrachten.
+
+Offensichtlich lässt sich $ML$ in $L_\mu$ einbetten. Da bereits $ML \leq FO \leq MSO$ bekannt ist stellt sich die frage, pb $L_\mu\leq MSO$ gilt. Es ist klar, dass das $ML$-Fragment von $L_\mu$ mithilfe einer Funktion in $MSO$ eingebettet werden kann so, dass folgender Zusammenhang entsteht $\psi \mapsto \psi^\ast(x)$. Wir müssen uns also Formeln mit Fixpunkt-Operatoren annehmen. Sei also $\psi\coloneqq \mu X . \phi(X)$. Es lässt sich feststellen, dass die Formel $\phi^\ast(x)=\forall X ((\forall y \phi^\ast(X,y)\rightarrow Xy) \rightarrow Xx)$ äquivalent und eine $MSO$-Formel ist.
+
+Genauer sagt $\psi^\ast(x)$ aus, dass $x$ in allen Mengen $X$ enthalten ist so, dass $F^\phi(X)\subseteq X$. Mithilfe von Satz \ref{Knaster-Tarski} folgt dann daraus, dass $x\in lfp(F^\phi)$ ist.
+
+Weiter lässt sich feststellen, dass $L_\mu$ das bisimulationsinvariante Fragment von $MSO$ ist, so, wie $ML$ dieses von $FO$ ist. Dies wurde 1996 von Janin und Walukiewicz bewiesen (?), der Beweis ist aber über dem Niveau dieser Vorlesung, weshalb diese Eigenschaft nicht weiter behandelt werden soll.
+
+Nun bilden wir aus $ML$ die Logik $ML^\infty$ auf die selbe Weise, wie wir aus $FO$ die infinitäre Logik $L_{\infty\omega}$ gebildet haben. Genauer: Indem wir Kon- und Disjunktionen über Mengen beliebiger Kardinalität erlauben. Offensichtlich ist $ML^\infty$ bisimulationsinvariant.
+
+\begin{satz}
+	Sei $\kappa\in Cn$. Über der Klasse aller Kripkestrukturen der Kardinalität $< \kappa$ ist $L_\mu$ in $ML^\infty$ einbettbar.
+\end{satz}
+\begin{proof}
+	Alle Operatoren, außer den Fixpunkt-Operatoren, lassen sich trivial einbetten. Wir brauchen also nur $\mu X .\psi$ zu behandeln. Dafür definieren wir, analog zur Fixpunkt-Induktion, eine induktiv definierte Folge:
+	\begin{itemize}
+		\item $\psi^0\coloneqq 0$
+		\item $\psi^{\alpha+1} \coloneqq \psi[X/\psi^\alpha]$
+		\item Für Limesordinale $\lambda$: $\psi^\lambda\coloneqq \bigvee\{\psi^\alpha : \alpha < \lambda\}$.
+	\end{itemize}
+	Sei $\K$ eine Kripkestruktur der Kardinalität $<\kappa$ und $X^0,X^1,\dots$ die durch $F^\psi$ definierte $lfp$-Induktion. Dann ergibt sich nach Konstruktion $\K,v\models \psi^\alpha \Leftrightarrow v\in X^\alpha$ und $v\in X^\infty=lfp(F^\psi)\Leftrightarrow v\in X^\alpha$ für ein $\alpha<\kappa^+$. Also gilt $\mu X.\psi \equiv \bigvee\{\psi^\alpha : \alpha < \kappa^+\}\in ML^\infty$ auf Kripkestrukturen der Kardinalität $<\kappa$.
+\end{proof}
+
+Daraus folgt, dass $L_\mu$ bisimulationsinvariant sein muss.
+
+In MaLo 1 wurde bereits die Logik $CTL$ eingeführt und es wurde gesehen, dass sich diese nicht in $FO$ einbetten lässt. Dies ist aber in $L_\mu$ möglich. Zur Wiederholung soll nun die Syntax von $CTL$ gezeigt werden:
+
+\[\psi \coloneqq P_i \quad\vert\quad \neg\psi \quad\vert\quad \psi \lor \psi \quad\vert\quad \psi\land\psi \quad\vert\quad EX\psi \quad\vert\quad AX\psi \quad\vert\quad E(\psi U \psi) \quad\vert\quad A(\psi U \psi)\]
+
+Die ersten vier Formeln sind offensichtlich auch in $L_\mu$ darstellbar. Mit Erinnerung an die Semantik von $CTL$ lässt sich zudem leicht sehen, dass $EX\psi \equiv \lozenge\psi$ und $AX\psi \equiv \square\psi$ gelten. Es bleiben also nur noch die \text{Until}-Operatoren. Wir definieren also eine Funktion $()^\ast: CTL\to L_\mu, \varphi\mapsto \varphi^\ast$ mit $E(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \lozenge X)$ und $A(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \square X)$. Diese beiden $L_\mu$-Formeln bezeichnen wir als \textit{alternationsfrei}.
+
+\begin{definition}[Der alternationsfreie $\mu$-Kalkül]
+	$L_\mu$-Formeln so, dass in keiner Unterformel $\mu X.\phi$ (bzw. $\nu X .\phi$) eine $\nu$-Variable (bzw. $\mu$-Variable) in $\phi$ frei vorkommt.
+\end{definition}
+
+Ein Gegenbeispiel wäre $\nu X.\mu Y.(\lozenge(P\land X) \lor \psi)$. Die Unterformel $\mu Y.(\lozenge(P\land X) \lor \psi)$ ist nun eine $\mu X.\phi$ Unterformel, in der aber die $\nu$-Variable $X$ vorkommt. Dieses Beispiel ist also nicht alternationsfrei.
+
+Bei alternationsfreien Formeln muss man selbst bei mehreren Fixpunkt-Operatoren keine verschachtelte Fixpunkt-Iteration durchführen. Der Berechnungsaufwand wird also deutlich verringert. Es gilt aber leider folgender Satz:
+
+\begin{satz}
+	Die Alternationshierachie von $L_\mu$ ist strikt.
+\end{satz}
+
+Anders ausgedrückt besagt der Satz, dass mehr Alternationen von Fixpunkt-Operatoren zu einer größeren Ausdrucksstärke führen. Der dazugehörige Beweis ist aber nicht einfach und wird hier daher nicht geführt.
+
+Neben $CTL$ wollen wir nun eine andere Logik in $L_\mu$ einbetten. Diese ist die \textit{Propositional Dynamic Layer} ($PDL$). In dieser gibt es zwei verschiedene Formeln: zum Einen gibt es Zustandsformeln, welche wir mit $\phi$ beschreiben und zum Anderen gibt es Programmformeln, welche wir $\pi$ nennen. Die dazugehörigen Grammatiken sind:
+\begin{align*}
+	&\phi \coloneqq P_i \quad\vert\quad \phi\land\phi \quad\vert\quad \phi\lor\phi \quad\vert\quad \neg\phi \quad\vert\quad \langle\pi\rangle\phi \\
+	&\pi \coloneqq E \quad\vert\quad \phi? \quad\vert\quad \pi\cup\pi \quad\vert\quad \pi;\pi \quad\vert\quad \pi^\ast
+\end{align*}
+
+Für eine Kripkestruktur $\K=(V,E)$ ist $\pi^\K\subseteq V\times V$. Wir wollen nun die einzelnen Bausteine von Programmfunktionen definieren, da die Semantik der Zustandsformeln bereits aus $ML$ bekannt ist.
+\begin{itemize}
+	\item $(\phi?)^\K=\{(v,v):\K,v\models \phi\}$
+	\item $(\pi_1 \cup \pi_2)^\K = \pi_1^\K \cup \pi_2^\K$
+	\item $(\pi_1;\pi_2)^\K = \pi_1^\K \circ \pi_2^\K = \{(v,w) : \exists z ((v,z)\in \pi_1^\K \land (z,w)\in \pi_2^\K)\}$
+	\item $(\pi^\ast)^\K=\bigcup_n\in\mathbb{N} (\pi^\K)^n$, wobei die Potenzierung induktiv durch $(\pi^\K)^0\coloneqq\{(v,v):v\in V\}$ und $(\pi^\K)^{n+1}\coloneqq(\pi^\K)^n \circ \pi^\K$ definiert ist.
+\end{itemize}
+
+\begin{satz}
+	Zustandsformeln von $PDL$ können in $L_\mu$ übersetzt werden.
+\end{satz}
+\begin{proof}
+	Die einzige Art an Formel, die betrachtet werden muss sind Formeln der Art $\langle \pi \rangle \phi$. Abhängig von $\pi$ definieren wir also eine Übersetzung $(\langle\pi\rangle \phi)^\ast$:
+	\begin{itemize}
+		\item $\pi = E \leadsto \lozenge\phi^\ast$
+		\item $\pi=\psi? \leadsto \psi^\ast \land \phi^\ast$
+		\item $\pi = \pi_1\cup\pi_2 \leadsto (\langle\pi_1\rangle\phi)^\ast \lor(\langle\pi_2\rangle\phi)^\ast$
+		\item $\pi=\pi_1;\pi_2 \leadsto \langle\pi_1\rangle^\ast \langle\pi_2\rangle^\ast \phi^\ast$
+		\item $\pi=\pi_1^\ast \leadsto \mu X .\phi\lor \langle\pi_1\rangle^\ast X$
+	\end{itemize}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+

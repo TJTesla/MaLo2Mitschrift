@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.11)  5 JAN 2024 16:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.11)  26 JAN 2024 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1265,23 +1265,42 @@ tio-nen ver-wen-det. Sei-en $[]\OML/lmm/m/it/10 a \OT1/lmr/m/n/10 = (\OML/lmm/m
 /it/10 a[]; a[]; [] ; a[]\OT1/lmr/m/n/10 )$
  []
 
-[46] [47]) [48] (./MaLo2Skript.aux)
+[46] [47]) (./Fixpunktlogiken.tex [48] [49] [50]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 140.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mu' on input line 140.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 140.
+
+
+Overfull \hbox (3.45569pt too wide) in paragraph at lines 149--150
+[]\T1/lmr/m/n/10 Als al-ter-na-ti-ve lässt sich auch fol-gen-de Gram-ma-tik nut
+-zen, wel-che For-meln di-rekt in Negations-
+ []
+
+[51] [52] [53] [54] [55]) [56] (./MaLo2Skript.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `MaLo2Skript.out' has not changed.
-(rerunfilecheck)             Checksum: E8E5FC8D12828B5E05D653CA5A590BCF;4248.
+(rerunfilecheck)             Checksum: A7347C382386B9755ECB3AA736FCE0C4;4725.
  ) 
 Here is how much of TeX's memory you used:
- 26393 strings out of 478268
- 486506 string characters out of 5846346
- 761205 words of memory out of 5000000
- 43837 multiletter control sequences out of 15000+600000
- 540241 words of font info for 89 fonts, out of 8000000 for 9000
+ 26442 strings out of 478268
+ 487061 string characters out of 5846346
+ 761248 words of memory out of 5000000
+ 43847 multiletter control sequences out of 15000+600000
+ 540949 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,18n,104p,806b,1357s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
-texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/lo
+cal/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/20
 22/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/
 fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/
 dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/l
@@ -1292,26 +1311,27 @@ ler/eufm7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.
 pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/
 local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texl
 ive/2022/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2022/t
-exmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2022/texmf-dist/f
-onts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
-public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/l
-mr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr17.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/local/te
-xlive/2022/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2022/t
-exmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fo
-nts/type1/public/lm/lmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pu
-blic/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lm
-sy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></us
-r/local/texlive/2022/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on MaLo2Skript.pdf (48 pages, 571419 bytes).
+exmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/
+fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
+/public/lm/lmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/
+lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/
+texlive/2022/texmf-dist/fonts/type1/public/lm/lmr5.pfb></usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2022/texmf-dist/
+fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
+public/lm/lmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lm
+ri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></usr/local/
+texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/
+texlive/2022/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/te
+xlive/2022/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
+Output written on MaLo2Skript.pdf (56 pages, 610631 bytes).
 PDF statistics:
- 775 PDF objects out of 1000 (max. 8388607)
- 664 compressed objects within 7 object streams
- 273 named destinations out of 1000 (max. 500000)
- 189 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 867 PDF objects out of 1000 (max. 8388607)
+ 745 compressed objects within 8 object streams
+ 309 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

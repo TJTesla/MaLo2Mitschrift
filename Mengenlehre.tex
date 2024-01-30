@@ -174,7 +174,7 @@ Dies gibt die Idee für die Rückrichtung: Für jede Stufe $S_\alpha$ soll gelte
 \end{example}
 
 \begin{satz}
-	Wenn $H$ eine Geschichte ist, dann enthält jede nicht-leere Teilmenge von $H$ ein minimales Element
+	Wenn $H$ eine Geschichte ist, dann enthält jede nicht-leere Teilmenge von $H$ ein minimales Element.
 \end{satz}
 \begin{proof}
 	Es sei $a\in b \subset H$ und $c=\{fd(x) : x \in a\cap b\}=\{y:y=fd(x)\text{ für } x\in a \cap b\}$.
@@ -618,7 +618,7 @@ Ein Anfangsstück von $\alpha \in On$ ist also eine Teilmenge $\beta\subseteq \a
 
 Da $(On,\in)$, bzw. $(On,<)$, eine Wohlordnung ist, existiert die transfinite Induktion über $On$. Das heißt: für jede Teilklasse $X\subseteq On$ gilt: wenn für alle $\alpha\in On$ gilt, dass für jedes $\beta<\alpha$ aus $\beta\in X$ folgt, dass $\alpha\in X$, dann ist $X=On$.
 
-Um zu zeigen, dass irgendeine Eigenschaft $\phi(x)$ aus alle Ordinale zutrifft, also $X\coloneqq\{\alpha\in On : \phi(x)\}=On$ gibt es folgende Strategien.
+Um zu zeigen, dass irgendeine Eigenschaft $\phi(x)$ auf alle Ordinale zutrifft, also $X\coloneqq\{\alpha\in On : \phi(x)\}=On$ gibt es folgende Strategien.
 \begin{enumerate}
 	\item Zeige, dass $\phi(0)$ gilt. Zeige, dass wenn $\phi(\alpha)$ auch $\phi(\alpha+1)$ ist. Zeige für jedes Limesordinal $\lambda$, dass $\phi(/lambda)$ gilt, wenn für alle $\alpha<\lambda$ auch $\phi(\alpha)$ korrekt ist.
 	
@@ -715,7 +715,7 @@ Genauer lässt sich rekursiv definieren, dass
 \begin{align*}
 	&\alpha+0\coloneqq\alpha,\\
 	&\alpha+(\beta+1)\coloneqq(\alpha+\beta)+1,\\ 
-	&\alpha+\lambda\coloneqq\sup\{\alpha+\beta : \beta < \alpha\}
+	&\alpha+\lambda\coloneqq\sup\{\alpha+\beta : \beta < \lambda\}
 \end{align*}
 für ein Limesordinal $\lambda$.
 
@@ -1391,7 +1391,7 @@ Durch weitere Überlegungen kann man feststellen, dass $\vert \mathbb{Q} \vert=\
 
 \subsubsection{Die Kontinuumshypothese (CH)}
 
-Die Kontinuumshypothese (englisch: continuum hypothesis) besagt, dass $\omega^+=2^\omega$ oder anders ausgedrückt: $\aleph_1=2^{\aleph_0}$. Zusätzlich gibt es auch die verallgemeinerte Kontinuumshypothese (GCH), nach welche $\aleph_\alpha+1=2^{\aleph_\alpha}$ für alle $\alpha\in On$ gilt.
+Die Kontinuumshypothese (englisch: continuum hypothesis) besagt, dass $\omega^+=2^\omega$ oder anders ausgedrückt: $\aleph_1=2^{\aleph_0}$. Zusätzlich gibt es auch die verallgemeinerte Kontinuumshypothese (GCH), nach welche $\aleph_{\alpha+1}=2^{\aleph_\alpha}$ für alle $\alpha\in On$ gilt.
 \par
 
 Es lässt sich aber zeigen, dass \textit{CH unabhängig von ZFC ist}. Das heißt, es gilt sowohl $ZFC \not\models CH$, als auch $ZFC \not\models \neg CH$, wobei davon ausgegangen wird, dass ZFC konsistent ist und es somit überhaupt ein Modell von ZFC gibt.

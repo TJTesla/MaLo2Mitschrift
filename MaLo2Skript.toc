@@ -23,3 +23,6 @@
 \contentsline {paragraph}{Satz von \L o\'{s}-Tarski}{36}{section*.13}%
 \contentsline {paragraph}{Satz von van Benthem}{36}{section*.14}%
 \contentsline {subsection}{\numberline {3.2}Infintäre Logik und Ehrenfeucht-Fra\"{i}ss\'{e}-Spiele}{45}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Fixpunktlogiken}{49}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Algebraische Fixpunkttheorie}{49}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Der modale $\mu $-Kalkül}{51}{subsection.4.2}%
