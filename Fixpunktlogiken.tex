@@ -1,20 +1,22 @@
+\clearpage
+
 \section{Fixpunktlogiken}
 
-In diesem Kapitel sollen die Fixpunktlogiken $L_\mu$ und $LFP$ erläutert werden. 
+In diesem Kapitel sollen die Fixpunktlogiken $\Lmu$ und $LFP$ erläutert werden. 
 Um diese besser verstehen zu können müssen aber zuerst einige Grundbegriffe aus der Fixpunkttheorie besprochen werden.
 
 \subsection{Algebraische Fixpunkttheorie}
 
 $(X,\leq)$ sei eine partielle Ordnung, also reflexiv, transitiv und antisymmetrisch (d.h. wenn $x\leq y$ und $y\leq x$, dann ist $x=y$).
-
+\\
 Für $Y\subseteq X$ ist $x$ Infimum von $Y$, wenn
 \begin{enumerate}
-	\item $x\leq y$ für alle $y\in Y$
+	\item $x\leq y$ für alle $y\in Y$ und
 	\item Wenn $x'\leq y$ für alle $y\in Y$, dann ist $x'\leq x$
 \end{enumerate}
 Völlig analog ist $x$ Supremum von $Y$, wenn
 \begin{enumerate}
-	\item $y\leq x$ für alle $y\in Y$
+	\item $y\leq x$ für alle $y\in Y$ und
 	\item Wenn $y\leq x'$ für alle $y\in Y$, dann ist $x\leq x '$
 \end{enumerate}
 
@@ -42,7 +44,7 @@ Wenn beispielsweise die Struktur $(X,\land,\lor)$ mit assoziativen, kommutativen
 	\end{itemize}
 \end{definition}
 
-Der wohl wichtigste vollständige Verband ist vermutlich die Mengenalgebra $(\Pot{A},\cap,\cup)$ für eine Menge $A$. Mit der Komplementoperation ist dies dann sogar eine Boolesche Algebra mit $\bot=\emptyset$ und $\top=A$.
+Einer der wohl wichtigsten Verbände ist die Mengenalgebra $(\Pot{A},\cap,\cup)$ für eine Menge $A$. Mit der Komplementoperation ist diese dann sogar eine Boolesche Algebra mit $\bot=\emptyset$ und $\top=A$.
 
 Im folgenden sei $(X,\leq)$ immer ein vollständiger Verband.
 
@@ -54,19 +56,17 @@ Im folgenden sei $(X,\leq)$ immer ein vollständiger Verband.
 		\item $F$ ist \textit{inflationär}, wenn $x\leq F(x)$ für alle $x\in X$ gilt.
 		\item $F$ ist \textit{deflationär}, wenn $F(x)\leq x$ für alle $x\in X$ gilt.
 		\item $x$ ist \textit{Fixpunkt} von $F$, wenn $F(x)=x$.
-		\item $x$ ist \textit{kleinster (größter) Fixpunkt}, wenn $x=F(x)$ und $x\leq y$ ($y\leq x$) für alle Fixpunkte $y$ von $F$ gilt. Wir sagen dann $lfp(F)=x$ ($gfp(F)=x$).
+		\item $x$ ist \textit{kleinster (größter) Fixpunkt}, wenn $x=F(x)$ und $x\leq y$ ($y\leq x$) für alle Fixpunkte $y$ von $F$ gilt. Wir sagen dann $\lfp(F)=x$ ($\gfp(F)=x$).
 	\end{itemize}
 \end{definition}
 
 \begin{satz}[Knaster, Tarski]
-	Sei $F$ ein monotoner Operator auf einem vollständigen Verband $(X,\leq)$. Dann hat $F$ einen kleinsten Fixpunkt $lfp(F)$ und einen größten Fixpunkt $gfp(F)$. Außerdem gilt $lfp(F)=\bigsqcap\{x\in X : F(x)\leq x\}$ bzw. $gfp(F)=\bigsqcup\{x\in X : x\leq F(x)\}$.
+	Sei $F$ ein monotoner Operator auf einem vollständigen Verband $(X,\leq)$. Dann hat $F$ einen kleinsten Fixpunkt $\lfp(F)$ und einen größten Fixpunkt $\gfp(F)$. Außerdem gilt $\lfp(F)=\bigsqcap\{x\in X : F(x)\leq x\}$ bzw. $\gfp(F)=\bigsqcup\{x\in X : x\leq F(x)\}$.
 	\label{Knaster-Tarski}
 \end{satz}
 \begin{proof}
-	Sei $\Phi\coloneqq \{x\in X : F(x)\leq x\}$ und $y=\bigsqcap\Phi$. Für $x\in\Phi$ gilt $y\leq x$ und daher $F(y)\leq F(x)$, also ist $F(y)\le q\bigsqcap \Phi = y$.
-	
+	Sei $\Phi\coloneqq \{x\in X : F(x)\leq x\}$ und $y=\bigsqcap\Phi$. Für $x\in\Phi$ gilt $y\leq x$ und daher $F(y)\leq F(x)$, also ist $F(y)\leq\bigsqcap \Phi = y$.
 	Andererseits gilt $y\leq F(y)$, denn wegen $F(y)\leq y$ gilt $F(F(y))\leq F(y)$, also ist $F(y)\in \Phi$ und wegen $y=\bigsqcap\Phi$ folgt dann $F(y)=y$.
-	
 	Da $y\leq x$ für alle $x\in X$ mit $F(x)\leq x$, insbesondere also für alle Fixpunkte, ist, muss $y$ der kleinste Fixpunkt von $F$ sein.
 	
 	Der Beweis für den größten Fixpunkt lässt sich völlig dual führen.
@@ -74,7 +74,7 @@ Im folgenden sei $(X,\leq)$ immer ein vollständiger Verband.
 
 Damit haben wir also eine konstruktive Methode, um einen Fixpunkt zu finden. Diese ist aber nicht sonderlich effizient, weshalb wir ein anderes, induktives Verfahren einführen wollen.
 
-Sei $F:X\to X$ also ein Operator. Mithilfe von diesem wollen wir zwei Folgen $(X^\alpha)_{\alpha\in On}$ und $(Y^\alpha)_\alpha\in On$ definieren, welche uns induktiv Fixpunkte liefern sollen.
+Sei $F:X\to X$ also ein Operator. Mithilfe von diesem wollen wir zwei Folgen $(X^\alpha)_{\alpha\in On}$ und $(Y^\alpha)_{\alpha\in On}$ definieren, welche uns induktiv Fixpunkte liefern sollen.
 \begin{itemize}
 	\item $X^0\coloneqq\bot$ und $Y^0\coloneqq\top$
 	\item $X^{\alpha+1}\coloneqq F(X^\alpha)$ und $Y^{\alpha+1}\coloneqq F(Y^\alpha)$
@@ -85,24 +85,24 @@ Sei $F:X\to X$ also ein Operator. Mithilfe von diesem wollen wir zwei Folgen $(X
 Weiter nennen wir $F$ induktiv, wenn $X^\beta \leq X^\alpha$ für $\beta<\alpha$ gilt und es lässt sich leicht feststellen, dass $F$ bereits induktiv ist, falls $F$ inflationär oder monoton ist.
 
 \begin{definition}[Abschlussordinale und induktive Fixpunkte]
-	Da $X$ eine Menge ist muss es ein Ordinal $\beta$ geben so, dass $X^\beta= X^{\beta+1}$ und damit $X^\beta=X^\alpha$ für alle $\beta \leq \alpha$. 
+	Da $X$ eine Menge ist, muss es ein Ordinal $\beta$ geben so, dass $X^\beta= X^{\beta+1}$ und damit $X^\beta=X^\alpha$ für alle $\beta \leq \alpha$. 
 	
-	Das kleinste solche Ordinal $\beta$ ist das \textit{Abschlussordinal} $cl\uparrow(F)$ und das zugehörige $X^\beta \eqqcolon X^\infty$ ist der \textit{induktive Fixpunkt} von $F$.
+	Das kleinste solche Ordinal $\beta$ ist das \textit{Abschlussordinal} $\cl\uparrow(F)$ und das zugehörige $X^\beta \eqqcolon X^\infty$ ist der \textit{induktive Fixpunkt} von $F$.
 \end{definition}
 
 \begin{lemma}
-	Sei $X=(\Pot{A},\subseteq)$ eine Mengenalgerbra und $F:\Pot{A}\to\Pot{A}$ induktiv. Dann ist $cl\uparrow(F)< \vert A\vert ^+$.
+	Sei $X=(\Pot{A},\subseteq)$ eine Mengenalgebra und $F:\Pot{A}\to\Pot{A}$ induktiv. Dann ist $\cl\uparrow(F)< \vert A\vert ^+$.
 \end{lemma}
-Zur Erinnerung: Für ein Kardinal $\kappa\in Cn$ ist $/kappa^+$ das nächstgrößere Kardinal.
+Zur Erinnerung: Für ein Kardinal $\kappa\in \Cn$ ist $\kappa^+$ das nächstgrößere Kardinal.
 \begin{proof}
 	Wenn nicht, dann ist $X^\beta < X^{\beta+1}$ für alle $\beta<\vert A \vert^+$, also existiert $a_\beta\in X^{\beta+1}\setminus X^\beta$ für alle $\beta < \vert A \vert^+$. Bildet man nun die Menge $\Phi=\{a_\beta : \beta < \vert A\vert^+\}$ ist leicht ersichtlich, dass $\vert\Phi\vert=\vert A\vert^+$, was einen Widerspruch zu $\Phi\subseteq A$ darstellt.
 \end{proof} 
 
 \begin{satz}
-	Sei $F:X\to X$ monoton. Dann ist $lfp(F)=X^\infty$.
+	Sei $F:X\to X$ monoton. Dann ist $\lfp(F)=X^\infty$.
 \end{satz}
 \begin{proof}
-	Offensichtlich ist $F(X^\infty)=X^\infty$, also ist $lfp(F)\leq X^\infty$ bereits klar. Für $X^\infty \leq lfp(F)$ ist nun folgendes zu zeigen:
+	Offensichtlich ist $F(X^\infty)=X^\infty$, also ist $\lfp(F)\leq X^\infty$ bereits klar. Für $X^\infty \leq \lfp(F)$ ist nun folgendes zu zeigen:
 	
 	Für alle $x\in X$ mit $F(x)\leq x$ gilt $X^\alpha \leq x$ für alle $\alpha$. Sei also $F(x)\leq x$.
 	\begin{itemize}
@@ -111,58 +111,60 @@ Zur Erinnerung: Für ein Kardinal $\kappa\in Cn$ ist $/kappa^+$ das nächstgrö�
 		\item Für ein Limesordinal $\lambda$ ist $X^\lambda=\bigsqcup\{X^\alpha : \alpha<\lambda\}$. Da nach der Induktionsvoraussetzung $X^\alpha \leq x$ für alle $\alpha<\lambda$, ist auch $X^\lambda\leq x$.
 	\end{itemize}
 \end{proof}
-
 Sei $X=(\Pot{a},\cup,\cap)$ eine Mengenalgebra und $\bar{x}\coloneqq A\setminus x$ die Komplementoperation.
 Zu $F:\Pot{A}\to \Pot{A}$ definieren wir den dualen Operator $F^\star:\Pot{A}\to\Pot{A}$ durch $F^\star(x)\coloneqq \overline{F(\bar{x})}$.
 
 \begin{satz}
 	Sei $F:\Pot{A}\to\Pot(A)$ monoton. Dann ist
 	\begin{itemize}
-		\item[(1)] $F^\star$ monoton
-		\item[(2)] $lfp(F)=\overline{gfp(F^\star)}$
-		\item[(3)] $gfp(F)=\overline{lfp(F^\star)}$
+		\item[a)] $F^\star$ monoton
+		\item[b)] $\lfp(F)=\overline{\gfp(F^\star)}$
+		\item[c)] $\gfp(F)=\overline{\lfp(F^\star)}$
 	\end{itemize}
 \end{satz}
 \begin{proof}
-	\textit{(1)}: Sei $x\subseteq y$. Dann ist $\bar{x}\supseteq\bar{y}$, also $F(\bar{x})\supseteq F(\bar{y})$ (da $F$ monoton) und damit ist $\overline{F(\bar{x})}\subseteq\overline{F(\bar{y})}$ bzw. $F^\star(x)\subseteq F^\star(y)$.
-	
-	\textit{(2)}: Sei $(x_\alpha)_{\alpha\in On}$ die lfp-Induktion von $F$ und $(y^\star_\alpha)_{\alpha\in On}$ die gfp-Induktion von $F^\star$. Nun stellen wir die Behauptung $x_\alpha=\bar{y^\star_\alpha}$ für alle $\alpha$, die wir durch eine Induktion beweisen wollen.
 	\begin{itemize}
-		\item $x_0=\emptyset=\bar{A}=\bar{y^\star_0}$
-		\item $x_{\alpha+1}=F(x_\alpha) \overset{\text{IV}}{=} F(\bar{y^\star_\alpha})= \overline{F^\star(y^\star_\alpha)} = \bar{y^\star_{\alpha+1}}$
-		\item Für ein Limesordinal $\lambda$ ist $x_\lambda=\bigcup\{x_\alpha:\alpha<\lambda\} = \overline{\bigcap \{\bar{x_\alpha} : \alpha < \lambda\}} \overset{\text{IV}}{=} \overline{\bigcap\{y^\star_\alpha : \alpha<\lambda\}}= \bar{y^\star_\lambda}$
+		\item[a)] Sei $x\subseteq y$. Dann ist $\bar{x}\supseteq\bar{y}$, also $F(\bar{x})\supseteq F(\bar{y})$ (da $F$ monoton) und damit ist $\overline{F(\bar{x})}\subseteq\overline{F(\bar{y})}$ bzw. $F^\star(x)\subseteq F^\star(y)$.
+		
+		\item[b)] Sei $(x_\alpha)_{\alpha\in On}$ die $\lfp$-Induktion von $F$ und $(y^\star_\alpha)_{\alpha\in On}$ die $\gfp$-Induktion von $F^\star$. Nun stellen wir die Behauptung $x_\alpha=\bar{y^\star_\alpha}$ für alle $\alpha$, die wir durch eine Induktion beweisen wollen.
+		\begin{itemize}
+			\item $x_0=\emptyset=\bar{A}=\bar{y^\star_0}$
+			\item $x_{\alpha+1}=F(x_\alpha) \overset{\text{IV}}{=} F(\bar{y^\star_\alpha})= \overline{F^\star(y^\star_\alpha)} = \bar{y^\star_{\alpha+1}}$
+			\item $\lambda$ ein Limesordinal: $x_\lambda=\bigcup\{x_\alpha:\alpha<\lambda\} = \overline{\bigcap \{\bar{x_\alpha} : \alpha < \lambda\}} \overset{\text{IV}}{=} \overline{\bigcap\{y^\star_\alpha : \alpha<\lambda\}}= \bar{y^\star_\lambda}$
+		\end{itemize}
+		
+		\item[c)] Dieser Fall ist dual zu Fall b) und lässt sich genauso beweisen.
 	\end{itemize}
-	
-	\textit{(3)}: Dieser Fall ist dual zu Fall (2) und lässt sich genauso beweisen.
 \end{proof}
 
 
 \subsection{Der modale $\mu$-Kalkül}
 
-Bei der modalen Logik $L_\mu$ handelt es sich, informell ausgedrückt, um die Modallogik $ML$ zusammen mit größten und kleinsten Fixpunkten.
+Bei der modalen Logik $\Lmu$ handelt es sich, informell ausgedrückt, um die Modallogik $\ML$ zusammen mit größten und kleinsten Fixpunkten.
 
-Die Syntax lässt sich formal auf zwei Arten ausdrücken. Wir fixieren $(P_i)_{i\in I}$ als Menge an atomaren Aussagen, $A\neq\emptyset$ als nichtleere Menge an Aktionen und $VAR$ als Menge von (Fixpunkt-) Variablen.
+Die Syntax lässt sich formal auf zwei Arten ausdrücken. Wir fixieren $(P_i)_{i\in I}$ als Menge an atomaren Aussagen, $A\neq\emptyset$ als nichtleere Menge an Aktionen und $\VAR$ als Menge von Fixpunkt-Variablen.
  Die erste Grammatik erlaubt das negieren beliebiger Formeln:
  \[\psi \coloneqq P_i \quad\vert\quad X \quad\vert\quad \psi\lor \psi \quad\vert\quad \psi \land \psi \quad\vert\quad \neg\psi \quad\vert\quad \langle a \rangle \psi \quad\vert\quad [a]\psi \quad\vert\quad \mu X.\psi \quad\vert\quad \nu X.\psi\]
- wobei $i\in I$, $a\in A$, $X\in VAR$ und $X$ nur positiv vorkommen darf.
+ wobei $i\in I$, $a\in A$, $X\in \VAR$ und $X$ nur positiv vorkommen darf.
  
- Als alternative lässt sich auch folgende Grammatik nutzen, welche Formeln direkt in Negations-Normalform definiert, wodurch die Einschränkung der nicht-negierten Fixpunkt-Variablen wegfallen kann:
+Als alternative lässt sich auch folgende Grammatik nutzen, welche Formeln direkt in Negations-Normalform definiert, wodurch die Einschränkung der nicht-negierten Fixpunkt-Variablen wegfallen kann:
 \[\psi \coloneqq P_i \quad\vert\quad \neg P_i \quad\vert\quad X \quad\vert\quad \psi\lor \psi \quad\vert\quad \psi \land \psi \quad\vert\quad \langle a \rangle \psi \quad\vert\quad [a]\psi \quad\vert\quad \mu X.\psi \quad\vert\quad \nu X.\psi\]
 
-Wie auch in der bisher bekannten Modallogik werden $L_\mu$-Formeln auf Kripkestrukturen $\K=(V,(P_i)_{i\in I}, (E_a)_{a\in A})$ ausgewertet, wobei $P_i\subseteq V$ und $E_a\subseteq V\times V$. für beliebiges $i\in I$ und $a\in A$ gilt.
+Wie auch in der bisher bekannten Modallogik werden $\Lmu$-Formeln auf Kripkestrukturen $\K=(V,(P_i)_{i\in I}, (E_a)_{a\in A})$ ausgewertet, wobei $P_i\subseteq V$ und $E_a\subseteq V\times V$ für beliebiges $i\in I$ und $a\in A$ gilt.
 
-Die Semantik für die bereits bekannten Operatoren wie z.B. $\langle a \rangle \psi$ sind wie in $ML$, es muss also nur die Semantik für Fixpunkt-Variablen, $\mu X.\psi$ und $\nu X.\psi$ erläutert werden.
+Die Semantik für die bereits bekannten Operatoren wie z.B. $\langle a \rangle \psi$ sind wie in $\ML$, es muss also nur die Semantik für Fixpunkt-Variablen, $\mu X.\psi$ und $\nu X.\psi$ erläutert werden.
 
 Um die weiteren Definitionen simpler zu halten werden Fixpunkt-Variablen nie frei sondern immer durch $\mu$ oder $\nu$ gebunden vorkommen. 
-In weiter folgenden wird uns dies nicht einschränken. Generell gilt also $\K,v\models \mu X.\psi :\Leftrightarrow v \in lfp(F^\psi_\K)$. 
+Im weiter folgenden wird uns dies nicht einschränken. Generell gilt also $\K,v\models \mu X.\psi :\Leftrightarrow v \in \lfp(F^\psi_\K)$. 
 Durch die Formel wird also ein Operator $F^\psi_\K: \Pot{V}\to \Pot{V}$ definiert, mit $U\mapsto F^\psi_\K(U)\coloneqq \{v\in V : K,v \models \psi [X / U]\}$. 
-Jedes vorkommen von $X$ in $\psi$ wird also durch $U$ ersetzt. Offensichtlich ist $F^\psi_\K$ monoton und es existieren kleinste und größte Fixpunkte.
+Jedes vorkommen von $X$ in $\psi$ wird also durch $U$ ersetzt. Dadurch, dass $X$ ausschließlich positiv vorkommt ist $F^\psi_\K$ monoton und es existieren kleinste und größte Fixpunkte.
 
-Analog gilt $\K, v \models \nu X.\psi :\Leftrightarrow v \in gfp(F^\psi_\K)$.
+Analog gilt $\K, v \models \nu X.\psi :\Leftrightarrow v \in \gfp(F^\psi_\K)$.
 
+\begin{example}
 Einige Beispiele sollen dies weiter erläutern:
 \begin{enumerate}
-	\item Wir betrachten die Formel $\mu X . \psi$ mit $\psi= (P \lor \langle a \rangle X)$ mit der Kripkestruktur $\K=(V,P,E_a)$. Durch scharfes hinsehen erhält man den Operator $$F^\psi :X \mapsto P \cup \{\text{es gibt Transition von } v \xrightarrow{a} X\}$$. Da in der Formel $\mu$ verwendet wird, ist die Frage nach dem kleinsten Fixpunkt des Operators. 
+	\item Wir betrachten die Formel $\mu X . \psi$ mit $\psi= (P \lor \langle a \rangle X)$ mit der Kripkestruktur $\K=(V,P,E_a)$. Durch scharfes hinsehen erhält man den Operator $$F^\psi :X \mapsto P \cup \{\text{es gibt Transition von } v \xrightarrow{a} X\}.$$ Da in der Formel $\mu$ verwendet wird, ist die Frage nach dem kleinsten Fixpunkt des Operators. 
 	Im letzten Kapitel haben wir zwei Methoden kennengelernt: Zum Einen die Methode in Satz \ref{Knaster-Tarski} und zum anderen die Fixpunkt-Induktion. Die Fixpunkt ist meistens einfacher auszuführen und wird deshalb auch eher verwendet.
 	
 	Aus der Definition ergibt sich $X^0=\emptyset$. Weiter ist
@@ -171,10 +173,10 @@ Einige Beispiele sollen dies weiter erläutern:
 		\item $X^2=P \cup \{v : v \xrightarrow{a} P\}$
 		\item $X^3=P \cup \{v : v\xrightarrow{a} X^2\}=P\cup \{v : v\xrightarrow{a}P\} \cup \{v : v\xrightarrow{a}w\xrightarrow{a}P\}$
 		\item $X^n=\{v: v \xrightarrow[a]{<n} P\}$
-		\item $X^\infty = lfp(F) = \{v : v \xrightarrow[a]{\ast} P\}$
+		\item $X^\infty = \lfp(F) = \{v : v \xrightarrow[a]{\ast} P\}$
 	\end{itemize}
 	
-	Die Formel drückt also aus, dass von $v$ immer ein Knoten $P$ erreicht werden kann.
+	Die Formel drückt also aus, dass von $v$ immer ein Knoten in $P$ erreicht werden kann.
 	
 	\item Sei $\psi\coloneqq \nu X. \lozenge 1 \land \square X$ eine Formel, die auf Strukturen der Form $\K=(V,E)$ ausgewertet werden soll. Zu Erinnerung bedeutet $\lozenge 1$, dass es einen Nachfolgerknoten gibt. Wie im letzten Beispiel wird wieder die Fixpunkt-Iteration verwendet, nun aber für den größten Fixpunkt. Es gilt also $Y^0=V$ und weiter:
 	\begin{itemize}
@@ -199,9 +201,9 @@ Einige Beispiele sollen dies weiter erläutern:
 		\item $X^\infty = W_0$
 	\end{itemize}
 	
-	Modifizieren wir das Spiel so, dass der Spielgraph die Form $\K=(V,V_0,V_1,E)$ hat, mit $V_0\dot{\cup}V_1=V$ und so, dass Spieler $i$ zieht, wenn sich das Spiel auf einem Knoten in $V_i$ \glqq befindet\grqq{}, dann lässt sich die eben gezeigte Eigenschaft formulieren mit $\psi=\mu X . (V_0\land \lozenge X)\lor (V_1 \land \square X)$ und auf analoge Weise folgt auch dann $X^\infty=W_0$.
+	Modifizieren wir das Spiel so, dass der Spielgraph die Form $\K=(V,V_0,V_1,E)$ hat, mit $V_0\dot{\cup}V_1=V$ und so, dass Spieler $i$ zieht, wenn sich das Spiel auf einem Knoten in $V_i$ \glqq befindet\grqq{}, dann lässt sich die eben gezeigte Eigenschaft formulieren mit $$\psi=\mu X . (V_0\land \lozenge X)\lor (V_1 \land \square X)$$ und auf analoge Weise folgt auch dann $X^\infty=W_0$.
 	
-	\item Wir betrachten wieder Kripkestrukturen der Form $\K=(V,E)$ und die Formel $\psi\coloneqq \mu X . \square X$. Behauptung: $$\K,v\models \mu X.\square X \Leftrightarrow \text{alle Pfade vom Graphen sind endlich (Fundiertheit)}$$. Es ergibt sich:
+	\item Wir betrachten wieder Kripkestrukturen der Form $\K=(V,E)$ und die Formel $\psi\coloneqq \mu X . \square X$. Behauptung: $$\K,v\models \mu X.\square X \Leftrightarrow \text{alle Pfade vom Graphen sind endlich (Fundiertheit)}.$$ Es ergibt sich:
 	\begin{itemize}
 		\item $X^0 = \emptyset$
 		\item $X^1 = \{v :vE =\emptyset\}$
@@ -233,27 +235,29 @@ Einige Beispiele sollen dies weiter erläutern:
 	\end{itemize}
 	also $X^2 = Y^{1\infty}=\{v : v\xrightarrow{+}P\xrightarrow{+}P\}$ und auf dem selben Weg erhält man $X^n=\{v : \text{es ex. Pfad von } v \text{ auf welchem } P \text{min. } n \text{ mal vorkommt}\}$ und damit auch $$X^\infty = \bigcap_{n<\infty}X^n=\{v : \text{es ex. Pfad von } v \text{ auf welchem } P \text{ unendlich oft vorkommt}\}$$
 \end{enumerate}
+\end{example}
 
 \subsubsection*{Die Negationsnormalform}
 
-Wir wollen nun betrachten, wie sich die Negationsnormalform einer beliebigen $L_\mu$-Formel bilden lässt. Wie bekannt gelten $\neg(\psi\land\phi)\equiv \neg\psi \lor \neg\phi$, $\neg(\psi\lor\phi) \equiv \neg\psi\land\neg\phi$, $\neg\langle a \rangle\psi \equiv [a]\neg\psi$ und $\neg[a]\psi \equiv \langle a \rangle \neg\psi$.
+Wir wollen nun betrachten, wie sich die Negationsnormalform einer beliebigen $\Lmu$-Formel bilden lässt. Wie bekannt gelten $\neg(\psi\land\phi)\equiv \neg\psi \lor \neg\phi$, $\neg(\psi\lor\phi) \equiv \neg\psi\land\neg\phi$, $\neg\langle a \rangle\psi \equiv [a]\neg\psi$ und $\neg[a]\psi \equiv \langle a \rangle \neg\psi$.
 
-Es bleiben also noch die Fixpunktoperatoren. Es lässt sich feststellen, dass für diese gilt: $\neg\mu X .\psi \equiv \nu X . \neg\psi[X/\neg X]$ und $\neg\nu X.\psi \equiv \mu X.\neg\psi[X/\neg X]$. Wie anfangs gefordert lassen sich keine Negationen von Fixpunkt-Variablen bilden, da zwar jede Fixpunktvariable durch $\neg X$ ersetzt wird, aber durch die Negation der Formel selber wird dieses wieder zu $X$. Beispielsweise ist $\neg\mu X .\square X \equiv \nu X . \lozenge X$.
+Es bleiben also noch die Fixpunktoperatoren. Es lässt sich feststellen, dass für diese gilt: $\neg\mu X .\psi \equiv \nu X . \neg\psi[X/\neg X]$ und $\neg\nu X.\psi \equiv \mu X.\neg\psi[X/\neg X]$. Wie anfangs gefordert lassen sich auf diese Weise keine Negationen von Fixpunkt-Variablen bilden. Es wird zwar jede Fixpunktvariable durch $\neg X$ ersetzt, durch die Negation der Formel selber wird dieses aber wieder zu $X$. Beispielsweise ist $\neg\mu X .\square X \equiv \nu X . \lozenge X$.
 
 \subsubsection*{Einbettung in andere Logiken}
 
 Ein interessanter Aspekt jeder Logik ist die Einbettung von dieser in andere Logiken und die Einbettung anderer Logiken in diese. Dies wollen wir nun für den modalen $\mu$-Kalkül betrachten.
 
-Offensichtlich lässt sich $ML$ in $L_\mu$ einbetten. Da bereits $ML \leq FO \leq MSO$ bekannt ist stellt sich die frage, pb $L_\mu\leq MSO$ gilt. Es ist klar, dass das $ML$-Fragment von $L_\mu$ mithilfe einer Funktion in $MSO$ eingebettet werden kann so, dass folgender Zusammenhang entsteht $\psi \mapsto \psi^\ast(x)$. Wir müssen uns also Formeln mit Fixpunkt-Operatoren annehmen. Sei also $\psi\coloneqq \mu X . \phi(X)$. Es lässt sich feststellen, dass die Formel $\phi^\ast(x)=\forall X ((\forall y \phi^\ast(X,y)\rightarrow Xy) \rightarrow Xx)$ äquivalent und eine $MSO$-Formel ist.
+Offensichtlich lässt sich $\ML$ in $\Lmu$ einbetten. Da bereits $\ML \leq \FO \leq \MSO$ bekannt ist stellt sich die Frage, ob $\Lmu\leq \MSO$ gilt. Es ist klar, dass das $\ML$-Fragment von $\Lmu$ mithilfe einer Funktion in $\MSO$ eingebettet werden kann so, dass folgender Zusammenhang entsteht $\psi \mapsto \psi^\ast(x)$. Wir müssen uns also Formeln mit Fixpunkt-Operatoren annehmen. 
+Sei dafür $\psi\coloneqq \mu X . \phi(X)$. Es lässt sich feststellen, dass die Formel $\psi^\ast(x)=\forall X ((\forall y \phi^\ast(X,y)\rightarrow Xy) \rightarrow Xx)$ äquivalent und eine $\MSO$-Formel ist.
 
-Genauer sagt $\psi^\ast(x)$ aus, dass $x$ in allen Mengen $X$ enthalten ist so, dass $F^\phi(X)\subseteq X$. Mithilfe von Satz \ref{Knaster-Tarski} folgt dann daraus, dass $x\in lfp(F^\phi)$ ist.
+Genauer sagt $\psi^\ast(x)$ aus, dass $x$ in allen Mengen $X$ enthalten ist so, dass $F^\phi(X)\subseteq X$. Mithilfe von Satz \ref{Knaster-Tarski} folgt dann daraus, dass $x\in \lfp(F^\phi)$ ist.
 
-Weiter lässt sich feststellen, dass $L_\mu$ das bisimulationsinvariante Fragment von $MSO$ ist, so, wie $ML$ dieses von $FO$ ist. Dies wurde 1996 von Janin und Walukiewicz bewiesen (?), der Beweis ist aber über dem Niveau dieser Vorlesung, weshalb diese Eigenschaft nicht weiter behandelt werden soll.
+Weiter lässt sich feststellen, dass $\Lmu$ das bisimulationsinvariante Fragment von $\MSO$ ist, so, wie $\ML$ dieses von $\FO$ ist. Dies wurde 1996 von Janin und Walukiewicz bewiesen, der Beweis ist aber über dem Niveau dieser Vorlesung, weshalb diese Eigenschaft nicht weiter behandelt werden soll.
 
-Nun bilden wir aus $ML$ die Logik $ML^\infty$ auf die selbe Weise, wie wir aus $FO$ die infinitäre Logik $L_{\infty\omega}$ gebildet haben. Genauer: Indem wir Kon- und Disjunktionen über Mengen beliebiger Kardinalität erlauben. Offensichtlich ist $ML^\infty$ bisimulationsinvariant.
+Nun bilden wir aus $\ML$ die Logik $\ML^\infty$ auf die selbe Weise, wie wir aus $\FO$ die infinitäre Logik $\Linf{\infty}$ gebildet haben. Genauer: Indem wir Kon- und Disjunktionen über Mengen beliebiger Kardinalität erlauben. Offensichtlich ist $\ML^\infty$ bisimulationsinvariant.
 
 \begin{satz}
-	Sei $\kappa\in Cn$. Über der Klasse aller Kripkestrukturen der Kardinalität $< \kappa$ ist $L_\mu$ in $ML^\infty$ einbettbar.
+	Sei $\kappa\in \Cn$. Über der Klasse aller Kripkestrukturen der Kardinalität $< \kappa$ ist $\Lmu$ in $\ML^\infty$ einbettbar.
 \end{satz}
 \begin{proof}
 	Alle Operatoren, außer den Fixpunkt-Operatoren, lassen sich trivial einbetten. Wir brauchen also nur $\mu X .\psi$ zu behandeln. Dafür definieren wir, analog zur Fixpunkt-Induktion, eine induktiv definierte Folge:
@@ -262,19 +266,19 @@ Nun bilden wir aus $ML$ die Logik $ML^\infty$ auf die selbe Weise, wie wir aus $
 		\item $\psi^{\alpha+1} \coloneqq \psi[X/\psi^\alpha]$
 		\item Für Limesordinale $\lambda$: $\psi^\lambda\coloneqq \bigvee\{\psi^\alpha : \alpha < \lambda\}$.
 	\end{itemize}
-	Sei $\K$ eine Kripkestruktur der Kardinalität $<\kappa$ und $X^0,X^1,\dots$ die durch $F^\psi$ definierte $lfp$-Induktion. Dann ergibt sich nach Konstruktion $\K,v\models \psi^\alpha \Leftrightarrow v\in X^\alpha$ und $v\in X^\infty=lfp(F^\psi)\Leftrightarrow v\in X^\alpha$ für ein $\alpha<\kappa^+$. Also gilt $\mu X.\psi \equiv \bigvee\{\psi^\alpha : \alpha < \kappa^+\}\in ML^\infty$ auf Kripkestrukturen der Kardinalität $<\kappa$.
+	Sei $\K$ eine Kripkestruktur der Kardinalität $<\kappa$ und $X^0,X^1,\dots$ die durch $F^\psi$ definierte $\lfp$-Induktion. Dann ergibt sich nach Konstruktion $\K,v\models \psi^\alpha \Leftrightarrow v\in X^\alpha$ und $v\in X^\infty=\lfp(F^\psi)\Leftrightarrow v\in X^\alpha$ für ein $\alpha<\kappa^+$. Also gilt $\mu X.\psi \equiv \bigvee\{\psi^\alpha : \alpha < \kappa^+\}\in \ML^\infty$ auf Kripkestrukturen der Kardinalität $<\kappa$.
 \end{proof}
 
-Daraus folgt, dass $L_\mu$ bisimulationsinvariant sein muss.
+Daraus folgt, dass $\Lmu$ bisimulationsinvariant sein muss.
 
-In MaLo 1 wurde bereits die Logik $CTL$ eingeführt und es wurde gesehen, dass sich diese nicht in $FO$ einbetten lässt. Dies ist aber in $L_\mu$ möglich. Zur Wiederholung soll nun die Syntax von $CTL$ gezeigt werden:
+In MaLo 1 wurde bereits die Logik $CTL$ eingeführt und es wurde gesehen, dass sich diese nicht in $\FO$ einbetten lässt. Dies ist aber in $\Lmu$ möglich. Zur Wiederholung soll nun die Syntax von $CTL$ gezeigt werden:
 
 \[\psi \coloneqq P_i \quad\vert\quad \neg\psi \quad\vert\quad \psi \lor \psi \quad\vert\quad \psi\land\psi \quad\vert\quad EX\psi \quad\vert\quad AX\psi \quad\vert\quad E(\psi U \psi) \quad\vert\quad A(\psi U \psi)\]
 
-Die ersten vier Formeln sind offensichtlich auch in $L_\mu$ darstellbar. Mit Erinnerung an die Semantik von $CTL$ lässt sich zudem leicht sehen, dass $EX\psi \equiv \lozenge\psi$ und $AX\psi \equiv \square\psi$ gelten. Es bleiben also nur noch die \text{Until}-Operatoren. Wir definieren also eine Funktion $()^\ast: CTL\to L_\mu, \varphi\mapsto \varphi^\ast$ mit $E(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \lozenge X)$ und $A(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \square X)$. Diese beiden $L_\mu$-Formeln bezeichnen wir als \textit{alternationsfrei}.
+Die ersten vier Formeln sind offensichtlich auch in $\Lmu$ darstellbar. Mit Erinnerung an die Semantik von $CTL$ lässt sich zudem leicht sehen, dass $EX\psi \equiv \lozenge\psi$ und $AX\psi \equiv \square\psi$ gelten. Es bleiben also nur noch die \text{Until}-Operatoren. Wir definieren also eine Funktion $()^\ast: CTL\to \Lmu, \varphi\mapsto \varphi^\ast$ mit $E(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \lozenge X)$ und $A(\psi U \phi)^\ast \coloneqq \mu X . \phi^\ast \lor (\psi^\ast \land \square X)$. Diese beiden $\Lmu$-Formeln bezeichnen wir als \textit{alternationsfrei}.
 
 \begin{definition}[Der alternationsfreie $\mu$-Kalkül]
-	$L_\mu$-Formeln so, dass in keiner Unterformel $\mu X.\phi$ (bzw. $\nu X .\phi$) eine $\nu$-Variable (bzw. $\mu$-Variable) in $\phi$ frei vorkommt.
+	Eine $\Lmu$-Formel ist \textit{alternationsfrei}, wenn in keiner Unterformel $\mu X.\phi$ (bzw. $\nu X .\phi$) eine $\nu$-Variable (bzw. $\mu$-Variable) frei vorkommt.
 \end{definition}
 
 Ein Gegenbeispiel wäre $\nu X.\mu Y.(\lozenge(P\land X) \lor \psi)$. Die Unterformel $\mu Y.(\lozenge(P\land X) \lor \psi)$ ist nun eine $\mu X.\phi$ Unterformel, in der aber die $\nu$-Variable $X$ vorkommt. Dieses Beispiel ist also nicht alternationsfrei.
@@ -282,27 +286,27 @@ Ein Gegenbeispiel wäre $\nu X.\mu Y.(\lozenge(P\land X) \lor \psi)$. Die Unterf
 Bei alternationsfreien Formeln muss man selbst bei mehreren Fixpunkt-Operatoren keine verschachtelte Fixpunkt-Iteration durchführen. Der Berechnungsaufwand wird also deutlich verringert. Es gilt aber leider folgender Satz:
 
 \begin{satz}
-	Die Alternationshierachie von $L_\mu$ ist strikt.
+	Die Alternationshierachie von $\Lmu$ ist strikt.
 \end{satz}
 
 Anders ausgedrückt besagt der Satz, dass mehr Alternationen von Fixpunkt-Operatoren zu einer größeren Ausdrucksstärke führen. Der dazugehörige Beweis ist aber nicht einfach und wird hier daher nicht geführt.
 
-Neben $CTL$ wollen wir nun eine andere Logik in $L_\mu$ einbetten. Diese ist die \textit{Propositional Dynamic Layer} ($PDL$). In dieser gibt es zwei verschiedene Formeln: zum Einen gibt es Zustandsformeln, welche wir mit $\phi$ beschreiben und zum Anderen gibt es Programmformeln, welche wir $\pi$ nennen. Die dazugehörigen Grammatiken sind:
+Neben $CTL$ wollen wir nun eine andere Logik in $\Lmu$ einbetten. Diese ist die \textit{Propositional Dynamic Logic} ($\PDL$). In dieser gibt es zwei verschiedene Formeln: zum Einen gibt es Zustandsformeln, welche wir mit $\phi$ beschreiben und zum Anderen gibt es Programmformeln, welche wir $\pi$ nennen. Die dazugehörigen Grammatiken sind:
 \begin{align*}
 	&\phi \coloneqq P_i \quad\vert\quad \phi\land\phi \quad\vert\quad \phi\lor\phi \quad\vert\quad \neg\phi \quad\vert\quad \langle\pi\rangle\phi \\
 	&\pi \coloneqq E \quad\vert\quad \phi? \quad\vert\quad \pi\cup\pi \quad\vert\quad \pi;\pi \quad\vert\quad \pi^\ast
 \end{align*}
 
-Für eine Kripkestruktur $\K=(V,E)$ ist $\pi^\K\subseteq V\times V$. Wir wollen nun die einzelnen Bausteine von Programmfunktionen definieren, da die Semantik der Zustandsformeln bereits aus $ML$ bekannt ist.
+Für eine Kripkestruktur $\K=(V,E)$ ist $\pi^\K\subseteq V\times V$. Wir wollen nun die einzelnen Bausteine von Programmfunktionen definieren, da die Semantik der Zustandsformeln bereits aus $\ML$ bekannt ist.
 \begin{itemize}
 	\item $(\phi?)^\K=\{(v,v):\K,v\models \phi\}$
 	\item $(\pi_1 \cup \pi_2)^\K = \pi_1^\K \cup \pi_2^\K$
 	\item $(\pi_1;\pi_2)^\K = \pi_1^\K \circ \pi_2^\K = \{(v,w) : \exists z ((v,z)\in \pi_1^\K \land (z,w)\in \pi_2^\K)\}$
-	\item $(\pi^\ast)^\K=\bigcup_n\in\mathbb{N} (\pi^\K)^n$, wobei die Potenzierung induktiv durch $(\pi^\K)^0\coloneqq\{(v,v):v\in V\}$ und $(\pi^\K)^{n+1}\coloneqq(\pi^\K)^n \circ \pi^\K$ definiert ist.
+	\item $(\pi^\ast)^\K=\bigcup_{n\in\mathbb{N}} (\pi^\K)^n$, wobei die Potenzierung induktiv durch $(\pi^\K)^0\coloneqq\{(v,v):v\in V\}$ und $(\pi^\K)^{n+1}\coloneqq(\pi^\K)^n \circ \pi^\K$ definiert ist.
 \end{itemize}
 
 \begin{satz}
-	Zustandsformeln von $PDL$ können in $L_\mu$ übersetzt werden.
+	Zustandsformeln von $PDL$ können in $\Lmu$ übersetzt werden.
 \end{satz}
 \begin{proof}
 	Die einzige Art an Formel, die betrachtet werden muss sind Formeln der Art $\langle \pi \rangle \phi$. Abhängig von $\pi$ definieren wir also eine Übersetzung $(\langle\pi\rangle \phi)^\ast$:
@@ -315,8 +319,395 @@ Für eine Kripkestruktur $\K=(V,E)$ ist $\pi^\K\subseteq V\times V$. Wir wollen 
 	\end{itemize}
 \end{proof}
 
+\subsubsection*{Auswerten von Schaltkreisen}
+
+Wir wollen eine logische Schaltung mithilfe von Gattern logisch beschreiben. Dafür benutzen wir Strukturen wie $\C=(V,E,\operatorname{OR},\operatorname{AND},1,\dots,I_1,I_0)$ oder $\C'=(V,E,I_1,I_0,\operatorname{NAND})$. Dabei stellen $V$ eine Menge an Knoten und $E$ eine Menge an Kanten dar so, dass wir einen DAG (\textit{Directed Acyclic graph}) erhalten. $I_n$, $n\in\{0,1\}$ beschreibt welche Knoten \glqq wahr\grqq{} sind und die einstelligen Relationen $\operatorname{OR}$ $\operatorname{AND}$ und $\operatorname{NAND}$ stellen dar, wie die Knoten ausgewertet werden sollen.
+Nun betrachten wir das Problem: $\C,v\models \psi \Leftrightarrow \C \text{ wertet } v \text{ zu } 1 \text{ aus}$ und es stellt sich die Frage: Ist $\psi$ in $L_\mu$ definierbar? Ein erster versuch ist 
+\[\psi\coloneqq \mu T . I_1 \lor (\operatorname{OR} \land \Diamond T) \lor (\operatorname{AND} \land \square T).\]
+Mit dieser Formel lässt sich aber keine Negation darstellen, da es während der Fixpunktiteration nicht bekannt ist, ob ein Knoten \glqq falsch\grqq{} oder bloß noch nicht ausgewertet ist. Wir können also keine funktional vollständigen Schaltkreise bilden. Was benötigt wird, ist das parallele Ausführen mehrerer Fixpunktinduktionen so, dass wir eine Formel von der Form
+\[\mu T, F\
+\begin{array}{l}
+	T \leftarrow I_1 \lor \lozenge F \\
+	F \leftarrow I_0 \lor \square T.
+\end{array}\]
+Formal benötigen wir also einen Operator $F$, welcher mehrere Operatoren besitzt, also 
+\[
+F\
+\begin{cases}
+	F_1 : \Pot{B_1} \times \dots \times \Pot{B_m} \to \Pot{B_1}\\
+	\vdots\\
+	F_m : \Pot{B_1} \times \dots \times \Pot{B_m} \to \Pot{B_m}
+\end{cases}
+\]
+
+\subsubsection*{Simultaner $\mu$-Kalkül}
+
+Um solche Operatoren benutzen zu können führen wir den simultanen $\mu$-Kalkül ($\SLmu$) ein. Seien $\psi_1(X_1,\dots,X_m),\dots,\psi_m(X_1,\dots,X_m)$ Formeln, in welchen die $X_i$ nur positiv auftreten. Dann sind $\left[\mu \bar{X}.(\psi_1,\dots,\psi_m)\right]$ und $\left[\nu \bar{X}(\psi_1,\dots,\psi_m)\right]$ Formeln von $\SLmu$.
+
+Semantisch behandelt dieser Kalkül ebenfalls die schon bekannten Kripkestrukturen. Ein mehrdimensionaler Operator wie oben wird dann wie folgt implizit gebildet $F^\Psi=(F^{\psi_1},\dots,F^{\psi_m}) : \Pot{V}\times \dots \times\Pot{V} \to \Pot{V}\times \dots \times \Pot{V}$ und die einzelnen Operatoren werden wie bekannt interpretiert: $F^{\psi_i} : (X_1,\dots,X_,)\mapsto\{v : (\K,\bar{X}),v\models \psi_1\}$.
+Aus bekannten Gründen hat $F^{\Psi}$ dann einen kleinsten Fixpunkt $\lfp(F^{\Psi})=(X_1^{\infty},\dots,X_m^\infty)$ und $\K,v\models \left[\mu \bar{X}(\psi_1,\dots,\psi_m)\right]_i \Leftrightarrow v\in X_i^\infty$.
+
+\begin{satz}
+	$\SLmu \equiv \Lmu$.
+\end{satz}
+\begin{proof}
+	Der Beweis wird nur für $m=2$ gezeigt und verwendet das Beki-Prinizip. Für höhere $m$ lässt sich der Beweis aber einfach erweitern und erfordert bloß mehr Schreibarbeit.
+	\\
+	Wir haben also zwei Operatoren $F:\Pot{B}\times\Pot{C}\to \Pot{B}$ und $G:\Pot{B}\times \Pot{C}\to \Pot{C}$. Zusammengefasst werden diese dann durch den Operator
+	\[(F,G):\Pot{B}\times \Pot{C}\to \Pot{B}\times \Pot{C}\]
+	mit dem kleinsten Fixpunkt $(F^\infty,G^\infty)$.
+	
+	Für jedes $X\subseteq B$ sei nun $G_X:\Pot{C}\to\Pot{C}, Y\mapsto G(X,Y)$ monoton und hat den kleinsten Fixpunkt $(G_X)^\infty\subseteq C$.
+	
+	\begin{lemma}
+		Sei $E:\Pot{B}\to\Pot{B}, X\mapsto F(X,\lfp(G_X))$. Dann ist $E$ monoton mit dem kleinsten Fixpunkt $E^\infty = F^\infty$.
+	\end{lemma}
+	\begin{proof}
+		Monotonie: Sei $X\subseteq X'$. Nun ist zu zeigen, dass $G_X^\alpha \subseteq G_{X'}^\alpha$ für alle $\alpha$, also auch $G_X^\infty \subseteq G_{X'}^\alpha$, gilt.
+		\begin{itemize}
+			\item $\alpha=0$: Dieser Fall ist klar.
+			\item $G_X^{\alpha+1}=G_X(G_X^\alpha)=G(X,G_X^\alpha) \subseteq G(X', G_{X'}^\alpha) \subseteq G_{X'}^{\alpha+1}$
+			\item $\alpha$ Limesordinal: Dieser Fall ist ebenfalls klar.
+		\end{itemize}
+		Also ist $E(X)=F(X,G_X^\infty)\subseteq F(X',G_X'^\infty)=E(X')$ und $E$ ist monoton. Es bleibt zu zeigen, dass $E^\infty = F^\infty$.
+		
+		Dafür soll zuerst gezeigt werden, dass $(G_{F^\infty})^\infty \subseteq G^\infty$. Es gilt $G_{F^\infty}(G^\infty) = G(F^\infty, G^\infty)=G^\infty$. 
+		$G^\infty$ ist also ein Fixpunkt von $G_{F^\infty}$. Da $(G_{F^\infty})^\infty$ der kleinste Fixpunkt ist, folgt die Behauptung.
+		\\
+		Weiter ist $E(F^\infty)=F(F^\infty,(G_{F^\infty})^\infty) \subseteq F(F^\infty, G^\infty)=F^\infty$ und damit folgt $E^\infty = \bigcap\{X : E(X)\subseteq X\} \subseteq F^\infty$.
+		
+		Nun muss gezeigt werden, dass für jedes $\alpha$ gilt $F^\alpha \subseteq E^\alpha$ und $G^\alpha \subseteq (G_{E^\alpha})^\infty$.
+		\begin{itemize}
+			\item $\alpha=0$: Dieser Fall ist klar.
+			\item $F^{\alpha+1}=F(F^\alpha,G^\alpha)\subseteq F(E^\infty, (G_{E^\alpha})^\infty)=E(E^\infty)=E^\infty$ und $G^{\alpha+1}=G(F^\alpha, G^\alpha)\subseteq G(E^\infty, (G_{E^\infty})^\infty) = G_{E^\infty}((G_{E^\infty})^\infty)=(G_{E^\infty})^\infty$
+			\item $\alpha$ Limesordinal ist ebenfalls klar.
+		\end{itemize}
+	\end{proof}
+	
+	Damit können wir zwei Formeln aufstellen:
+	\begin{align*}
+		&\mu X . Y.(\psi(X,Y), \varphi(X,Y))_1 = \mu X . \psi(X, \mu Y \varphi(X,Y)) \\
+		&\mu X . Y.(\psi(X,Y), \varphi(X,Y))_2 = \mu Y . \varphi(\mu X .\psi(X,Y), Y)
+	\end{align*}
+	um den zweistelligen Operator $(F, G)$ mit $F:(X,Y)\mapsto\{v : \K,v\models \psi(X,Y)\}$ und $G:(X,Y)\mapsto\{\K,v\models \varphi(X,Y)\}$ in einstellige Formeln aufzuteilen. Nun gilt 
+	\[\K,v \models \left[ \mu X.Y(\psi,\varphi)\right]_1 \Leftrightarrow v\in F^\infty.\]
+	 Die Formel $\psi(X,\mu Y . \varphi(X,Y))$ definiert aber den Operator $E : X\mapsto F(X,(G_X)^\infty)$ mit $G_X : Y\mapsto G(X,Y)$. Also ist 
+	\[\K,v\models \mu X . \psi( X, \mu Y .\varphi(X,Y)) \Leftrightarrow v\in E^\infty.\]
+	Mit dem Lemma folgt $E^\infty=F^\infty$, also ist die Formel $\psi(X,\mu Y . \varphi(X,Y))$ äquivalent zu $\left[ \mu X.Y(\psi,\varphi)\right]_1$.
+\end{proof}
 
 
+\subsection{Least Fixed-Point Logic}
+
+Im vorherigen Kapitel haben wir uns weitgehend mit dem modalen $\mu$-Kalkül beschäftigt, welcher die Modallogik $\ML$ um kleinste und größte Fixpunkte erweitert.
+In diesem Kapitel machen wir das gleiche mit $\FO$. Doch warum reicht $\FO$ nicht aus?
+\begin{enumerate}
+	\item $\FO$ besitzt keinen Iterationsmechanismus, weshalb Eigenschaften wie transitive Abgeschlossenheit nicht in $\FO$ darstellbar sind.
+	\item $\FO$ kann nur lokale Eigenschaften ausdrücken (mehr dazu in der Vorlesung Algorithmische Modelltheorie)
+	\item $\FO$ hat eine geringe Komplexität. Hält man $\A$ fest und misst die Komplexität von $\A\models\varphi$ bzgl. $\vert \varphi \vert$, ist die Komplexität in $\operatorname{PSPACE}$.
+	
+	Beim Betrachten der Datenkomplexität hält man jedoch $\psi$ fest und misst die Komplexität von $\A\models\psi$ bzgl. $\vert\A\vert$. Komplexitätstheoretisch ist dieses Problem in $\operatorname{AC}^0\subseteq \operatorname{LOGSPACE}$. Ist ein Problem also nich in $\operatorname{LOGSPACE}$ lösbar, so lässt es sich auch nicht in $\FO$ ausdrücken.
+\end{enumerate}
+
+Man möchte also eine Logik finden, in welche alle Probleme aus $\operatorname{PTIME}$ ausdrückbar sind. Dies führt uns zur Logik \textit{Least Fixed Point} ($\LFP$), welche $\FO$ um kleinste und größte Fixpunkte erweitert.
+
+Wenn $\psi(T,\bar{x})$ eine Formel ist, in der $T$ nur positiv auftritt und $\vert\bar{x}\vert = \operatorname{Stelligkeit}(T)$ und $\bar{u}$ ein Tupel von Termen ist mit $\vert\bar{u}\vert=\vert\bar{x}\vert$, dann sind
+\[\left[ \lfp T\bar{x}.\psi(T, \bar{x})\right] (\bar{u})\]
+und
+\[\left[ \gfp T\bar{x}.\psi(T, \bar{x})\right] (\bar{u})\] 
+Formeln in $\LFP$.
+\\
+Semantik: Sei $\A$ eine Struktur, in der alle Relationen in $\psi$ außer $T$ und alle Variablen außer $\bar{x}$ interpretiert werden. Dann gilt
+\[
+\A\models \left[\
+\begin{array}{l}
+	\lfp \\ \gfp
+\end{array}
+T \bar{x} . \psi(T,\bar{x}) \right](\bar{u}) \Leftrightarrow \bar{u}^\A \in\
+\begin{array}{l}
+	\lfp \\ \gfp
+\end{array}
+\left( F^\psi_\A \right).
+\]
+
+\begin{example}
+	Sei $G=(V,E)$ ein Graph und die $\LFP$-Formel $\tc(u,v)$ wie folgt definiert:
+	\[\tc(u,v)\coloneqq [\lfp T x y. Exy \lor \exists z(Exz \land Tzy)](u,v).\]
+	Dann sieht die Fixpunktinduktion folgendermaßen aus
+	\begin{itemize}
+		\item $T^0=\emptyset$,
+		\item $T^1=E$,
+		\item $T^i=\{(a,b) : \text{es gibt Pfad der Länge } \geq 1 \text{ und } \leq i \text{ von } a \text{ nach } b\}$
+		\item $T^\infty=\{(a,b) : \text{es gibt Pfad der Länge } l\geq 1 \text{ von } a \text{ nach } b\}$
+	\end{itemize}
+	Insgesamt gilt also $G\models\tc(u,v) \Leftrightarrow (u,v)\in \operatorname{TC}(E)$.
+\end{example}
+
+Eine Interessante Beobachtung ist, dass sich Parameter eliminiert lassen. Wir können eine Formel
+\[\varphi(u,v) \coloneqq [\lfp T y. Euy \lor \exists z(Exz \land Tzy)](v)\]
+definieren, deren Fixpunktvariablen nur eine Stelligkeit von $1$ haben, aber dennoch $\tc(u,v) \equiv \varphi(u,v)$ gilt.
+
+Wieder betrachten wir für beliebige $\A=(A,\dots)$ mit $\vert A\vert=n\in \mathbb{N}$ und feste $[\lfp T\bar{x}.\psi(T,\bar{x})]$ mit $k$-stelligem $T$ die Komplexität von dem Problem
+\[\text{Gilt } \A\models [\lfp T\bar{x}.\psi(T,\bar{x})](\bar{a})?\]
+Wir stellen fest, dass $F^\psi_\A:\Pot{A^k}\to\Pot{A^k}$ polynomiell berechenbar ist. Der $i$-te Induktionsschritt $T^i$ der Fixpunktinduktion ist das also auch. Dann folgt, dass $\lfp(F^\psi_\A)=T^m$ für ein $m\leq n^k$. Informell können wir also schließen:
+\[\LFP \subseteq \operatorname{PTIME}\]
+
+\begin{example}
+	Es sollen nun wieder Beispiele für $\LFP$ dargestellt werden.
+	\\
+	Wir suchen eine Formel $\psi(x,y)\in \LFP$ so, dass für jede Kripkestruktur $\K$ gilt $\K\models \psi(v,w)\Leftrightarrow \K,v \sim \K,w \Leftrightarrow (v,w)\in Z_{\max}$. $Z_{\max}$ bezeichnet die maximale Bisimulation auf $\K$. Dafür definieren wir
+	\begin{align*}
+		\psi(x,y)\coloneqq [\gfp Zxy . &\bigwedge_{i\in I} P_ix\leftrightarrow P_iy\\
+		&\land \bigwedge_{a\in A} \forall x'(E_a x x' \rightarrow (\exists y (Ey y' \land Zx'y')))\\
+		&\land \bigwedge_{a\in A} \forall y'(E_a y y' \rightarrow (\exists x (Ex x' \land Zx'y')))](x,y).
+	\end{align*}
+	Die Fixpunktinduktion beginnt mit $Z^0=V\times V$ und es gilt $Z^0\supseteq Z^1\supseteq \dots \supseteq Z^i \supseteq Z^\infty = Z_{\max}$.
+	
+	Nun wollen wir wieder Spiele kodieren. Wir haben einen Spielgraphen $G=(V,E,V_0,V_1)$ und möchten die Gewinnregion von Spieler $0$ bestimmen. Dafür stellen wir folgenden Zusammenhang fest:
+	\begin{align*}
+	&\text{Sp. } 0 \text{ gewinnt } G \text{ von } v \text{ aus}\\
+	\Leftrightarrow &G\models [\lfp Wx.(V_0x\land \exists y (Exy \land Wy)) \lor(V_1 x \land \forall y (Exy \rightarrow Wy))](v).
+	\end{align*}
+	Weiter ist jede $\LFP$-Formel über endlichen Strukturen durch quantorenfreie Interpretationen in diese Formel \glqq übersetzbar\grqq.
+\end{example}
+
+Im letzten Kapitel haben wir festgestellt, dass sich der modale $\mu$-Kalkül in die monadische Logik zweiter Ordnung übersetzten lässt. Hier wollen wir nun ein Verfahren einführen, welches $\LFP$ in $\operatorname{SO}$ einbettet:
+\[[\lfp T\bar{x} . \psi(T, \bar{x})](\bar{y})
+\leadsto
+\forall T ((\forall \bar{x}(\psi(T,\bar{x}) \rightarrow T\bar{x})) \rightarrow T\bar{y}).\]
+Dies reicht für die Einbettung aus, da $\gfp$-Formeln nicht zwangsläufig benötigt werden. Dies folgt aus der Äquivalenz
+\[\neg[\lfp T\bar{x}.\psi(T,\bar{x})] \equiv [\gfp T\bar{x}.\neg\psi[T/\neg T](T,\bar{x})].\]
+Ähnlich dazuhaben wir festgestellt, dass $L_\mu \overset{(\kappa)}{\subseteq} \ML^\infty$ mit der Einschränkung gilt, dass die Strukturen eine durch $\kappa$ beschränkte Größe besitzen. Analog wollen wir nun $\LFP \stackrel{(\kappa)}{\subseteq} \Linf{\infty}$ zeigen.
+\\
+Sei $[\lfp R\bar{x} . \psi(R,\bar{x})](\bar{x})$ eine $\LFP$-Formel, für die wir eine äquivalente $\Linf{\infty}$ Formel finden wollen (für durch $\kappa$ beschränkte Modelle).
+Dafür definieren wir erneut eine Folge $(\psi^\alpha(\bar{x}))_{\alpha <\kappa^+}$ mit
+\begin{itemize}
+	\item $\psi^0(\bar{x})\coloneqq\bar{x}\neq\bar{x}$
+	\item $\psi^{\alpha+1}(\bar{x})\coloneqq \psi[R\bar{u} / \psi^\alpha(\bar{u})](\bar{x})$
+	\item $\psi^\lambda(\bar{x})=\bigvee_{\alpha<\lambda}\psi^\alpha(\bar{x})$.
+\end{itemize}
+Dann ist für Strukturen $\A=(A,\dots)$ mit $\vert A \vert \leq \kappa$
+\[[\lfp R\bar{x}.\psi(R,\bar{x})](\bar{x} \overset{(\kappa)}{\equiv} \bigvee_{\alpha<\kappa^+}\psi^\alpha(\bar{x}).\]
+
+
+\subsection{Inflationäre und Partielle Fixpunkte}
+
+Wir wollen nun zwei weitere Fixpunkt-Logiken einführen. Zum Einen die \textit{Inflationary Fixed-Point Logic} ($\IFP$) und zum Anderen die \textit{Partial Fixed-Point Logic} ($\PFP$). 
+Man betrachte dafür zuerst den Operator $F^\psi_\A : T\mapsto\{\bar{a} : (\A,T) \models \psi(T,\bar{a})\}$, welcher implizit durch eine Formel $\psi(T,\bar{x})$ definiert wird. 
+Setzt man voraus, dass $T$ nur positiv in $\psi$ vorkommt, dann ist $F^\psi_\A$ für jede Struktur $\A$ monoton. 
+Was passiert aber, wenn man diese Bedingung weg lässt?
+
+Zuerst fällt einem auf, dass Formeln $\psi(T,\bar{x})$ gibt, die immer monotone Operatoren definieren, auch wenn $T$ negiert auftritt (bspw. wenn das negierte $T$ in einer Unterformel vorkommt, die sowieso immer falsch ist). 
+Warum wird dann also nicht bloß Monotonie statt Positivität gefordert? Dies liegt daran, dass Monotonie eine semantische und unentscheidbare Bedingung ist, die dann Auswirkungen auf die Syntax hat. 
+Logiken sollten aber eine entscheidbare Syntax haben.
+
+Sei also $\psi(T,\bar{x})$ so, dass $T$ sowohl positiv, als auch negativ auftreten kann. $F^\psi_\A$ ist im Allgemeinen weder monoton, noch inflationär. 
+Aus $F^\psi_\A$ lässt sich aber der inflationäre 
+\[G^\psi_\A:T\mapsto T\cup F^\psi_\A(T)\]
+und dual der deflationäre Operator
+\[H^\psi_\A : T \mapsto T\cap F^\psi_\A(T)\]
+definieren.
+
+\subsubsection*{Inflationäre Fixpunkt Logik}
+
+Dies führt uns zur Logik $\IFP$. Zu $\psi(T,\bar{x})$ konstruieren wir neue Formeln $[\ifp T\bar{x} . \psi(T,\bar{x})](\bar{u})$, $[\dfp T\bar{x}.\psi(T,\bar{x})][\bar{u}]$. 
+\\
+Semantik: Auf $\A$ definiert der Operator $\G^\psi_\A$ die induktive Folge 
+\begin{itemize}
+	\item $T^0=\emptyset$
+	\item $T^{\alpha+1}=G^\psi_A(T^\alpha)=T^\alpha \cup F^\psi_\A(T^\alpha)$
+	\item $T^\lambda=\bigcup_{\alpha<\lambda} T^\alpha$
+\end{itemize}
+mit dem induktiven Fixpunkt $T^\infty$. Dann gilt 
+\[\A\models [\ifp T\bar{x} . \psi(T,\bar{x})](\bar{a}) \Leftrightarrow\bar{a}\in T^\infty\]
+und analog für $\dfp$.
+\\
+Falls $T$ nur positiv in $\psi$ auftritt, dann sind die $\lfp$-Induktionen und die $\ifp$-Induktionen gleich. Ebense $\gfp$ und $\dfp$. Auch wird auf endlichen Strukturen der $\ifp$-/$\dfp$-Fixpunkt nach polynomiell vielen Stufen erreicht (bzgl. $\vert A \vert$). Also gilt $\LFP \subseteq \IFP \subseteq \operatorname{PTIME}$.
+
+\begin{example}[Der faule Ingenieur]
+	Sei $\phi(x)$ eine Spezifikation, die von allen Zuständen eines Systems $\A$ erfüllt sein soll. Da es $a$ gibt, mit $\A\models \phi(a)$ lässt sich $\A$ auf $\A\vert_\varphi$ durch das $\{a\in A : \A\models \varphi(a)\}$ induzierte Redukt eingrenzen. 
+	Durch das entfernen von Zuständen kann es aber sein, dass andere Zustände nicht mehr die Spezifikation erfüllen. Wir benötigen also eine Induktion. 
+	Sei $\A^0=\A$, $\A^{\beta+1}=\A^\beta\vert_\varphi$ und $\A^\lambda=\bigcap_{\beta<\lambda}\A^\beta$. Diese Folge erreicht einen Fixpunkt $\A^\infty$ mit $\A^\infty\models \forall x \varphi(x)$.
+	
+	Um diesen Vorgang zu formalisieren, definieren wir zuerst $\varphi\vert_Z$ als die Relativierung von $\varphi$ durch eine neue Mengenvariable $Z$. Das heißt, man ersetzt Unterformeln $\exists y \alpha$ durch $\exists y(Z y \land \alpha)$ bzw. $\forall y \alpha$ durch $\forall y (Zy\rightarrow \alpha)$. So erhält man dann einen deflationären Operator
+	\[\operatorname{Op}:Z \mapsto \{a: \A\vert_Z \models \varphi(a)\} = \{a : \A\models Za \land \varphi\vert_Z(a)\}\]
+	und es folgt $\A^\infty \text{ nicht leer} \Leftrightarrow \A \models \exists x [\dfp Zx . \varphi\vert_Z(x)](x)$.
+\end{example}
+
+\begin{satz}[Gurevich-Shelah, Kreutzer]
+	$\LFP \equiv \IFP$.
+\end{satz}
+\begin{proof}
+	Der Beweis wird in der Vorlesung Algorithmische Modelltheorie geführt.
+\end{proof}
+
+\subsubsection*{Partielle Fixpunkt Logik}
+
+Nun kommen wir zur zweiten bereits erwähnten Logik: $\PFP$. Wieder verwenden wir den Operator $F^\psi_\A$ ohne die Positivitätsbedingung, aber nur auf endlichen Strukturen.
+Für $\psi(R,\bar{x})$ und dem Induktionsanfang $R^0=\emptyset$ führt uns dies auf eine Folge $R^0$, $R^1$, $R^2$, $\dots$. Sei $n=\vert A \vert$ und $k=\operatorname{Stelligkeit}(R)$. Dann erreicht man nach $m\leq 2^{n^k}$ Schritten eine Stufe $R^m$ so, dass entweder $F^\psi_\A(R^m)=R^m\eqqcolon \pfp(F^\psi_\A)$ (siehe Abb. \ref{ExPFP}) oder $F^\psi_\A(R^m)=R^i$ für $i<m$ (siehe Abb. \ref{NoPFP}).
+
+\begin{figure}[h]
+	\sidesubfloat[]{
+		\begin{tikzpicture}[node distance=0.5cm]
+		\node[state, draw=none] (R0) {$\emptyset$};
+		\node[state, draw=none] (R1) [right=of R0] {$R^1$};
+		\node[state, draw=none] (dots) [right=of R1] {$\cdots$};
+		\node[state, draw=none] (Rm) [right=of dots] {$R^m$};
+		
+		\path[->]
+		(R0) edge [] node {} (R1)
+		(R1) edge [] node {} (dots)
+		(dots) edge [] node {} (Rm)
+		(Rm) edge [loop right] node {} (Rm); 
+		\end{tikzpicture}
+		\label{ExPFP}
+	}
+	\hspace{2cm}
+	\sidesubfloat[]{
+		\begin{tikzpicture}[node distance=0.5cm]
+			\node[state, draw=none] (R0) {$\emptyset$};
+			\node[state, draw=none] (dots1) [right=of R0] {$\dots$};
+			\node[state, draw=none] (Ri)  [right=of dots1]{$R^i$};
+			\node[state, draw=none] (dots2) [right=of Ri] {$\cdots$};
+			\node[state, draw=none] (Rm) [right=of dots2] {$R^m$};
+			
+			\path[->]
+			(R0) edge [] node {} (dots1)
+			(dots1) edge [] node {} (Ri)
+			(Ri) edge [] node {} (dots2)
+			(dots2) edge [] node {} (Rm)
+			(Rm) edge [bend right] node {} (Ri);
+		\end{tikzpicture}
+		\label{NoPFP}
+	}
+	\caption{Existenz eines Partiellen Fixpunktes (a) und das Fehlen davon (b)}
+\end{figure}
+
+Für $\psi(R,\bar{x})$ ist $[\pfp R\bar{x}.\psi(R,\bar{x})](\bar{u})$ eine $\PFP$-Formel. 
+Die Semantik dazu ist: $$\A\models [\pfp R\bar{x} . \psi(R,\bar{x})](\bar{a}) \Leftrightarrow \text{der Fixpunkt } \pfp(F^\psi_\A) \text{ ex. und } \bar{a} \in \pfp(F^\psi_\A).$$
+
+Falls $R$ nur positiv in $\psi(R,\bar{x})$ auftritt, dann ist $\lfp(F^\psi_\A)=\pfp(F^\psi_\A)$, also gilt $\LFP \equiv \IFP \subseteq \PFP$. Was noch unbekannt ist, ist ob $\PFP\subseteq \operatorname{PTIME}$ gilt. Dies liegt daran, dass es Beispiele gibt, in denen die $\pfp$-Fixpunktinduktion erst nach $2^{n^k}$ den Fixpunkt erreicht.
+
+Sei $(A,<)$ eine lineare Ordnung und 
+\[\psi(R,x)\coloneqq (Rx \land \exists y (y<x \land \neg Ry)) \lor (\neg Rx \land \forall y (y<x \rightarrow Ry)) \lor \forall y Ry.\]
+$R^\alpha$ definiert ein $0-1$-Wort der Länge $n$, also eine Zahl $m_\alpha<2^n$ so, dass gilt $m_0=0$, $m_{\alpha+1}=m_\alpha+1$. Es folgt $m_\alpha = \alpha$ für $\alpha \leq 2^n$ und $m_{2^n+1}=m_{2^m}=R^{2^n}$. Der Fixpunkt wird also erst nach exponentiell vielen Schritten erreicht.
+
+\begin{satz}
+	$\PFP\subseteq \operatorname{PSPACE}$
+\end{satz}
+\begin{proof}
+	Zu zeigen: Wenn für jedes $\A$ $F^\psi_\A$ mit polynomiellen Platz (bzgl. $\vert A\vert$) berechenbar ist, dann auch der partielle Fixpunkt.
+	
+	Wir können aber nicht die gesamte Folge $R^0$, $R^1$, $\dots$ berechnen und jeweils testen, ob $R^n=R^i$ für ein $i<n$, da dafür exponentiell viel Speicher gebraucht wird. Die Lösung ist dafür ist, jeweils die letzten beiden berechneten Stufen zu speichern und zu zählen, wie viele Stufen bereits berechnet wurden.
+	
+	Sei $F^\psi_\A$ also $\operatorname{PSPACE}$-berechenbar, $n=\vert A \vert$ und $k=\operatorname{Stelligkeit}(R)$. Frage: Gilt $\A\models [\pfp R\bar{x} . \psi(R,\bar{x})](\bar{a})$?.
+	
+	Diese Frage soll von folgendem Algorithmus mit Polynomiellen Platzverbrauch gelöst werden:
+	\begin{algorithmic}
+		\State $R \gets \emptyset$
+		\For{$i=0,\dots,2^{n^k}$}
+			\State $R^\ast \gets F^\psi_\A(R)$
+			\If{$R^\ast=R$}
+				\If{$\bar{a}\in R^\star$}
+					\State \Return $\text{true}$
+				\Else
+					\State \Return $\text{false}$
+				\EndIf
+			\Else
+				\State $R \gets R^\ast$
+			\EndIf
+		\EndFor
+		\State \Return $\text{false}$
+	\end{algorithmic}
+\end{proof}
+
+\begin{definition}[Infinitäre Logik mit beschränkter Variablenanzahl]
+	Wir definieren $\Linf{\infty}^k\coloneqq\{\psi \in \Linf{\infty} : \psi \text{ besitzt nur die Variablen } x_1,\dots,x_k\}$ und als Zusammenfassung $\Linf{\infty}^\omega\coloneqq \bigcup_{k<\omega} \Linf{\infty}^k$.
+\end{definition}
+
+\begin{satz}
+	$\LFP, \IFP, \PFP \subseteq \Linf{\infty}^\omega$
+\end{satz}
+\begin{proof}
+	Sei $\psi(R,x_1,\dots,x_m)\in \Linf{\infty}^\omega$ eine Formel, welche die Variablen $x_1,\dots,x_m,y_1,\dots,y_l$ benutzt. Dann lässt sich jede Stufe $R^\alpha$ der $\lfp$-Induktion durch eine Formel $\psi^\alpha(x_1,\dots,x_m)\in \Linf{\infty}^{2m+l}$ beschreiben. 
+	Dabei werden zusätzlich zu $x_1,\dots,x_m,y_1,\dots,y_l$ die Variablen $z_1,\dots,z_m$ verwendet.
+	
+	Wir definieren $\psi^0(\bar{x})=x_1\neq x_1$ und 
+	\[\psi^{\alpha+1}\coloneqq \psi[R \underbrace{u_1 \dots u_m}_{\bar{u}} / \exists \bar{z}(\bar{z}=\bar{u} \land \exists \bar{x}(\bar{x}=\bar{z} \land \psi^\alpha(\bar{x})))].\]
+	$\bar{u}$ ist dann ein Tupel von Variablen aus $x_1,\dots,x_m,y_1,\dots,y_l$ und in allen $\psi^\alpha$ kommen solche Variablen nur in $R$-Atomen vor. Es folgt $LFP\subseteq \Linf{\infty}^\omega$.
+	
+	Für $\IFP$ ist dies analog, mit dem einzigen Unterschied, dass der Induktionsschritt als $\psi^{\alpha+1}\coloneq \psi^\alpha \lor \psi[\dots]$ definiert werden muss.
+	
+	Während wir aber bei $\LFP$ und $\IFP$ den Fixpunkt einfach als $\bigvee_{\alpha<\kappa+} \psi^\alpha(\bar{x})$ definieren können, muss bei $\PFP$ das Abschlusskriterium explizit formuliert werden:
+	\[[\pfp R\bar{x} . \psi(R,\bar{x})](\bar{x}) \equiv
+	\bigvee_{n<\omega}\forall \bar{x}((\psi^{n+1}(\bar{x}) \leftrightarrow \psi^n(\bar{x})) \land \psi^n(\bar{x})).\]
+\end{proof}
+
+Für $\Linf{\infty}^k$ lässt sich eine Abwandlung des $\EF$-Spiels definieren. $\A,\bar{a}\equiv^k \B,\bar{b}$ : für jede Formel $\psi(\bar{x})\in \Linf{\infty}^k$ gilt $\A\models \psi(\bar{a}) \Leftrightarrow \B\models \psi(\bar{b})$. Dies führt und zu folgendem Spiel:
+
+\begin{definition}[$k$-pebble game]
+	Die Positionen sind Tupel $\bar{a}=(a_1,\dots,a_i)$ und $\bar{b}=(b_1,\dotsm,b_i)$ mit $i\leq k$.
+	
+	In einem Zug wählt I ein $j\leq k$ und ein Element $a_j'\in A$ oder $b_j'\in B$. II antwortet mit einem Element der anderen Struktur ($b_j'\in B$ oder $a_j'\in A$). Die neue Position ist dann $\bar{a}\frac{a_j'}{a_j}$, $\bar{b}\frac{b_j'}{b_j}$.
+	Die neue Syntax bedeutet einfach, dass falls $a_j$ in $\bar{a}$ vorhanden war, dieses durch $a_j'$ ersetzt wird. Andernfalls wird $a_j'$ zu $\bar{a}$ hinzugefügt.
+	
+	I gewinnt, wenn $\bar{a}\mapsto\bar{b}\notin\Loc(\A,\B)$ und II gewinnt, wenn sie nie verliert.
+\end{definition}
+
+\begin{satz}
+	II gewinnt das $k$-pebble game von $\A,\bar{a}$, $\B,\bar{b}$ aus gdw. $\A,\bar{a}\equiv^k \B,\bar{b}$
+\end{satz}
+Der Beweis lässt sich einfach aus dem Satz von Ehrenfeucht-Fra\"iss\'e herleiten.
+
+\subsubsection*{Können $\LFP, \IFP, \PFP$ zählen?}
+
+Wir definieren die Klassen 
+$$\EVEN=\{A : \vert A \vert \text{ gerade}\}$$ 
+und $$\EVEN_<=\{(A,<) : < \text{ lineare Ordnung auf } A, \vert A\vert \text{ gerade}\}.$$
+Es gilt $\EVEN_<\in \LFP$:
+\begin{align*}
+	\psi \coloneqq &\text{``}<\text{ ist lin. Ord.'' } \land\\
+	&\exists x (\text{``}x\text{ ist das kleinste Element''}) \land \\
+	& \exists y (\text{``}y\text{ ist das größte Element''}) \land \\
+	&\neg[\lfp Gz : z=x \lor \exists u (Gu \land \text{``}z\text{ is übernächstes Element nach } u\text{''})](y)
+\end{align*}
+Die Fixpunktinduktion definiert dabei die Menge der geraden Elemente bzgl. $<$.
+
+\begin{satz}
+	Es gilt aber $\EVEN\notin \Linf{\infty}^\omega$ (also $\notin \LFP,\IFP,\PFP$).
+\end{satz}
+\begin{proof}
+	Sei $\psi\in \Linf{\infty}^k(\emptyset)$. Zu zeigen: Es gibt endliche Mengen $A$ und $B$, wobei $\vert A \vert$ gerade und $\vert B\vert$ ungerade ist, aber $A \equiv^k B$.
+	
+	Sei dafür $\bar{a}=(a_1,\dots,a_k)\in A^k$ und $\bar{b}=(b_1,\dots,b_k)\in B^k$. Dann ist $A,\bar{a} \equiv^k B,\bar{b}$ gdw. $\bar{a}$ und $\bar{b}$ den gleichen Gleichehitstype haben (also $a_i=a_j$ gdw. $b_i=b_j$ $\forall i,j\leq k$) und $\vert A\vert, \vert B\vert \geq k$. Dann gewinnt II das $k$-pebble game auf $A$, $B$ und $\EVEN$ ist nicht in $\Linf{\infty}^\omega$ definierbar.
+\end{proof}
+
+Ein anderer Beweisansatz ist der über das 0-1-Gesetz.
+\begin{satz}[0-1-Gesetz]
+	Für jeden Satz $\psi\in \Linf{\infty}^\omega(\tau)$ konvergieren die Wahrscheinlichkeiten $\mu_n(\psi)=\Pr[\A\models\psi : \A \text{ eine } \tau\text{-Struktur mit Universum } {0,\dots,n-1}]$ entweder gegen $0$ oder gegen $1$, wenn $n\to\infty$.
+\end{satz}
+Es gilt 
+$$\mu_n(\EVEN)=\begin{cases} 0 & n \text{ ungerade} \\ 1 & n \text{ gerade},\end{cases}$$
+also gibt es keinen Grenzwert $\lim\limits_{n\to\infty} \mu_n(\EVEN)$. $\EVEN$ lässt sich also nicht $\Linf{\infty}^\omega$ definieren.
+
+Daran, dass $\EVEN_<$ aber definierbar ist lässt sich erkennen, dass es geordnete Strukturen besser definierbar sind. Es ist tatsächlich so, dass es auf geordneten Strukturen einen sehr engen Zusammenhang zwischen Logik und Komplexität gibt. So gilt in diesem Fall $\LFP\equiv\IFP\equiv\operatorname{PTIME}$ und $\PFP\equiv\operatorname{PSPACE}$.
+
+\begin{satz}
+	Jede Eigenschaft geordneter endlicher Strukturen ist $\Linf{\infty}^\omega$ definierbar.
+\end{satz}
+\begin{proof}
+	Wir zeigen dies für $\tau=\{E,<\}$, also geordnete Graphen. Sei dafür $\C$ eine beliebiger Klasse endlicher, geordneter Graphen $G=(V,E,<)$.
+	
+	Nun können wir eine Formel $\varphi_n(x)\in \Linf{\infty}^2$ definieren die besagt, dass $x$ das $n$-te Element der Struktur ist:
+	\begin{itemize}
+		\item $\varphi_0(x) \coloneqq \neg\exists y (y<x)$
+		\item $\varphi_{n+1}(x)\coloneqq \exists y (y<x \land \varphi_n(y)) \land \forall y(y<x \rightarrow \bigvee_{m\leq n}\varphi_m(y))$, wobei $\varphi_n(y)$ die Formel Formel ist, in der alle $x$ und $y$ Vorkommen vertauscht wurden.
+	\end{itemize}
+	
+	Für $G=(V,E^G,<)$ mit $V=\{v_1,\dots,v_n\}$, $v_i<v_j\Leftrightarrow i<j$ definieren wir nun die Formel
+	\[\psi_G\coloneqq \forall x \forall y(Exz \leftrightarrow \bigvee_{(v_i,v_j)\in E^G}(\varphi_i(x) \land \varphi_j(z)) \land \exists x \varphi_n(x) \land \neg\exists x \varphi_{n+1}(x))\in \Linf{\infty}^3.\]
+	Setze nun $\eta^\C \coloneqq \bigvee\{\psi_G : G\in \C\}\in \Linf{\infty}^3$.
+\end{proof}
 
 
 

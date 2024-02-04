@@ -23,6 +23,8 @@
 \usepackage{floatrow}
 \usepackage{subfig}
 
+\usepackage{algpseudocode}
+
 \usepackage[hidelinks]{hyperref}
 
 \floatsetup[figure]{style=plain,subcapbesideposition=center}
@@ -30,16 +32,6 @@
 \title{Mathematische Logik 2:\\Vorlesungmitschrift}
 \author{Erich Grädel\\\small{(Mitschrift von Theodor Teslia)}}
 \date{}
-
-
-\newtheoremstyle{break}
-{\topsep}{\topsep}%
-{}{}%
-{\bfseries}{}%
-{\newline}{}%
-
-\theoremstyle{break}
-\newtheorem{example}{Beispiel}[section]
 
 \newtheoremstyle{def_style}
 {\topsep}{\topsep}%
@@ -49,6 +41,15 @@
 
 \theoremstyle{def_style}
 \newtheorem{definition}{Definition}[section]
+
+\newtheoremstyle{breakAfterLabel}
+{\topsep}{\topsep}%
+{}{}%
+{\itshape}{}%
+{\newline}{}%
+
+\theoremstyle{breakAfterLabel}
+\newtheorem{example}{Beispiel}[section]
 
 \theoremstyle{def_style}
 \newtheorem{satz}{Satz}[section]
@@ -63,7 +64,7 @@
 \newtheorem{lemma}{Lemma}[subsection]
 
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta, automata, positioning}
 
 \newcommand{\Pot}[1]{\mathcal{P}(#1)}
 
@@ -85,6 +86,61 @@
 
 \def\opencorner{\text{\textopencorner}}
 \def\closecorner{\text{\textcorner}}
+
+% Operator names
+\newcommand{\HF}{\operatorname{HF}}
+\newcommand{\FO}{\operatorname{FO}}
+\newcommand{\acc}{\operatorname{acc}}
+\newcommand{\fd}{\operatorname{fd}}
+\newcommand{\cut}{\operatorname{cut}}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Bild}{\operatorname{Bild}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\On}{\operatorname{On}}
+\newcommand{\Cn}{\operatorname{Cn}}
+\newcommand{\otp}{\operatorname{otp}}
+\newcommand{\ZFC}{\operatorname{ZFC}}
+\newcommand{\TA}{\operatorname{TA}}
+\newcommand{\PA}{\operatorname{PA}}
+\newcommand{\Konf}{\operatorname{Konf}}
+\newcommand{\Start}{\operatorname{Start}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Lauf}{\operatorname{Lauf}}
+\newcommand{\True}{\operatorname{True}}
+\newcommand{\Th}{\operatorname{Th}}
+\newcommand{\Beweis}{\operatorname{Beweis}}
+\newcommand{\Abl}{\operatorname{Abl}}
+\newcommand{\Wf}{\operatorname{Wf}}
+\newcommand{\ML}{\operatorname{ML}}
+\newcommand{\tp}{\operatorname{tp}}
+\newcommand{\MF}{\operatorname{MF}}
+\newcommand{\Linf}[1]{\operatorname{L}_{#1\omega}}
+\newcommand{\qr}{\operatorname{qr}}
+\newcommand{\Loc}{\operatorname{Loc}}
+\newcommand{\WO}{\operatorname{WO}}
+\newcommand{\lfp}{\operatorname{lfp}}
+\newcommand{\gfp}{\operatorname{gfp}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\VAR}{\operatorname{VAR}}
+\newcommand{\Lmu}{\operatorname{L}_\mu}
+\newcommand{\MSO}{\operatorname{MSO}}
+\newcommand{\PDL}{\operatorname{PDL}}
+\newcommand{\SLmu}{\operatorname{S-L}_\mu}
+\newcommand{\LFP}{\operatorname{LFP}}
+\newcommand{\IFP}{\operatorname{IFP}}
+\newcommand{\PFP}{\operatorname{PFP}}
+\newcommand{\ifp}{\operatorname{ifp}}
+\newcommand{\dfp}{\operatorname{dfp}}
+\newcommand{\pfp}{\operatorname{pfp}}
+\newcommand{\EVEN}{\operatorname{EVEN}}
+
+\newcommand{\EF}{\operatorname{EF}}
+\newcommand{\ar}{\operatorname{ar}}
+\newcommand{\fin}{\operatorname{fin}}
+\newcommand{\G}{\operatorname{G}}
+\renewcommand{\H}{\operatorname{H}}
+\newcommand{\tc}{\operatorname{tc}}
+
 
 \hypersetup{linktoc=all}
 

@@ -1,28 +1,33 @@
 \babel@toc {german}{}\relax 
 \contentsline {section}{\numberline {1}Mengenlehre}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Mengen und Klassen}{2}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Axiomensysteme für die Mengenlehre}{3}{subsubsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.2}Stufen und Geschichten}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Relationen und Funktionen}{10}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Ordinalzahlen}{11}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Ordinale und Stufen}{14}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Der Rekursionssatz}{15}{subsubsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.5}Das Auswahlaxiom (AC)}{18}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {1.5.1}Folgerungen aus dem Auswahlaxiom}{19}{subsubsection.1.5.1}%
-\contentsline {subsubsection}{\numberline {1.5.2}Der Satz von Banach-Tarski}{19}{subsubsection.1.5.2}%
-\contentsline {subsection}{\numberline {1.6}Mächtigkeiten und Kardinalzahlen}{23}{subsection.1.6}%
-\contentsline {subsubsection}{\numberline {1.6.1}Kardinalzahlarithmetik}{25}{subsubsection.1.6.1}%
-\contentsline {subsubsection}{\numberline {1.6.2}Die Kontinuumshypothese (CH)}{28}{subsubsection.1.6.2}%
-\contentsline {section}{\numberline {2}Die Gödelschen Unvollständigkeitssätze}{30}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Das Hilbertsche Programm}{30}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Theorien}{31}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Kodierung von Turing Maschinen}{33}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Gödelisierung von Termen und Formeln}{34}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Modelltheorie}{36}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Erhaltungssätze (Charakterisierungssätze)}{36}{subsection.3.1}%
-\contentsline {paragraph}{Satz von \L o\'{s}-Tarski}{36}{section*.13}%
-\contentsline {paragraph}{Satz von van Benthem}{36}{section*.14}%
-\contentsline {subsection}{\numberline {3.2}Infintäre Logik und Ehrenfeucht-Fra\"{i}ss\'{e}-Spiele}{45}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Fixpunktlogiken}{49}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Algebraische Fixpunkttheorie}{49}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Der modale $\mu $-Kalkül}{51}{subsection.4.2}%
+\contentsline {subsection}{\numberline {1.3}Relationen und Funktionen}{11}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Ordinalzahlen}{12}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Ordinale und Stufen}{15}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Der Rekursionssatz}{16}{subsubsection.1.4.2}%
+\contentsline {paragraph}{Konstruktion von $F:\operatorname {On}\to A$:}{17}{section*.5}%
+\contentsline {paragraph}{Addition von Ordinalzahlen:}{17}{section*.6}%
+\contentsline {paragraph}{Multiplikation von Ordinalzahlen:}{17}{section*.8}%
+\contentsline {paragraph}{Potenzen von Ordinalzahlen:}{18}{section*.10}%
+\contentsline {subsection}{\numberline {1.5}Das Auswahlaxiom (AC)}{19}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Folgerungen aus dem Auswahlaxiom}{21}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Der Satz von Banach-Tarski}{21}{subsubsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.6}Mächtigkeiten und Kardinalzahlen}{24}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Kardinalzahlarithmetik}{26}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Die Kontinuumshypothese (CH)}{30}{subsubsection.1.6.2}%
+\contentsline {section}{\numberline {2}Die Gödelschen Unvollständigkeitssätze}{31}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Das Hilbertsche Programm}{31}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Theorien}{32}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Kodierung von Turing Maschinen}{34}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Gödelisierung von Termen und Formeln}{35}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Modelltheorie}{38}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Erhaltungssätze (Charakterisierungssätze)}{38}{subsection.3.1}%
+\contentsline {paragraph}{Satz von \L o\'{s}-Tarski}{38}{section*.18}%
+\contentsline {paragraph}{Satz von van Benthem}{38}{section*.19}%
+\contentsline {subsection}{\numberline {3.2}Infintäre Logik und Ehrenfeucht-Fra\"{i}ss\'{e}-Spiele}{47}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Fixpunktlogiken}{54}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Algebraische Fixpunkttheorie}{54}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Der modale $\mu $-Kalkül}{56}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Least Fixed-Point Logic}{63}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Inflationäre und Partielle Fixpunkte}{66}{subsection.4.4}%
